@@ -1,6 +1,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
+import { Counter } from '@/entities/Counter';
+import { PostDetail } from '@/entities/Post';
 
 export default function Dashboard({ auth }: PageProps) {
   return (
@@ -19,6 +21,8 @@ export default function Dashboard({ auth }: PageProps) {
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-red-100">
               You're logged in!
+              <Counter />
+              <PostDetail />
             </div>
           </div>
         </div>
