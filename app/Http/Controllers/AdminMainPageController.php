@@ -13,6 +13,25 @@ class AdminMainPageController extends Controller
 {
     protected const ROW_ID = 1;
 
+    public function index() 
+    {
+        $data = [];
+
+        $mainPage = MainPage::find($this::ROW_ID);
+
+        $data[] = ['title' => $mainPage->title->title];
+        $data[] = ['header' => $mainPage->header->header];
+        $data[] = ['title' => $mainPage->subheader->subheader];
+        $data[] = ['img_path' => $mainPage->img_path->img_path];
+
+        $data[] = ['all_title' => $mainPage->img_path->img_path];
+        $data[] = ['img_header' => $mainPage->img_path->img_path];
+        $data[] = ['img_subheader' => $mainPage->img_path->img_path];
+        $data[] = ['img_img_path' => $mainPage->img_path->img_path];
+
+
+    }
+
     public function setAttributes(AdminMainPageRequest $request)
     {
         $data = $request->validated();
