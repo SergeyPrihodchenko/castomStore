@@ -20,4 +20,11 @@ class Title extends Model
         $this->title = $value;
         $this->save();
     }
+
+    public function deleteTitle($id): void
+    {
+        $title = $this::find($id);
+
+        $title->delete();
+    }
 }

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminMainPageRequest;
+use App\Models\Admin\MainPage\Header;
+use App\Models\Admin\MainPage\Image;
 use App\Models\Admin\MainPage\MainPage;
+use App\Models\Admin\MainPage\Subheader;
+use App\Models\Admin\MainPage\Title;
 
 class AdminMainPageController extends Controller
 {
@@ -16,5 +20,69 @@ class AdminMainPageController extends Controller
         $mainPage = new MainPage();
 
         $mainPage->addAttributes($data);
+    }
+
+    public function updateTitle($id)
+    {
+        $mainPage = MainPage::find($this::ROW_ID);
+
+        $mainPage->title_id = (int)$id;
+
+        $mainPage->save();
+    }
+
+    public function deleteTitle($id)
+    {
+        $title = new Title();
+
+        $title->deleteTitle((int)$id);
+    }
+
+    public function updateHeader($id)
+    {
+        $mainPage = MainPage::find($this::ROW_ID);
+
+        $mainPage->header_id = (int)$id;
+
+        $mainPage->save();
+    }
+
+    public function deleteHeader($id)
+    {
+        $header = new Header();
+
+        $header->deleteHeader((int)$id);
+    }
+
+    public function updateSubheader($id)
+    {
+        $mainPage = MainPage::find($this::ROW_ID);
+
+        $mainPage->subheader_id = (int)$id;
+
+        $mainPage->save();
+    }
+
+    public function deleteSubheader($id)
+    {
+        $subheader = new Subheader();
+
+        $subheader->deleteSubheader((int)$id);
+    }
+
+    public function updateImage($id)
+    {
+        $mainPage = MainPage::find($this::ROW_ID);
+
+        $mainPage->image_id = (int)$id;
+
+        $mainPage->save();
+    }
+
+    public function deleteImg($id)
+    {
+        $img = new Image();
+
+        $img->deleteImg((int)$id);
     }
 }

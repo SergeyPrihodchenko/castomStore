@@ -20,4 +20,11 @@ class Subheader extends Model
         $this->subheader = $value;
         $this->save();
     }
+
+    public function deleteSubheader($id): void
+    {
+        $subheader = $this::find($id);
+
+        $subheader->delete();
+    }
 }

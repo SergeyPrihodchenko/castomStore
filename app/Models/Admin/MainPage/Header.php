@@ -20,4 +20,11 @@ class Header extends Model
         $this->header = $value;
         $this->save();
     }
+
+    public function deleteHeader($id): void
+    {
+        $header = $this::find($id);
+
+        $header->delete();
+    }
 }

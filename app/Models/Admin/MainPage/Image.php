@@ -4,6 +4,7 @@ namespace App\Models\Admin\MainPage;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
 {
@@ -24,5 +25,20 @@ class Image extends Model
         $this->img_path = $name;
 
         $this->save();
+    }
+
+    public function deleteImg($id): void
+    {
+        $img = $this::find($id);
+
+        $nameImg = $img->img_path;
+
+        Storage::delete($nameImg);
+
+        $checkFile = Storage::exists($nameImg);
+
+        if(!$checkFile) {
+            $img->delete();
+        }
     }
 }

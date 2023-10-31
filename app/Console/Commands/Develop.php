@@ -44,8 +44,6 @@ class Develop extends Command
         // $main = new AdminMainPageController;
         // $main->getAttributes();
 
-        $main = (new Title)->set('test1');
-
-        dd($main);
+        (new Image)->deleteImg(11);
     }
 }
