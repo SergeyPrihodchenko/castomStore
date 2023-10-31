@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminMainPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +37,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::post('/setAttribute', [AdminMainPageController::class, 'setAttributes'])->name('setAttribute');
