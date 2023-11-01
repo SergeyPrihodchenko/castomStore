@@ -27,6 +27,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.0",
+    "classnames": "^2.3.2",
     "react-redux": "^8.1.3"
   }
 }

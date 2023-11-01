@@ -1,0 +1,5 @@
+:root {
+  --modal-z-index: 10;
+  --overlay-color: rgba(0 0 0 / 60%);
+  --modal-bg: #f5f5f5;
+}

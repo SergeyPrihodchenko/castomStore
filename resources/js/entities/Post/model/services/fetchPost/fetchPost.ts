@@ -9,7 +9,7 @@ export const fetchPost = createAsyncThunk<
 >('postDetail/fetchPost', async (_, thunkAPI) => {
   try {
     const response = await axios.get<Post>(
-      `https://jsonplaceholder.typicode.com/posts/1`,
+      `https://jsonplaceholder.typicode.com/posts/3`,
     );
     const data = response.data;
     return data;

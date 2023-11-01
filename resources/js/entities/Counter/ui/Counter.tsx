@@ -1,9 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { counterActions } from '../model/slice/counterSlice';
 import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
+import { useAppDispatch } from '@/Shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export const Counter = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const counterValue = useSelector(getCounterValue);
 
   const increment = () => {
