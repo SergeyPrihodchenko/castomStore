@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('subheaders', function (Blueprint $table) {
             $table->id();
-            $table->string('subheader');
+            $table->text('subheader');
         });
     }
 
