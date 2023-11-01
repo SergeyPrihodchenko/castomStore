@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminMainPageController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/admin/dashboard', [AdminMainPageController::class, 'index'])->name('index');
+Route::post('/admin/dashboard/main', [AdminMainPageController::class, 'index'])->name('index');
 Route::post('/setAttribute', [AdminMainPageController::class, 'setAttributes'])->name('setAttribute');
 
 Route::post('/updateTitle/{id}', [AdminMainPageController::class, 'updateTitle'])->name('updateTitle');
