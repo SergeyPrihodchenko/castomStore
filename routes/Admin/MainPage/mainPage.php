@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminMainPageController;
+use App\Http\Controllers\Admin\AdminMainPageController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/admin/dashboard/main', [AdminMainPageController::class, 'index'])->name('index');

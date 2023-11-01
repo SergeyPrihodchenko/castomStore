@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AdminMainPageController;
 use App\Models\Admin\MainPage\Header;
 use App\Models\Admin\MainPage\Image;
@@ -9,6 +10,7 @@ use App\Models\Admin\MainPage\MainPage;
 use App\Models\Admin\MainPage\Subheader;
 use App\Models\Admin\MainPage\Title;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class Develop extends Command
 {
@@ -44,7 +46,10 @@ class Develop extends Command
         // $main = new AdminMainPageController;
         // $main->getAttributes();
 
-        $img = MainPage::find(1);
-        dd($img->imagePath->img_path);
+
+        $test = new UsersController;
+
+        $test->changeAdmin(1);
+        
     }
 }
