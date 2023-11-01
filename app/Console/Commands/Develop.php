@@ -44,6 +44,7 @@ class Develop extends Command
         // $main = new AdminMainPageController;
         // $main->getAttributes();
 
-        (new Image)->deleteImg(11);
+        $img = MainPage::find(1);
+        dd($img->imagePath->img_path);
     }
 }

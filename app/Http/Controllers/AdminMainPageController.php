@@ -22,14 +22,14 @@ class AdminMainPageController extends Controller
         $data[] = ['title' => $mainPage->title->title];
         $data[] = ['header' => $mainPage->header->header];
         $data[] = ['title' => $mainPage->subheader->subheader];
-        $data[] = ['img_path' => $mainPage->img_path->img_path];
+        $data[] = ['img_path' => $mainPage->imagePath->img_path];
 
-        $data[] = ['all_title' => $mainPage->img_path->img_path];
-        $data[] = ['img_header' => $mainPage->img_path->img_path];
-        $data[] = ['img_subheader' => $mainPage->img_path->img_path];
-        $data[] = ['img_img_path' => $mainPage->img_path->img_path];
+        $data[] = ['all_title' => Title::all()->toArray()];
+        $data[] = ['all_header' => Header::all()->toArray()];
+        $data[] = ['all_subheader' => Subheader::all()->toArray()];
+        $data[] = ['all_img_path' => Image::all()->toArray()];
 
-
+        return response()->json($data);
     }
 
     public function setAttributes(AdminMainPageRequest $request)

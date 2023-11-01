@@ -29,14 +29,14 @@ class MainPage extends Model
         return $this->belongsTo(Header::class);
     }
 
-    public function Subheader(): BelongsTo
+    public function subheader(): BelongsTo
     {
         return $this->belongsTo(Subheader::class);
     }
 
     public function imagePath(): BelongsTo
     {
-        return $this->belongsTo(Image::class);
+        return $this->belongsTo(Image::class, 'image_id', 'id');
     }
 
     public function addAttributes(array $data): void
