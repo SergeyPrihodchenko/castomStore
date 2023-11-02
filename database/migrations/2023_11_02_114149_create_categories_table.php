@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subheaders', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->text('subheader');
+            $table->string('title');
+            $table->foreignId('catalog_id')->index()->constrained('catalogs')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subheaders');
+        Schema::dropIfExists('categories');
     }
 };
