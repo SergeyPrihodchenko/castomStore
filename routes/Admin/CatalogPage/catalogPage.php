@@ -10,4 +10,4 @@ Route::post('admin/addCatalog', [CatalogsPageController::class, 'addCatalog'])->
 Route::post('admin/addCategory', [CatalogsPageController::class, 'addCategory'])->name('addCategory');
 Route::post('admin/updateCatalog', [CatalogsPageController::class, 'updateCatalog'])->name('updateCatalog');
 Route::post('admin/updateCategory', [CatalogsPageController::class, 'updateCategory'])->name('updateCategory');
-Route::post('admin/updateCatalogForCategory', [CatalogsPageController::class, 'index'])->name('updateCatalogForCategory');
+Route::post('admin/updateCatalogForCategory', [CatalogsPageController::class, 'updateCatalogForCategory'])->name('updateCatalogForCategory');

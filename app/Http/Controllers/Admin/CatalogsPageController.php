@@ -25,7 +25,7 @@ class CatalogsPageController extends Controller
 
     public function categoriesForCatalog(int $id): array
     {
-        $catalog = new Catalog();
+        $catalog = Catalog::find($id);
 
         $data = $catalog->categories;
 
