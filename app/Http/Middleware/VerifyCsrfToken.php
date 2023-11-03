@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'setAttribute',
-        '/admin/dashboard'
+        '/admin/dashboard/main',
+        'admin/dashboard/users'
     ];
 }
