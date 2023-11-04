@@ -1,6 +1,5 @@
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
-import { Counter } from '@/entities/Counter';
 
 export default function Welcome({
   auth,
@@ -10,7 +9,6 @@ export default function Welcome({
   return (
     <>
       <Head title="Welcome" />
-      <Counter />
       <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
           {auth.user ? (
@@ -39,7 +37,7 @@ export default function Welcome({
           )}
         </div>
 
-        <div className="max-w-7xl mx-auto p-6 lg:p-8">
+        {/* <div className="max-w-7xl mx-auto p-6 lg:p-8">
           <div className="flex justify-center">
             <svg
               viewBox="0 0 62 65"
@@ -326,7 +324,7 @@ export default function Welcome({
               Laravel v{laravelVersion} (PHP v{phpVersion})
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <style>{`
