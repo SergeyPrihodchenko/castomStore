@@ -4,32 +4,8 @@
     flex-wrap: wrap;
     background-color: white;
 }
-.aside, .mainAdminPage {
-    width: 100%;
+.mainAdminPage {
+    max-width: 390px;
     min-height: 1px;
     background-color: white;
-}
-
-@media (min-width: 992px) {
-  .aside {
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
-    order: 1;
-  }
-  .mainAdminPage {
-    flex: 0 0 66.666667%;
-    max-width: 66.666667%;
-    order: 2;
-  }
-}
-
-@media (min-width: 1400px) {
-  .aside {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
-  .mainAdminPage {
-    flex: 0 0 75%;
-    max-width: 75%;
-  }
 }
