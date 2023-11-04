@@ -6,7 +6,7 @@ import { PostDetail } from '@/entities/Post';
 import * as React from 'react';
 
 import s from './mainAdminPage.module.css';
-import MainAdminPage from './ui/MainAdminPage';
+import MainAdminPage from './ui/Main/MainAdminPage';
 import HeaderAdminPage from './ui/Header/HeaderAdminPage';
 
 export default function Dashboard({ auth }: PageProps) {
