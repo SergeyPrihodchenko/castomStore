@@ -1,12 +1,14 @@
 import * as React from 'react';
+import { Link } from '@inertiajs/react';
+
+import Dropdown from '@/Components/Dropdown';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
@@ -17,7 +19,6 @@ import {
 } from '@mui/material/styles';
 
 import Menu, { MenuProps } from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 
 const theme = createTheme({
   palette: {
@@ -79,6 +80,7 @@ export default function HeaderAdminPage() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const [anchorElProfile, setAnchorElProfile] =
     React.useState<null | HTMLElement>(null);
   const openProfile = Boolean(anchorElProfile);
@@ -89,127 +91,150 @@ export default function HeaderAdminPage() {
     setAnchorElProfile(null);
   };
 
+  const [anchorElSettings, setAnchorElSettings] =
+    React.useState<null | HTMLElement>(null);
+  const openSettings = Boolean(anchorElSettings);
+  const handleClickSettings = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElSettings(event.currentTarget);
+  };
+  const handleCloseSettings = () => {
+    setAnchorElSettings(null);
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="primary">
-          <Toolbar>
-            <>
-              <Button
-                id="demo-customized-button"
-                aria-controls={open ? 'demo-customized-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                variant="contained"
-                disableElevation
-                onClick={handleClick}
-                //endIcon={<KeyboardArrowDownIcon />}
-              >
-                <MenuIcon />
-              </Button>
-              <StyledMenu
-                id="demo-customized-menu"
-                MenuListProps={{
-                  'aria-labelledby': 'demo-customized-button',
-                }}
-                sx={{ marginLeft: '20px', marginTop: '-15px' }}
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>
-                  <Button
-                    sx={{
-                      color: 'black',
-                      borderColor: 'black',
-                    }}
-                    variant="outlined"
-                    href="#outlined-buttons"
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{ flexGrow: 1, fontSize: '16px' }}
-                    >
-                      Категории
-                    </Typography>
-                  </Button>
-                </MenuItem>
-                <MenuItem onClick={handleClose} disableRipple>
-                  <Button
-                    sx={{
-                      color: 'black',
-                      borderColor: 'black',
-                    }}
-                    variant="outlined"
-                    href="#outlined-buttons"
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{ flexGrow: 1, fontSize: '16px' }}
-                    >
-                      Акции
-                    </Typography>
-                  </Button>
-                </MenuItem>
-                <MenuItem onClick={handleClose} disableRipple>
-                  <Button
-                    sx={{
-                      color: 'black',
-                      borderColor: 'black',
-                    }}
-                    variant="outlined"
-                    href="#outlined-buttons"
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{ flexGrow: 1, fontSize: '16px' }}
-                    >
-                      Новинки
-                    </Typography>
-                  </Button>
-                </MenuItem>
-              </StyledMenu>
-            </>
+      <AppBar position="static" color="primary">
+        <Toolbar>
+          <Button
+            id="demo-customized-button"
+            aria-controls={open ? 'demo-customized-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            variant="contained"
+            disableElevation
+            onClick={handleClick}
+          >
+            <MenuIcon />
+          </Button>
+          <StyledMenu
+            id="demo-customized-menu"
+            MenuListProps={{
+              'aria-labelledby': 'demo-customized-button',
+            }}
+            sx={{ marginLeft: '30px', marginTop: '-15px' }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          >
+            <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
+              Категории
+            </Dropdown.Link>
+            <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
+              Акции
+            </Dropdown.Link>
+            <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
+              Новинки
+            </Dropdown.Link>
+          </StyledMenu>
+
+          <Link href="/">
             <Typography
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1, fontWeight: 700, mr: 9 }}
+              sx={{ flexGrow: 1, fontWeight: 700, mr: 4 }}
             >
               Shop.com
             </Typography>
-            <Button color="inherit" sx={{ mr: -3 }}>
-              <SearchIcon />
-            </Button>
-            <Button color="inherit" sx={{ mr: -3 }}>
-              <ShoppingBasketIcon />
-            </Button>
-            <Button
-              id="basic-button"
-              aria-controls={open ? 'basic-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              onClick={handleClickProfile}
-              sx={{ mr: -3 }}
+          </Link>
+          <Button color="inherit" sx={{ mr: -3 }}>
+            <SearchIcon />
+          </Button>
+          <Button color="inherit" sx={{ mr: -3 }}>
+            <ShoppingBasketIcon />
+          </Button>
+          <Button
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClickProfile}
+            sx={{ mr: -3 }}
+          >
+            <AccountCircleIcon />
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorElProfile}
+            open={openProfile}
+            onClose={handleCloseProfile}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+            sx={{ marginLeft: '-95px', marginTop: '-5px' }}
+          >
+            <Dropdown.Link
+              href={route('profile.edit')}
+              onClick={handleCloseProfile}
             >
-              <AccountCircleIcon />
-            </Button>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorElProfile}
-              open={openProfile}
-              onClose={handleCloseProfile}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-              sx={{ marginLeft: '-110px' }}
+              Профиль
+            </Dropdown.Link>
+            <Dropdown.Link href="#" onClick={handleCloseProfile}>
+              Личный кабинет
+            </Dropdown.Link>
+            <Dropdown.Link
+              href={route('logout')}
+              method="post"
+              as="button"
+              onClick={handleCloseProfile}
             >
-              <MenuItem onClick={handleCloseProfile}>Профиль</MenuItem>
-              <MenuItem onClick={handleCloseProfile}>Личный кабинет</MenuItem>
-              <MenuItem onClick={handleCloseProfile}>Выйти</MenuItem>
-            </Menu>
-          </Toolbar>
-        </AppBar>
-      </Box>
+              Выйти
+            </Dropdown.Link>
+          </Menu>
+
+          <Button
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClickSettings}
+            sx={{ mr: -3 }}
+          >
+            <SettingsIcon />
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorElSettings}
+            open={openSettings}
+            onClose={handleCloseSettings}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+            sx={{ marginLeft: '-115px', marginTop: '-5px' }}
+          >
+            <Dropdown.Link href="#" onClick={handleCloseSettings}>
+              О магазине
+            </Dropdown.Link>
+            <Dropdown.Link href="#" onClick={handleCloseSettings}>
+              Настройка страниц
+            </Dropdown.Link>
+            <Dropdown.Link href="#" onClick={handleCloseSettings}>
+              Каталоги
+            </Dropdown.Link>
+            <Dropdown.Link href="#" onClick={handleCloseSettings}>
+              Товары
+            </Dropdown.Link>
+
+            <Dropdown.Link
+              href={route('logout')}
+              method="post"
+              as="button"
+              onClick={handleCloseSettings}
+            >
+              Выйти
+            </Dropdown.Link>
+          </Menu>
+        </Toolbar>
+      </AppBar>
     </ThemeProvider>
   );
 }

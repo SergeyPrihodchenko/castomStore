@@ -14,31 +14,21 @@ const buttons = [
   },
 
   {
-    title: 'Справочники',
+    title: 'Каталоги',
     key: 3,
-    href: '#outlined-buttons',
-  },
-  {
-    title: 'Категории',
-    key: 4,
-    href: '#outlined-buttons',
-  },
-  {
-    title: 'Подкатегории',
-    key: 5,
     href: '#outlined-buttons',
   },
 
   {
     title: 'Товары',
-    key: 6,
+    key: 4,
     href: '#outlined-buttons',
   },
 ];
 
 export default function MainAdminPage() {
   return (
-    <div>
+    <>
       {buttons.map((el) => {
         return (
           <Box
@@ -68,6 +58,6 @@ export default function MainAdminPage() {
           </Box>
         );
       })}
-    </div>
+    </>
   );
 }

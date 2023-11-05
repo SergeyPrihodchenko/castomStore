@@ -7,7 +7,6 @@ import * as React from 'react';
 
 import s from './mainAdminPage.module.css';
 import MainAdminPage from './ui/Main/MainAdminPage';
-import HeaderAdminPage from './ui/Header/HeaderAdminPage';
 
 export default function Dashboard({ auth }: PageProps) {
   return (
@@ -34,7 +33,7 @@ export default function Dashboard({ auth }: PageProps) {
               </div>
             </div>
           </div> */}
-          <HeaderAdminPage />
+
           <MainAdminPage />
         </AuthenticatedLayout>
       </main>
