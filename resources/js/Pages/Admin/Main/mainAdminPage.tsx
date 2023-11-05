@@ -11,7 +11,7 @@ import MainAdminPage from './ui/Main/MainAdminPage';
 export default function Dashboard({ auth }: PageProps) {
   return (
     <div className={s.container}>
-      <main className={s.mainAdminPage}>
+      <main className={s.mainPage}>
         <AuthenticatedLayout
           user={auth.user}
           // header={

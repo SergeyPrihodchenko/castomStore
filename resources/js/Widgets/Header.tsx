@@ -71,7 +71,7 @@ const StyledMenu = styled((props: MenuProps) => (
   },
 }));
 
-export default function HeaderAdminPage() {
+export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -211,6 +211,9 @@ export default function HeaderAdminPage() {
             }}
             sx={{ marginLeft: '-115px', marginTop: '-5px' }}
           >
+            <Dropdown.Link href="/dashboard" onClick={handleCloseSettings}>
+              Настройки
+            </Dropdown.Link>
             <Dropdown.Link href="#" onClick={handleCloseSettings}>
               О магазине
             </Dropdown.Link>

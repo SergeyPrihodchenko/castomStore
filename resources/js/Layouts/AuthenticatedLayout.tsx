@@ -1,6 +1,7 @@
 import { useState, PropsWithChildren, ReactNode } from 'react';
 import { User } from '@/types';
-import HeaderAdminPage from '@/Pages/Admin/Main/ui/Header/HeaderAdminPage';
+import Header from '@/Widgets/Header';
+import Footer from '@/Widgets/Footer';
 
 export default function Authenticated({
   user,
@@ -11,8 +12,9 @@ export default function Authenticated({
 
   return (
     <div>
-      <HeaderAdminPage />
+      <Header />
       <main>{children}</main>
+      <Footer />
     </div>
   );
 }
