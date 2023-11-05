@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subheaders', function (Blueprint $table) {
+        Schema::create('product_options', function (Blueprint $table) {
             $table->id();
-            $table->text('subheader');
+            $table->unsignedBigInteger('product_id')->index();
+            $table->foreign('product_id')
+                ->references('id')->on('products')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subheaders');
+        Schema::dropIfExists('product_options');
     }
 };
