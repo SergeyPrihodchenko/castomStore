@@ -1,8 +1,4 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { getPost } from '../getPost/getPost';
-import { PostDetailSchema } from '../../types/postDetailSchema';
+import { StateSchema } from '@/App/providers/StoreProvider';
 
-export const getCounterValue = createSelector(
-  getPost,
-  (post: PostDetailSchema) => post.data?.title,
-);
+export const getPostTitle = (state: StateSchema) =>
+  state.postDetail?.data?.title || 'default title';

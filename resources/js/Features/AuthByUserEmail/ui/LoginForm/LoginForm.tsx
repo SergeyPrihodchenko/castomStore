@@ -12,7 +12,7 @@ import { loginByUserEmail } from '../../model/services/loginByUserEmail/loginByU
 export const LoginForm = () => {
   const dispatch = useAppDispatch();
 
-  const { email, password } = useSelector(getLoginState);
+  // const { email, password } = useSelector(getLoginState);
 
   const handleEmailChange = useCallback(
     (value: string) => {
@@ -27,7 +27,7 @@ export const LoginForm = () => {
     [dispatch],
   );
   const submit = useCallback(() => {
-    dispatch(loginByUserEmail({ email, password }));
+    // dispatch(loginByUserEmail({ email, password }));
   }, [dispatch]);
   return (
     <form onSubmit={submit}>
@@ -41,7 +41,7 @@ export const LoginForm = () => {
           id="email"
           type="email"
           name="email"
-          value={email}
+          // value={email}
           className="mt-1 block w-full"
           autoComplete="username"
           isFocused={true}
@@ -64,7 +64,7 @@ export const LoginForm = () => {
           id="password"
           type="password"
           name="password"
-          value={password}
+          // value={password}
           className="mt-1 block w-full"
           autoComplete="current-password"
           onChange={(e) => handlePasswordChange(e.target.value)}

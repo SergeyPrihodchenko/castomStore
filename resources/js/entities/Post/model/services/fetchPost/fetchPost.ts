@@ -6,8 +6,9 @@ export const fetchPost = createAsyncThunk<Post, undefined, { rejectValue: string
   'postDetail/fetchPost',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get<Post>(`https://jsonplaceholder.typicode.com/posts/3`);
+      const response = await axios.get<Post>(`https://jsonplaceholder.typicode.com/posts/1`);
       const data = response.data;
+      // console.log(data);
       return data;
     } catch (e) {
       console.log(e);

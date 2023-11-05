@@ -1,25 +1,29 @@
-import { type ReducersMapObject, configureStore } from '@reduxjs/toolkit';
+import { type ReducersMapObject, configureStore, AnyAction } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
 import { counterReducer } from '@/entities/Counter';
-import { postDetailReducer } from '@/entities/Post';
 import { userReducer } from '@/entities/User';
-import { loginReducer } from '@/Features/AuthByUserEmail';
 import { mainPageHeaderReducer } from '@/entities/MainPageHeader/model/slice/mainPageHeaderSlice';
+import { createReducerManager } from './reducerManager';
+import { addMainPageSettingsReducer } from '@/Features/AddMainPageSettings';
 
 //функция создание стора с необязательным параметром, который
 // передаем в поле preloadedState (нужно для тестирования)
 export function createReduxStore(initialState?: StateSchema) {
   const rootReducers: ReducersMapObject<StateSchema> = {
     counter: counterReducer,
-    postDetail: postDetailReducer,
     user: userReducer,
-    login: loginReducer,
     mainPage: mainPageHeaderReducer,
+    addMainPageSettings: addMainPageSettingsReducer,
   };
+  const reducerManager = createReducerManager(rootReducers);
+
   const store = configureStore<StateSchema>({
-    reducer: rootReducers,
+    // @ts-ignore
+    reducer: reducerManager.reduce,
     preloadedState: initialState,
   });
+  // @ts-ignore
+  store.reducerManager = reducerManager;
   return store;
 }
 
