@@ -1,11 +1,27 @@
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
+import { useEffect } from 'react';
+import { MainPageHeader } from '@/entities/MainPageHeader';
+import { useAppDispatch } from '@/Shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { fetchMainPageHeaderParams } from '@/entities/MainPageHeader/model/services/fetchMainPageHeaderParams/fetchMainPageHeaderParams';
+import { useSelector } from 'react-redux';
+import { getMainPageTitle } from '@/entities/MainPageHeader/model/selectors/getMainPageTitle/getMainPageTitle';
 
 export default function Welcome({
   auth,
   laravelVersion,
   phpVersion,
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
+  const dispatch = useAppDispatch();
+
+  const mainPageState = useSelector(getMainPageTitle);
+
+  console.log(mainPageState);
+
+  useEffect(() => {
+    dispatch(fetchMainPageHeaderParams());
+  }, []);
+
   return (
     <>
       <Head title="Welcome" />
@@ -36,6 +52,7 @@ export default function Welcome({
             </>
           )}
         </div>
+        <MainPageHeader />
 
         {/* <div className="max-w-7xl mx-auto p-6 lg:p-8">
           <div className="flex justify-center">

@@ -4,6 +4,7 @@ import { counterReducer } from '@/entities/Counter';
 import { postDetailReducer } from '@/entities/Post';
 import { userReducer } from '@/entities/User';
 import { loginReducer } from '@/Features/AuthByUserEmail';
+import { mainPageHeaderReducer } from '@/entities/MainPageHeader/model/slice/mainPageHeaderSlice';
 
 //функция создание стора с необязательным параметром, который
 // передаем в поле preloadedState (нужно для тестирования)
@@ -13,6 +14,7 @@ export function createReduxStore(initialState?: StateSchema) {
     postDetail: postDetailReducer,
     user: userReducer,
     login: loginReducer,
+    mainPage: mainPageHeaderReducer,
   };
   const store = configureStore<StateSchema>({
     reducer: rootReducers,
