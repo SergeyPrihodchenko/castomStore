@@ -40,3 +40,8 @@ require __DIR__.'/auth.php';
 require __DIR__.'/Admin/MainPage/mainPage.php';
 
 require __DIR__.'/Admin/UsersPage/usersPage.php';
+
+require __DIR__.'/Admin/CatalogPage/catalogPage.php';
+
+require __DIR__.'/Admin/ProductsPage/productsPage.php';
+
