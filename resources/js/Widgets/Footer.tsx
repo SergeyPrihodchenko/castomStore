@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { Link } from '@inertiajs/react';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import {
   FaTwitter,
   FaFacebookF,
@@ -16,8 +17,9 @@ import {
   FaApplePay,
   FaGooglePay,
 } from 'react-icons/fa6';
-import IconButton from '@mui/material/IconButton';
 
+let today = new Date();
+let year = today.getFullYear();
 export default function Footer() {
   return (
     <React.Fragment>
@@ -25,7 +27,7 @@ export default function Footer() {
       <Container
         fixed
         sx={{
-          MaxWidth: '390px',
+          MinWidth: '390px',
           backgroundColor: '#F0F0F0',
         }}
       >
@@ -134,7 +136,7 @@ export default function Footer() {
                 marginTop: '10px',
               }}
             >
-              Shop.com © 2000-2023, All Rights Reserved
+              Shop.com © {year}, Все права защищены
             </Typography>
             <IconButton
               href="/"

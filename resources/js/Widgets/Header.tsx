@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from '@inertiajs/react';
 
 import Dropdown from '@/Components/Dropdown';
 import AppBar from '@mui/material/AppBar';
@@ -11,6 +10,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+
 import {
   createTheme,
   ThemeProvider,
@@ -103,141 +105,142 @@ export default function Header() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Button
-            id="demo-customized-button"
-            aria-controls={open ? 'demo-customized-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            variant="contained"
-            disableElevation
-            onClick={handleClick}
-          >
-            <MenuIcon />
-          </Button>
-          <StyledMenu
-            id="demo-customized-menu"
-            MenuListProps={{
-              'aria-labelledby': 'demo-customized-button',
-            }}
-            sx={{ marginLeft: '30px', marginTop: '-15px' }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
-              Категории
-            </Dropdown.Link>
-            <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
-              Акции
-            </Dropdown.Link>
-            <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
-              Новинки
-            </Dropdown.Link>
-          </StyledMenu>
-
-          <Link href="/">
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, fontWeight: 700, mr: 4 }}
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" color="primary">
+          <Toolbar>
+            <Button
+              id="demo-customized-button"
+              aria-controls={open ? 'demo-customized-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              variant="contained"
+              disableElevation
+              onClick={handleClick}
+              aria-label="menu"
+              sx={{ mr: 2, size: 'large', edge: 'start', color: 'inherit' }}
             >
-              Shop.com
+              <MenuIcon />
+            </Button>
+            <StyledMenu
+              id="demo-customized-menu"
+              MenuListProps={{
+                'aria-labelledby': 'demo-customized-button',
+              }}
+              sx={{ marginLeft: '30px', marginTop: '-15px' }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
+                Категории
+              </Dropdown.Link>
+              <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
+                Акции
+              </Dropdown.Link>
+              <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
+                Новинки
+              </Dropdown.Link>
+            </StyledMenu>
+
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Button href="/" sx={{ fontWeight: 700 }}>
+                Shop.com
+              </Button>
             </Typography>
-          </Link>
-          <Button color="inherit" sx={{ mr: -3 }}>
-            <SearchIcon />
-          </Button>
-          <Button color="inherit" sx={{ mr: -3 }}>
-            <ShoppingBasketIcon />
-          </Button>
-          <Button
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClickProfile}
-            sx={{ mr: -3 }}
-          >
-            <AccountCircleIcon />
-          </Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorElProfile}
-            open={openProfile}
-            onClose={handleCloseProfile}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-            sx={{ marginLeft: '-95px', marginTop: '-5px' }}
-          >
-            <Dropdown.Link
-              href={route('profile.edit')}
-              onClick={handleCloseProfile}
-            >
-              Профиль
-            </Dropdown.Link>
-            <Dropdown.Link href="#" onClick={handleCloseProfile}>
-              Личный кабинет
-            </Dropdown.Link>
-            <Dropdown.Link
-              href={route('logout')}
-              method="post"
-              as="button"
-              onClick={handleCloseProfile}
-            >
-              Выйти
-            </Dropdown.Link>
-          </Menu>
 
-          <Button
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClickSettings}
-            sx={{ mr: -3 }}
-          >
-            <SettingsIcon />
-          </Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorElSettings}
-            open={openSettings}
-            onClose={handleCloseSettings}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-            sx={{ marginLeft: '-115px', marginTop: '-5px' }}
-          >
-            <Dropdown.Link href="/dashboard" onClick={handleCloseSettings}>
-              Настройки
-            </Dropdown.Link>
-            <Dropdown.Link href="#" onClick={handleCloseSettings}>
-              О магазине
-            </Dropdown.Link>
-            <Dropdown.Link href="#" onClick={handleCloseSettings}>
-              Настройка страниц
-            </Dropdown.Link>
-            <Dropdown.Link href="#" onClick={handleCloseSettings}>
-              Каталоги
-            </Dropdown.Link>
-            <Dropdown.Link href="#" onClick={handleCloseSettings}>
-              Товары
-            </Dropdown.Link>
-
-            <Dropdown.Link
-              href={route('logout')}
-              method="post"
-              as="button"
-              onClick={handleCloseSettings}
+            <Button color="inherit" sx={{ mr: -3 }}>
+              <SearchIcon />
+            </Button>
+            <Button color="inherit" sx={{ mr: -3 }}>
+              <ShoppingBasketIcon />
+            </Button>
+            <Button
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClickProfile}
+              sx={{ mr: -3 }}
             >
-              Выйти
-            </Dropdown.Link>
-          </Menu>
-        </Toolbar>
-      </AppBar>
+              <AccountCircleIcon />
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorElProfile}
+              open={openProfile}
+              onClose={handleCloseProfile}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+              sx={{ marginLeft: '-95px', marginTop: '-5px' }}
+            >
+              <Dropdown.Link
+                href={route('profile.edit')}
+                onClick={handleCloseProfile}
+              >
+                Профиль
+              </Dropdown.Link>
+              <Dropdown.Link href="#" onClick={handleCloseProfile}>
+                Личный кабинет
+              </Dropdown.Link>
+              <Dropdown.Link
+                href={route('logout')}
+                method="post"
+                as="button"
+                onClick={handleCloseProfile}
+              >
+                Выйти
+              </Dropdown.Link>
+            </Menu>
+
+            <Button
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClickSettings}
+              sx={{ mr: -3 }}
+            >
+              <SettingsIcon />
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorElSettings}
+              open={openSettings}
+              onClose={handleCloseSettings}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+              sx={{ marginLeft: '-115px', marginTop: '-5px' }}
+            >
+              <Dropdown.Link href="/dashboard" onClick={handleCloseSettings}>
+                Настройки
+              </Dropdown.Link>
+              <Dropdown.Link href="#" onClick={handleCloseSettings}>
+                О магазине
+              </Dropdown.Link>
+              <Dropdown.Link href="#" onClick={handleCloseSettings}>
+                Настройка страниц
+              </Dropdown.Link>
+              <Dropdown.Link href="#" onClick={handleCloseSettings}>
+                Каталоги
+              </Dropdown.Link>
+              <Dropdown.Link href="#" onClick={handleCloseSettings}>
+                Товары
+              </Dropdown.Link>
+
+              <Dropdown.Link
+                href={route('logout')}
+                method="post"
+                as="button"
+                onClick={handleCloseSettings}
+              >
+                Выйти
+              </Dropdown.Link>
+            </Menu>
+          </Toolbar>
+        </AppBar>
+      </Box>
     </ThemeProvider>
   );
 }
