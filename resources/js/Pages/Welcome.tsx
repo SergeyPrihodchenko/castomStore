@@ -96,9 +96,7 @@ export default function Welcome({
               height: '448px',
               background: 'url(' + SliderMobile + ') no-repeat',
             }}
-          >
-            {/* <img src={SliderMobile} alt="SliderMobile" /> */}
-          </Box>
+          />
         </Box>
       </ThemeProvider>
 
