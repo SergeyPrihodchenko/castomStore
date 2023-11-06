@@ -117,7 +117,7 @@ export default function Header() {
               disableElevation
               onClick={handleClick}
               aria-label="menu"
-              sx={{ mr: 2, size: 'large', edge: 'start', color: 'inherit' }}
+              sx={{ mr: -2, size: 'large', edge: 'start', color: 'inherit' }}
             >
               <MenuIcon />
             </Button>

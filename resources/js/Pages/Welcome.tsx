@@ -1,17 +1,120 @@
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { Counter } from '@/entities/Counter';
+import Header from '@/Widgets/Header';
+import Footer from '@/Widgets/Footer';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import SliderMobile from '@/image/SliderMobile.png';
+import Dropdown from '@/Components/Dropdown';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000000',
+      contrastText: '#FFFFFF',
+    },
+  },
+});
+
+const divSliderMibile = {
+  backgroundImage: { SliderMobile },
+};
 export default function Welcome({
   auth,
   laravelVersion,
   phpVersion,
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
   return (
-    <>
-      <Head title="Welcome" />
-      {/* <Counter /> */}
-      <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+    <Box
+      sx={{
+        maxWidth: '390px',
+      }}
+    >
+      <Header />
+      <ThemeProvider theme={theme}>
+        <Box
+          sx={{
+            minWidth: '390px',
+            height: '800px',
+            alignContent: 'center',
+          }}
+        >
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              fontWeight: 900,
+              mr: 4,
+              padding: '20px 0 0 40px',
+            }}
+          >
+            СОЗДАЙТЕ САЙТ ВАШЕЙ МЕЧТЫ
+          </Typography>
+
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              fontSize: '14px',
+              alignContent: 'left',
+              padding: '0 0 10px 40px',
+            }}
+          >
+            У нас есть сайт, который вы можете настроить по своему усмотрению и
+            начать или расширить свою деятельность.
+          </Typography>
+
+          <Button
+            variant="contained"
+            size="small"
+            sx={{
+              minWidth: '300px',
+              height: '16px',
+              padding: '40px',
+              alignContent: 'center',
+              borderRadius: '62px',
+              fontWeight: 400,
+              fontSize: '12px',
+              marginLeft: '40px',
+            }}
+            href="/dashboard"
+            color="primary"
+          >
+            Настройки магазина
+          </Button>
+          <Box
+            sx={{
+              marginTop: '20px',
+              width: '390px',
+              height: '448px',
+              background: 'url(' + SliderMobile + ') no-repeat',
+            }}
+          >
+            {/* <img src={SliderMobile} alt="SliderMobile" /> */}
+          </Box>
+        </Box>
+      </ThemeProvider>
+
+      <Footer />
+    </Box>
+  );
+}
+
+{
+  /* <Head title="Welcome" /> */
+}
+{
+  /* <Counter /> */
+}
+{
+  /* <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
           {auth.user ? (
             <Link
@@ -331,9 +434,11 @@ export default function Welcome({
             </div>
           </div>
         </div>
-      </div>
+      </div> */
+}
 
-      <style>{`
+{
+  /* <style>{`
                 .bg-dots-darker {
                     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
                 }
@@ -342,7 +447,5 @@ export default function Welcome({
                         background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
                     }
                 }
-            `}</style>
-    </>
-  );
+            `}</style> */
 }
