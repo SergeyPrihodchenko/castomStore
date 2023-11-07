@@ -1,6 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import { Link } from '@inertiajs/react';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -23,183 +24,166 @@ export default function Footer() {
   return (
     <React.Fragment>
       <CssBaseline />
+
       <Box
         sx={{
           minWidth: '390px',
           backgroundColor: '#F0F0F0',
-          paddingLeft: '40px',
+          paddingLeft: '20px',
         }}
       >
-        <Link href="/">
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontWeight: 900,
-              mr: 4,
-              paddingTop: '165px',
-            }}
-          >
-            SHOP.COM
-          </Typography>
-        </Link>
-        <Typography
-          variant="h5"
-          component="div"
-          sx={{
-            flexGrow: 1,
-            fontSize: '12px',
-            alignContent: 'left',
-          }}
-        >
-          У нас есть сайт, который вы можете настроить по своему усмотрению и
-          начать или расширить свою деятельность.
-        </Typography>
-
-        <IconButton
-          href="/"
-          sx={{
-            color: 'black',
-            background: '#FFFFFF',
-            border: '1px solid rgba(0, 0, 0, 0.2)',
-            width: '28px',
-            height: '28px',
-            marginTop: '10px',
-            marginBottom: '20px',
-          }}
-        >
-          <FaTwitter />
-        </IconButton>
-        <IconButton
-          href="/"
-          sx={{
-            color: 'black',
-            background: '#FFFFFF',
-            border: '1px solid rgba(0, 0, 0, 0.2)',
-            width: '28px',
-            height: '28px',
-            marginTop: '10px',
-            marginLeft: '10px',
-            marginBottom: '20px',
-          }}
-        >
-          <FaFacebookF />
-        </IconButton>
-        <IconButton
-          href="/"
-          sx={{
-            color: 'black',
-            background: '#FFFFFF',
-            border: '1px solid rgba(0, 0, 0, 0.2)',
-            width: '28px',
-            height: '28px',
-            marginTop: '10px',
-            marginLeft: '10px',
-            marginBottom: '20px',
-          }}
-        >
-          <FaInstagram />
-        </IconButton>
-        <IconButton
-          href="/"
-          sx={{
-            color: 'black',
-            background: '#FFFFFF',
-            border: '1px solid rgba(0, 0, 0, 0.2)',
-            width: '28px',
-            height: '28px',
-            marginTop: '10px',
-            marginLeft: '10px',
-            marginBottom: '20px',
-          }}
-        >
-          <FaGithub />
-        </IconButton>
-        <Box
-          sx={{
-            borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-            textAlign: 'center',
-            marginRight: '40px',
-          }}
-        >
+        <Container fixed>
+          <Link href="/">
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                flexGrow: 1,
+                fontWeight: 900,
+                mr: 4,
+                paddingTop: '165px',
+              }}
+            >
+              SHOP.COM
+            </Typography>
+          </Link>
           <Typography
             variant="h5"
             component="div"
             sx={{
-              fontWeight: '400',
+              flexGrow: 1,
               fontSize: '12px',
-              color: 'rgba(0, 0, 0, 0.6)',
-              marginTop: '10px',
+              alignContent: 'left',
             }}
           >
-            Shop.com © {year}, Все права защищены
+            У нас есть сайт, который вы можете настроить по своему усмотрению и
+            начать или расширить свою деятельность.
           </Typography>
+
           <IconButton
             href="/"
             sx={{
-              width: '40px',
-              height: '40px',
-              marginTop: '10px',
-              marginLeft: '10px',
-              marginBottom: '20px',
+              color: 'black',
+              background: '#FFFFFF',
+              border: '1px solid rgba(0, 0, 0, 0.2)',
+              width: '28px',
+              height: '28px',
+              margin: '10px 0 20px 0',
             }}
           >
-            <FaCcVisa />
+            <FaTwitter />
           </IconButton>
           <IconButton
             href="/"
             sx={{
-              width: '40px',
-              height: '40px',
-              marginTop: '10px',
-              marginLeft: '10px',
-              marginBottom: '20px',
+              color: 'black',
+              background: '#FFFFFF',
+              border: '1px solid rgba(0, 0, 0, 0.2)',
+              width: '28px',
+              height: '28px',
+              margin: '10px 0 20px 10px',
             }}
           >
-            <FaCcMastercard />
+            <FaFacebookF />
           </IconButton>
           <IconButton
             href="/"
             sx={{
-              width: '40px',
-              height: '40px',
-              marginTop: '10px',
-              marginLeft: '10px',
-              marginBottom: '20px',
+              color: 'black',
+              background: '#FFFFFF',
+              border: '1px solid rgba(0, 0, 0, 0.2)',
+              width: '28px',
+              height: '28px',
+              margin: '10px 0 20px 10px',
             }}
           >
-            <FaCcPaypal />
+            <FaInstagram />
           </IconButton>
           <IconButton
             href="/"
             sx={{
-              width: '40px',
-              height: '40px',
-              marginTop: '10px',
-              marginLeft: '10px',
-              marginBottom: '20px',
+              color: 'black',
+              background: '#FFFFFF',
+              border: '1px solid rgba(0, 0, 0, 0.2)',
+              width: '28px',
+              height: '28px',
+              margin: '10px 0 20px 10px',
             }}
           >
-            <FaApplePay />
+            <FaGithub />
           </IconButton>
-          <IconButton
-            href="/"
+          <Box
             sx={{
-              width: '40px',
-              height: '40px',
-              marginTop: '10px',
-              marginLeft: '10px',
-              marginBottom: '20px',
+              borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+              textAlign: 'center',
+              marginRight: '40px',
             }}
           >
-            <FaGooglePay />
-          </IconButton>
-        </Box>
+            <Typography
+              variant="h5"
+              component="div"
+              sx={{
+                fontWeight: '400',
+                fontSize: '12px',
+                color: 'rgba(0, 0, 0, 0.6)',
+                marginTop: '10px',
+              }}
+            >
+              Shop.com © {year}, Все права защищены
+            </Typography>
+            <IconButton
+              href="/"
+              sx={{
+                width: '40px',
+                height: '40px',
+                margin: '10px 0 20px 10px',
+              }}
+            >
+              <FaCcVisa />
+            </IconButton>
+            <IconButton
+              href="/"
+              sx={{
+                width: '40px',
+                height: '40px',
+                margin: '10px 0 20px 10px',
+              }}
+            >
+              <FaCcMastercard />
+            </IconButton>
+            <IconButton
+              href="/"
+              sx={{
+                width: '40px',
+                height: '40px',
+                margin: '10px 0 20px 10px',
+              }}
+            >
+              <FaCcPaypal />
+            </IconButton>
+            <IconButton
+              href="/"
+              sx={{
+                width: '40px',
+                height: '40px',
+                margin: '10px 0 20px 10px',
+              }}
+            >
+              <FaApplePay />
+            </IconButton>
+            <IconButton
+              href="/"
+              sx={{
+                width: '40px',
+                height: '40px',
+                margin: '10px 0 20px 10px',
+              }}
+            >
+              <FaGooglePay />
+            </IconButton>
+          </Box>
+        </Container>
       </Box>
     </React.Fragment>
   );
 }
-
-// background: #FFFFFF;
-// border: 1px solid rgba(0, 0, 0, 0.2);
