@@ -1,17 +1,13 @@
 import Header from '@/Widgets/Header';
-import MainPage from './ui/MainHomePage';
+import HomePage from './ui/HomePage';
 import Footer from '@/Widgets/Footer';
 import Box from '@mui/material/Box';
 
 export default function Welcome() {
   return (
-    <Box
-      sx={{
-        maxWidth: '390px',
-      }}
-    >
+    <Box sx={{ minWidth: '390px' }}>
       <Header />
-      <MainPage />
+      <HomePage />
       <Footer />
     </Box>
   );
