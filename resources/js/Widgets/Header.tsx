@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import Dropdown from '@/Components/Dropdown';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -13,15 +12,14 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import {
-  createTheme,
-  ThemeProvider,
-  styled,
-  alpha,
-} from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import Menu, { MenuProps } from '@mui/material/Menu';
+import Menu from '@mui/material/Menu';
+import { IconButton } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Link from '@mui/material/Link';
 
+//меняем цвет header
 const theme = createTheme({
   palette: {
     primary: {
@@ -30,50 +28,8 @@ const theme = createTheme({
   },
 });
 
-const StyledMenu = styled((props: MenuProps) => (
-  <Menu
-    elevation={0}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'right',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'right',
-    }}
-    {...props}
-  />
-))(({ theme }) => ({
-  '& .MuiPaper-root': {
-    borderRadius: 6,
-    marginTop: theme.spacing(1),
-    minWidth: 180,
-    color:
-      theme.palette.mode === 'light'
-        ? 'rgb(55, 65, 81)'
-        : theme.palette.grey[300],
-    boxShadow:
-      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
-    '& .MuiMenu-list': {
-      padding: '4px 0',
-    },
-    '& .MuiMenuItem-root': {
-      '& .MuiSvgIcon-root': {
-        fontSize: 18,
-        color: theme.palette.text.secondary,
-        marginRight: theme.spacing(1.5),
-      },
-      '&:active': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity,
-        ),
-      },
-    },
-  },
-}));
-
 export default function Header() {
+  //открыть и закрыть основное меню
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -83,6 +39,7 @@ export default function Header() {
     setAnchorEl(null);
   };
 
+  //открыть и закрыть меню иконки профиля
   const [anchorElProfile, setAnchorElProfile] =
     React.useState<null | HTMLElement>(null);
   const openProfile = Boolean(anchorElProfile);
@@ -93,6 +50,7 @@ export default function Header() {
     setAnchorElProfile(null);
   };
 
+  //открыть и закрыть меню иконки настройик
   const [anchorElSettings, setAnchorElSettings] =
     React.useState<null | HTMLElement>(null);
   const openSettings = Boolean(anchorElSettings);
@@ -105,142 +63,145 @@ export default function Header() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="primary">
+      <AppBar position="static" color="primary">
+        <Container fixed>
           <Toolbar>
-            <Button
-              id="demo-customized-button"
-              aria-controls={open ? 'demo-customized-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              variant="contained"
-              disableElevation
-              onClick={handleClick}
+            <IconButton
+              edge="start"
               aria-label="menu"
-              sx={{ mr: -2, size: 'large', edge: 'start', color: 'inherit' }}
+              onClick={handleClick}
+              color="inherit"
             >
               <MenuIcon />
-            </Button>
-            <StyledMenu
+            </IconButton>
+
+            <Menu
               id="demo-customized-menu"
-              MenuListProps={{
-                'aria-labelledby': 'demo-customized-button',
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
               }}
-              sx={{ marginLeft: '30px', marginTop: '-15px' }}
+              sx={{ marginLeft: '10px' }}
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
             >
-              <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
-                Категории
-              </Dropdown.Link>
-              <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
-                Акции
-              </Dropdown.Link>
-              <Dropdown.Link href="#outlined-buttons" onClick={handleClose}>
-                Новинки
-              </Dropdown.Link>
-            </StyledMenu>
+              <Link href="#" underline="none" onClick={handleClose}>
+                <MenuItem>Категории</MenuItem>
+              </Link>
+              <Link href="#" underline="none" onClick={handleClose}>
+                <MenuItem>Акции</MenuItem>
+              </Link>
+              <Link href="#" underline="none" onClick={handleClose}>
+                <MenuItem>Новинки</MenuItem>
+              </Link>
+            </Menu>
 
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Button href="/" sx={{ fontWeight: 700 }}>
                 Shop.com
               </Button>
             </Typography>
-
-            <Button color="inherit" sx={{ mr: -3 }}>
-              <SearchIcon />
-            </Button>
-            <Button color="inherit" sx={{ mr: -3 }}>
-              <ShoppingBasketIcon />
-            </Button>
-            <Button
-              id="basic-button"
-              aria-controls={open ? 'basic-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              onClick={handleClickProfile}
-              sx={{ mr: -3 }}
-            >
-              <AccountCircleIcon />
-            </Button>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorElProfile}
-              open={openProfile}
-              onClose={handleCloseProfile}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-              sx={{ marginLeft: '-95px', marginTop: '-5px' }}
-            >
-              <Dropdown.Link
-                href={route('profile.edit')}
-                onClick={handleCloseProfile}
+            <Box>
+              <IconButton color="inherit">
+                <SearchIcon />
+              </IconButton>
+              <IconButton color="inherit">
+                <ShoppingBasketIcon />
+              </IconButton>
+              <IconButton
+                id="basic-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClickProfile}
+                color="inherit"
               >
-                Профиль
-              </Dropdown.Link>
-              <Dropdown.Link href="#" onClick={handleCloseProfile}>
-                Личный кабинет
-              </Dropdown.Link>
-              <Dropdown.Link
-                href={route('logout')}
-                method="post"
-                as="button"
-                onClick={handleCloseProfile}
+                <AccountCircleIcon />
+              </IconButton>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorElProfile}
+                open={openProfile}
+                onClose={handleCloseProfile}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                sx={{ marginLeft: '30px' }}
               >
-                Выйти
-              </Dropdown.Link>
-            </Menu>
+                <Link
+                  href={route('profile.edit')}
+                  underline="none"
+                  onClick={handleCloseProfile}
+                >
+                  <MenuItem>Профиль</MenuItem>
+                </Link>
+                <Link href="#" underline="none" onClick={handleCloseProfile}>
+                  <MenuItem>Личный кабинет</MenuItem>
+                </Link>
+                <Link
+                  href={route('logout')}
+                  underline="none"
+                  onClick={handleCloseProfile}
+                >
+                  <MenuItem>Выйти</MenuItem>
+                </Link>
+              </Menu>
 
-            <Button
-              id="basic-button"
-              aria-controls={open ? 'basic-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              onClick={handleClickSettings}
-              sx={{ mr: -3 }}
-            >
-              <SettingsIcon />
-            </Button>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorElSettings}
-              open={openSettings}
-              onClose={handleCloseSettings}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-              sx={{ marginLeft: '-115px', marginTop: '-5px' }}
-            >
-              <Dropdown.Link href="/dashboard" onClick={handleCloseSettings}>
-                Настройки
-              </Dropdown.Link>
-              <Dropdown.Link href="#" onClick={handleCloseSettings}>
-                О магазине
-              </Dropdown.Link>
-              <Dropdown.Link href="#" onClick={handleCloseSettings}>
-                Настройка страниц
-              </Dropdown.Link>
-              <Dropdown.Link href="#" onClick={handleCloseSettings}>
-                Каталоги
-              </Dropdown.Link>
-              <Dropdown.Link href="#" onClick={handleCloseSettings}>
-                Товары
-              </Dropdown.Link>
-
-              <Dropdown.Link
-                href={route('logout')}
-                method="post"
-                as="button"
-                onClick={handleCloseSettings}
+              <IconButton
+                id="basic-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClickSettings}
+                color="inherit"
+                sx={{ mr: -3 }}
               >
-                Выйти
-              </Dropdown.Link>
-            </Menu>
+                <SettingsIcon />
+              </IconButton>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorElSettings}
+                open={openSettings}
+                onClose={handleCloseSettings}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                sx={{ marginLeft: '30px' }}
+              >
+                <Link
+                  href={route('dashboard')}
+                  underline="none"
+                  onClick={handleCloseSettings}
+                >
+                  <MenuItem>Настройки</MenuItem>
+                </Link>
+                <Link href="#" underline="none" onClick={handleCloseSettings}>
+                  <MenuItem>О магазине</MenuItem>
+                </Link>
+                <Link href="#" underline="none" onClick={handleCloseSettings}>
+                  <MenuItem>Настройка страниц</MenuItem>
+                </Link>
+                <Link href="#" underline="none" onClick={handleCloseSettings}>
+                  <MenuItem>Каталоги</MenuItem>
+                </Link>
+                <Link href="#" underline="none" onClick={handleCloseSettings}>
+                  <MenuItem>Товары</MenuItem>
+                </Link>
+                <Link
+                  href={route('logout')}
+                  underline="none"
+                  onClick={handleCloseSettings}
+                >
+                  <MenuItem>Выйти</MenuItem>
+                </Link>
+              </Menu>
+            </Box>
           </Toolbar>
-        </AppBar>
-      </Box>
+        </Container>
+      </AppBar>
     </ThemeProvider>
   );
 }
