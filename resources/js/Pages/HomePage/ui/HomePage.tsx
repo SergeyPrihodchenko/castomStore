@@ -36,7 +36,7 @@ export default function MainPage() {
         sx={{
           marginTop: '20px',
           textAlign: 'center',
-          width: '390px',
+          //width: '390px',
         }}
       >
         {/* текст о сайте */}
