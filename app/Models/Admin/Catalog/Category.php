@@ -2,9 +2,11 @@
 
 namespace App\Models\Admin\Catalog;
 
+use App\Models\Product\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
@@ -54,5 +56,10 @@ class Category extends Model
     public function catalog(): BelongsTo
     {
         return $this->belongsTo(Catalog::class, 'catalog_id', 'id');
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

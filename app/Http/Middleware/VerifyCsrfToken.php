@@ -14,6 +14,11 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'setAttribute',
         '/admin/dashboard/main',
-        'admin/dashboard/users'
+        'admin/dashboard/users',
+        '/admin/products/create',
+        '/admin/product/*',
+        '/admin/addCatalog',
+        '/admin/addCategory',
+        'admin/categoriesForCatalog/{id}'
     ];
 }
