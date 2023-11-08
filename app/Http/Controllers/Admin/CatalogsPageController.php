@@ -25,16 +25,18 @@ class CatalogsPageController extends Controller
 
     public function categoriesForCatalog(int $id): array
     {
-        $catalog = new Catalog();
+        $catalog = Catalog::find($id);
 
-        $data = $catalog->categories;
+        $data = $catalog->categories->toArray();
 
         return $data;
     }
 
     public function addCatalog(CatalogRequest $request): void
     {
-        $value = $request->catalog_title;
+        $data = $request->validated();
+
+        $value = $data['catalog_title'];
 
         $catalog = new Catalog();
 
@@ -43,8 +45,11 @@ class CatalogsPageController extends Controller
 
     public function addCategory(CatalogRequest $request): void
     {
-        $id = (int) $request->catalog_id;
-        $value = $request->category_title;
+
+        $data = $request->validated();
+
+        $id = (int) $data['catalog_id'];
+        $value = $data['category_title'];
 
         $category = new Category();
 
@@ -53,8 +58,10 @@ class CatalogsPageController extends Controller
 
     public function updateCatalog(CatalogRequest $request): void
     {
-        $id = (int) $request->catalog_id;
-        $value = $request->catalog_title;
+        $data = $request->validated();
+
+        $id = (int) $data['catalog_id'];
+        $value = $data['catalog_title'];
 
         $catalog = new Catalog();
 
@@ -63,8 +70,10 @@ class CatalogsPageController extends Controller
 
     public function updateCategory(CatalogRequest $request): void 
     {
-        $id = (int) $request->category_id;
-        $value = $request->category_title;
+        $data = $request->validated();
+
+        $id = (int) $data['category_id'];
+        $value = $data['category_title'];
 
         $category = new Category();
 
@@ -73,12 +82,28 @@ class CatalogsPageController extends Controller
 
     public function updateCatalogForCategory(CatalogRequest $request): void
     {
-        $catalog_id = (int) $request->catelog_id;
+        $data = $request->validated();
 
-        $category_id = (int) $request->category_id;
+        $catalog_id = (int) $data['catelog_id'];
+
+        $category_id = (int) $data['category_id'];
 
         $category = new Category();
 
         $category->updateCatalog($catalog_id, $category_id);
+    }
+
+    public function deleteCatalog(int $id): void
+    {
+        $catalog = Catalog::find($id);
+
+        $catalog->delete();
+    }
+
+    public function deleteCategory(int $id)
+    {
+        $category = Category::find($id);
+        
+        $category->delete();
     }
 }
