@@ -42,3 +42,8 @@ require __DIR__ . '/Admin/MainPage/mainPage.php';
 require __DIR__ . '/Admin/UsersPage/usersPage.php';
 
 require __DIR__ . '/Admin/CatalogPage/catalogPage.php';
+
+//test
+Route::get('/createShopFormPage', function () {
+    return Inertia::render('AdminPage/HomePage/ui/Form/CreateShopFormPage');
+})->middleware(['auth', 'verified'])->name('createShopFormPage');
