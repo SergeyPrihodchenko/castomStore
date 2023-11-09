@@ -17,5 +17,8 @@ class VerifyCsrfToken extends Middleware
         'admin/dashboard/users',
         '/admin/products/create',
         '/admin/product/*',
+        '/admin/addCatalog',
+        '/admin/addCategory',
+        'admin/categoriesForCatalog/{id}'
     ];
 }

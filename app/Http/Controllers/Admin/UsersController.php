@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UsersRequest;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -28,8 +29,12 @@ class UsersController extends Controller
         return $admins->toArray();
     }
 
-    public function changeAdmin(int $id): void
+    public function changeAdmin(UsersRequest $request): void
     {
+        $data = $request->validated();
+        
+        $id = $data['user_id'];
+
         $user = auth()->user();
 
         if(isset($user) && $user->isSuperAdmin) {
