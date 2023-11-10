@@ -9,8 +9,8 @@ export default function Catalogs() {
     const fetch = getCategoriesForCatalogs
 
     console.log(catalogs, categoriesCatalog);
-    
+
     return (<>
-        <button onClick={() => {}}>click</button>
+        <button onClick={() => {dispatch(fetch(1))}}>click</button>
     </>)
 }
