@@ -178,10 +178,18 @@ export default function Header() {
                 >
                   <MenuItem>Настройки</MenuItem>
                 </Link>
-                <Link href="#" underline="none" onClick={handleCloseSettings}>
+                <Link
+                  href={route('editShopDetails')}
+                  underline="none"
+                  onClick={handleCloseSettings}
+                >
                   <MenuItem>О магазине</MenuItem>
                 </Link>
-                <Link href="#" underline="none" onClick={handleCloseSettings}>
+                <Link
+                  href={route('EditHomeShop')}
+                  underline="none"
+                  onClick={handleCloseSettings}
+                >
                   <MenuItem>Настройка страниц</MenuItem>
                 </Link>
                 <Link href="#" underline="none" onClick={handleCloseSettings}>

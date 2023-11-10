@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SliderMobile from '@/image/SliderMobile.png';
+import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
 
 const arrayCompany = [
   {
@@ -17,6 +19,15 @@ const arrayCompany = [
     email: 'shop@mail.ru',
     website: 'shop.com',
     socialNetworks: '',
+  },
+];
+
+const arrayHomePage = [
+  {
+    id: 1,
+    title: 'Создайте сайт вашей мечты',
+    desc: 'У нас есть сайт, который вы можете настроить по своему усмотрению и начать или расширить свою деятельность.',
+    image: '',
   },
 ];
 
@@ -35,7 +46,7 @@ export default function MainAdminPage() {
       <Container fixed>
         <Box
           sx={{
-            minWidth: '390px',
+            minWidth: '320px',
             margin: '20px 0 50px 0',
             display: 'flex',
             alignItems: 'center',
@@ -44,7 +55,7 @@ export default function MainAdminPage() {
         >
           <Accordion
             sx={{
-              width: '320px',
+              width: '350px',
               minHeight: '40px',
               color: 'black',
             }}
@@ -77,18 +88,10 @@ export default function MainAdminPage() {
               )}
 
               <Button
+                sx={{ marginTop: '20px' }}
                 variant="contained"
-                size="small"
-                href={route('createShopFormPage')}
-                color="secondary"
-                sx={{ margin: '20px' }}
-              >
-                Создать
-              </Button>
-              <Button
-                variant="contained"
-                size="small"
-                href="#"
+                size="medium"
+                href={route('editShopDetails')}
                 color="secondary"
               >
                 Редактировать
@@ -97,7 +100,7 @@ export default function MainAdminPage() {
           </Accordion>
           <Accordion
             sx={{
-              width: '320px',
+              width: '350px',
               minHeight: '40px',
               color: 'black',
             }}
@@ -107,13 +110,44 @@ export default function MainAdminPage() {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>Настройка страниц магазина</Typography>
+              <Typography>Настройка главной страницы</Typography>
             </AccordionSummary>
-            <AccordionDetails>Форма</AccordionDetails>
+            <AccordionDetails>
+              {arrayHomePage != null ? (
+                arrayHomePage.map((el) => {
+                  return (
+                    <>
+                      <Typography variant="h5">{el.title}</Typography>
+                      <Typography variant="h6">{el.desc}</Typography>
+
+                      <img
+                        src={SliderMobile}
+                        width={'200'}
+                        alt="SliderMobile"
+                      />
+                    </>
+                  );
+                })
+              ) : (
+                <Typography variant="h5">
+                  Вы еще не внести данные о вашем сайте
+                </Typography>
+              )}
+
+              <Button
+                sx={{ marginTop: '20px' }}
+                variant="contained"
+                size="medium"
+                href={route('EditHomeShop')}
+                color="secondary"
+              >
+                Редактировать
+              </Button>
+            </AccordionDetails>
           </Accordion>
           <Accordion
             sx={{
-              width: '320px',
+              width: '350px',
               minHeight: '40px',
               color: 'black',
             }}
@@ -129,7 +163,7 @@ export default function MainAdminPage() {
           </Accordion>
           <Accordion
             sx={{
-              width: '320px',
+              width: '350px',
               minHeight: '40px',
               color: 'black',
             }}
@@ -141,7 +175,18 @@ export default function MainAdminPage() {
             >
               <Typography>Товары</Typography>
             </AccordionSummary>
-            <AccordionDetails>Форма</AccordionDetails>
+            <AccordionDetails>
+              <ProductTable />
+              <Button
+                sx={{ marginTop: '20px' }}
+                variant="contained"
+                size="medium"
+                href={route('AddShopProduct')}
+                color="secondary"
+              >
+                Добавить
+              </Button>
+            </AccordionDetails>
           </Accordion>
         </Box>
       </Container>

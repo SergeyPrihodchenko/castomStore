@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import { Link } from '@inertiajs/react';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+
 import {
   FaTwitter,
   FaFacebookF,

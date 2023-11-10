@@ -44,6 +44,18 @@ require __DIR__ . '/Admin/UsersPage/usersPage.php';
 require __DIR__ . '/Admin/CatalogPage/catalogPage.php';
 
 //test
-Route::get('/createShopFormPage', function () {
-    return Inertia::render('AdminPage/HomePage/ui/Form/CreateShopFormPage');
-})->middleware(['auth', 'verified'])->name('createShopFormPage');
+Route::get('/editShopDetails', function () {
+    return Inertia::render('AdminPage/Form/EditShopDetailsPage');
+})->middleware(['auth', 'verified'])->name('editShopDetails');
+
+Route::get('/EditHomeShop', function () {
+    return Inertia::render('AdminPage/Form/EditHomeShopPage');
+})->middleware(['auth', 'verified'])->name('EditHomeShop');
+
+Route::get('/EditShopProduct', function () {
+    return Inertia::render('AdminPage/Form/EditShopProductPage');
+})->middleware(['auth', 'verified'])->name('EditShopProduct');
+
+Route::get('/AddShopProduct', function () {
+    return Inertia::render('AdminPage/Form/AddShopProductPage');
+})->middleware(['auth', 'verified'])->name('AddShopProduct');
