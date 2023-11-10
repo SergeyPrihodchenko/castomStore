@@ -36,7 +36,60 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function AddShopProduct() {
+const ArrayСatalog = [
+  {
+    id: 1,
+    title: 'Не выбрано',
+  },
+  {
+    id: 2,
+    title: 'Одежда',
+  },
+  {
+    id: 3,
+    title: 'Обувь',
+  },
+  {
+    id: 4,
+    title: 'Головные уборы',
+  },
+  {
+    id: 5,
+    title: 'Акссесуары',
+  },
+];
+const ArrayCategory = [
+  {
+    id: 1,
+    title: 'Не выбрано',
+  },
+  {
+    id: 2,
+    title: 'Мужская одежда',
+  },
+  {
+    id: 3,
+    title: 'Женская одежда',
+  },
+  {
+    id: 4,
+    title: 'Детская одежда',
+  },
+  {
+    id: 5,
+    title: 'Мужская обувь',
+  },
+  {
+    id: 6,
+    title: 'Женская обувь',
+  },
+  {
+    id: 7,
+    title: 'Детская обувь',
+  },
+];
+
+export default function EditShopDetails() {
   return (
     <form>
       <ThemeProvider theme={theme}>
@@ -48,7 +101,7 @@ export default function AddShopProduct() {
           }}
         >
           <Container fixed>
-            {/* <Box
+            <Box
               component="form"
               sx={{
                 marginTop: '20px',
@@ -61,16 +114,58 @@ export default function AddShopProduct() {
               autoComplete="off"
               alignContent={'center'}
             >
-              <Typography variant="h5">О магазине</Typography>
+              <Typography variant="h5">Добавить товар</Typography>
+              <Box>
+                <FormControl fullWidth>
+                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                    Каталог
+                  </InputLabel>
+                  <NativeSelect
+                    defaultValue={10}
+                    inputProps={{
+                      name: 'catalog',
+                      id: 'uncontrolled-native',
+                    }}
+                  >
+                    {ArrayСatalog.map((el) => {
+                      return <option value={10}>{el.title}</option>;
+                    })}
+                  </NativeSelect>
+                </FormControl>
+              </Box>
+              <Box>
+                <FormControl fullWidth>
+                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                    Категория
+                  </InputLabel>
+                  <NativeSelect
+                    defaultValue={10}
+                    inputProps={{
+                      name: 'social',
+                      id: 'uncontrolled-native',
+                    }}
+                  >
+                    {ArrayCategory.map((el) => {
+                      return <option value={10}>{el.title}</option>;
+                    })}
+                  </NativeSelect>
+                </FormControl>
+              </Box>
+
               <TextField
                 id="standard-basic"
-                label="Название магазина"
+                label="Наименование"
                 variant="standard"
               />
-              <TextField id="standard-basic" label="Email" variant="standard" />
               <TextField
                 id="standard-basic"
-                label="Веб сайт"
+                label="Подробное описание"
+                variant="standard"
+              />
+              <TextField id="standard-basic" label="Цена" variant="standard" />
+              <TextField
+                id="standard-basic"
+                label="Количество"
                 variant="standard"
               />
               <Button
@@ -80,43 +175,10 @@ export default function AddShopProduct() {
                 size="small"
                 startIcon={<CloudUploadIcon />}
               >
-                Загрузить логотип
+                Загрузить фото
                 <VisuallyHiddenInput type="file" />
               </Button>
-
-              <TextField
-                id="standard-basic"
-                label="Телефон"
-                variant="standard"
-              />
-              <TextField id="standard-basic" label="Адрес" variant="standard" />
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                    СоцСети
-                  </InputLabel>
-                  <NativeSelect
-                    defaultValue={40}
-                    inputProps={{
-                      name: 'social',
-                      id: 'uncontrolled-native',
-                    }}
-                  >
-                    <option value={10}>Twitter</option>
-                    <option value={20}>Facebook</option>
-                    <option value={30}>Instagram</option>
-                    <option value={40}>Github</option>
-                  </NativeSelect>
-
-                  <TextField
-                    id="standard-basic"
-                    label="СоцСети"
-                    variant="standard"
-                  />
-                </FormControl>
-              </Box>
-            </Box> */}
-
+            </Box>
             <Button
               variant="contained"
               size="small"
