@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { AddSettingsForm } from '@/Features/Admin/AddMainPageSettings';
 
+
 export default function Dashboard({ auth }: PageProps) {
   useEffect(() => {
     const res = axios.post(` /admin/dashboard/main`);
@@ -25,6 +26,7 @@ export default function Dashboard({ auth }: PageProps) {
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-red-100">
               <AddSettingsForm />
+              You're logged in!
             </div>
           </div>
         </div>
