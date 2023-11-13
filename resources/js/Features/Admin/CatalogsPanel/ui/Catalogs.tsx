@@ -1,7 +1,7 @@
 import { useAppDispatch } from "@/Shared/lib/hooks/useAppDispatch/useAppDispatch"
 import { useAppSelector } from "@/Shared/lib/hooks/useAppSelector/useAppSelector"
 import { getCategoriesForCatalogs } from "../model/functions/asyncFunctions"
-import { useDeleteCatalogQuery, useDeleteCategoryQuery, useSetCatalogMutation, useSetCategoryMutation, useUpdateCatalogForCategoryMutation, useUpdateCatalogMutation, useUpdateCategoryMutation } from "../model/reducers/query/rtkCatalogs"
+import { useSetCatalogMutation, useSetCategoryMutation, useUpdateCatalogForCategoryMutation, useUpdateCatalogMutation, useUpdateCategoryMutation, useDeleteCatalogMutation, useDeleteCategoryMutation } from "../model/reducers/query/rtkCatalogs"
 import { useState } from "react"
 
 export default function Catalogs() {
@@ -14,16 +14,10 @@ export default function Catalogs() {
     const [data, setData] = useState('')
 
     const [setCatalog, {isLoading}] = useSetCatalogMutation()
-
-    const test = async () => {
-        await setCatalog({catalog_title: 'hello'});
-
-        console.log(catalogs);
-        
-    }
+    const [deleteCatalog, {isSuccess}] = useDeleteCatalogMutation()
     
     return (<>
-        <button onClick={() => {test()}}>click</button>
-        <h1>{data}</h1>
+        <button onClick={async () => {const test = await deleteCatalog(20); console.log(test);
+        }}>click</button>
     </>)
 }

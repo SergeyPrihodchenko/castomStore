@@ -41,27 +41,31 @@ export const queryCatalogs = createApi({
                 data: data
             })
         }),
-        deleteCatalog: build.query<{id: number}, Partial<{id: number}>>({
+        deleteCatalog: build.mutation<number, Partial<number>>({
             query: (id) => ({
                 url: `/deleteCatalog/${id}`,
                 method: 'GET'
             })
         }),
-        deleteCategory: build.query<{id: number}, Partial<{id: number}>>({
+        deleteCategory: build.mutation<number, Partial<number>>({
             query: (id) => ({
                 url: `/deleteCategory/${id}`,
                 method: 'GET'
             })
         }),
+        
 
     })
 })
 
-export const { useDeleteCatalogQuery,
-                useDeleteCategoryQuery, 
-                useSetCatalogMutation, 
-                useSetCategoryMutation, 
-                useUpdateCatalogForCategoryMutation,
-                useUpdateCatalogMutation,
-                useUpdateCategoryMutation
-            } = queryCatalogs
+export const {  
+
+    useSetCatalogMutation, 
+    useSetCategoryMutation, 
+    useUpdateCatalogForCategoryMutation,
+    useUpdateCatalogMutation,
+    useUpdateCategoryMutation,
+    useDeleteCatalogMutation,
+    useDeleteCategoryMutation
+    
+} = queryCatalogs
