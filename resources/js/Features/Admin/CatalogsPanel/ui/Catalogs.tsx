@@ -13,11 +13,13 @@ export default function Catalogs() {
 
     const [data, setData] = useState('')
 
-    const [setCatalog, {isLoading}] = useSetCatalogMutation()
+    const [upCatalog, {isLoading}] = useUpdateCatalogMutation()
     const [deleteCatalog, {isSuccess}] = useDeleteCatalogMutation()
+
+    console.log(catalogs);
+    
     
     return (<>
-        <button onClick={async () => {const test = await deleteCatalog(20); console.log(test);
-        }}>click</button>
+        <button onClick={async () => {await upCatalog({title: 'new_name', id: 1})}}>click</button>
     </>)
 }
