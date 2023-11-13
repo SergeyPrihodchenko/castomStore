@@ -6,32 +6,36 @@ export interface MainPageSchema {
 // export type mainPageSchema = mainPageSettings[];
 
 export type MainPageSettings = [
-  { title: string },
+  CurrentTitle,
   { header: string },
   { title: string },
   { img_path: string },
   { all_title: ITitle[] },
-  { all_header: AllHeader[] },
-  { all_subheader: AllSubheader[] },
-  { all_img_path: AllImgPath[] },
+  { all_header: IHeader[] },
+  { all_subheader: ISubheader[] },
+  { all_img_path: IImgPath[] },
 ];
+
+export interface CurrentTitle {
+  title: string;
+}
 
 export interface ITitle {
   id: number;
   title: string;
 }
 
-export interface AllHeader {
+export interface IHeader {
   id: number;
   header: string;
 }
 
-export interface AllSubheader {
+export interface ISubheader {
   id: number;
   subheader: string;
 }
 
-export interface AllImgPath {
+export interface IImgPath {
   id: number;
   img_path: string;
 }

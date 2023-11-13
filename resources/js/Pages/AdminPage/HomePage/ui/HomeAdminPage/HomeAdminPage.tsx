@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SliderMobile from '@/image/SliderMobile.png';
 import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
+import { useGetMainPageTitleQuery } from '@/Shared/api/admin.api';
 
 const arrayCompany = [
   {
@@ -41,6 +42,8 @@ const theme = createTheme({
 });
 
 export default function MainAdminPage() {
+  const { isLoading, error, data } = useGetMainPageTitleQuery();
+  console.log(data);
   return (
     <ThemeProvider theme={theme}>
       <Container fixed>
@@ -71,20 +74,18 @@ export default function MainAdminPage() {
               {arrayCompany != null ? (
                 arrayCompany.map((el) => {
                   return (
-                    <>
+                    <div key={el.id}>
                       <Typography variant="h5">{el.title}</Typography>
                       <Typography variant="h6">{el.website}</Typography>
                       <Typography variant="h6">{el.email}</Typography>
                       <Typography variant="h6">{el.phone}</Typography>
                       <Typography variant="h6">{el.adress}</Typography>
                       <Typography variant="h6">{el.socialNetworks}</Typography>
-                    </>
+                    </div>
                   );
                 })
               ) : (
-                <Typography variant="h5">
-                  Вы еще не внести данные о вашем сайте
-                </Typography>
+                <Typography variant="h5">Вы еще не внести данные о вашем сайте</Typography>
               )}
 
               <Button
@@ -129,9 +130,7 @@ export default function MainAdminPage() {
                   );
                 })
               ) : (
-                <Typography variant="h5">
-                  Вы еще не внести данные о вашем сайте
-                </Typography>
+                <Typography variant="h5">Вы еще не внести данные о вашем сайте</Typography>
               )}
 
               <Button
