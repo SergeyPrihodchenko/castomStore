@@ -1,86 +1,5 @@
-// import * as React from 'react';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import Paper from '@mui/material/Paper';
-// import Box from '@mui/material/Box';
-// import EditIcon from '@mui/icons-material/Edit';
-// import IconButton from '@mui/material/IconButton';
-
-// const arrayProducts = [
-//   {
-//     id: 1,
-//     title: 'Рубашка',
-//     price: '120',
-//     quantity: '5',
-//   },
-//   {
-//     id: 2,
-//     title: 'Куртка',
-//     price: '220',
-//     quantity: '6',
-//   },
-//   {
-//     id: 3,
-//     title: 'Платье',
-//     price: '140',
-//     quantity: '2',
-//   },
-// ];
-
-// export default function ProductTable() {
-//   return (
-//     <Box sx={{ minWidth: '320px' }}>
-//       <TableContainer component={Paper}>
-//         <Table
-//           sx={{ width: '100px' }}
-//           size="small"
-//           aria-label="a product table"
-//         >
-//           <TableHead>
-//             <TableRow>
-//               <TableCell>Наименование</TableCell>
-//               <TableCell align="left">Цена</TableCell>
-//               <TableCell align="left">Кол</TableCell>
-//               <TableCell align="left">Изм</TableCell>
-//             </TableRow>
-//           </TableHead>
-//           <TableBody>
-//             {arrayProducts.map((arrayProducts) => (
-//               <TableRow
-//                 key={arrayProducts.title}
-//                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-//               >
-//                 <TableCell
-//                   component="th"
-//                   scope="row"
-//                 >
-//                   {arrayProducts.title}
-//                 </TableCell>
-//                 <TableCell align="right">{arrayProducts.price}</TableCell>
-//                 <TableCell align="right">{arrayProducts.quantity}</TableCell>
-//                 <TableCell align="right">
-//                   <IconButton
-//                     edge="end"
-//                     aria-label="edit"
-//                     href={route('EditShopProduct')}
-//                   >
-//                     <EditIcon />
-//                   </IconButton>
-//                 </TableCell>
-//               </TableRow>
-//             ))}
-//           </TableBody>
-//         </Table>
-//       </TableContainer>
-//     </Box>
-//   );
-// }
-
 import * as React from 'react';
+import TableHead from '@mui/material/TableHead';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -95,12 +14,8 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import NativeSelect from '@mui/material/NativeSelect';
 
 interface TablePaginationActionsProps {
   count: number;
