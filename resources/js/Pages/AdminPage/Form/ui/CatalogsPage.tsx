@@ -1,5 +1,4 @@
 import * as React from 'react';
-import TableHead from '@mui/material/TableHead';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -14,6 +13,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 
@@ -78,33 +78,47 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-const arrayProducts = [
+const rows = [
   {
     id: 1,
-    title: 'Рубашка',
-    price: '120',
-    quantity: '5',
+    title: 'Одежда',
   },
   {
     id: 2,
-    title: 'Куртка',
-    price: '220',
-    quantity: '6',
+    title: 'Обувь',
   },
   {
     id: 3,
-    title: 'Платье',
-    price: '140',
-    quantity: '2',
+    title: 'Головные уборы',
+  },
+  {
+    id: 4,
+    title: 'Акссесуары',
+  },
+  {
+    id: 5,
+    title: 'Опять Одежда',
+  },
+  {
+    id: 6,
+    title: 'Опять Обувь',
+  },
+  {
+    id: 7,
+    title: 'Опять Головные уборы',
+  },
+  {
+    id: 8,
+    title: 'Опять Акссесуары',
   },
 ];
 
-export default function ProductTable() {
+export default function CatalogsPage() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - arrayProducts.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -118,88 +132,76 @@ export default function ProductTable() {
   };
 
   return (
-    <Box sx={{ minWidth: '320px' }}>
-      <TableContainer component={Paper}>
-        <Table
-          size="small"
-          aria-label="a product table"
-        >
-          <TableHead>
-            <TableRow>
-              <TableCell>Наименование</TableCell>
-              <TableCell align="left">Цена</TableCell>
-              <TableCell align="left">Кол</TableCell>
-              <TableCell align="left">Изм</TableCell>
+    <TableContainer component={Paper}>
+      <Table
+        sx={{ minWidth: 290 }}
+        aria-label="custom pagination table"
+      >
+        <TableBody>
+          {(rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((row) => (
+            <TableRow key={row.title}>
+              <TableCell
+                component="th"
+                scope="row"
+              >
+                {row.title}
+              </TableCell>
+              <TableCell
+                style={{ width: 10 }}
+                align="right"
+              >
+                <IconButton
+                  edge="end"
+                  aria-label="edit"
+                  href="#"
+                >
+                  <EditIcon />
+                </IconButton>
+              </TableCell>
+              <TableCell
+                style={{ width: 10 }}
+                align="right"
+              >
+                <IconButton
+                  edge="end"
+                  aria-label="edit"
+                  href="#"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {(rowsPerPage > 0
-              ? arrayProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : arrayProducts
-            ).map((arrayProducts) => (
-              <TableRow key={arrayProducts.title}>
-                <TableCell
-                  component="th"
-                  scope="row"
-                >
-                  {arrayProducts.title}
-                </TableCell>
-                <TableCell align="right">{arrayProducts.price}</TableCell>
-                <TableCell align="right">{arrayProducts.quantity}</TableCell>
-                <TableCell
-                  style={{ width: 10 }}
-                  align="right"
-                >
-                  <IconButton
-                    edge="end"
-                    aria-label="edit"
-                    href="#"
-                  >
-                    <EditIcon />
-                  </IconButton>
-                </TableCell>
-                {/* <TableCell
-                  style={{ width: 10 }}
-                  align="right"
-                >
-                  <IconButton
-                    edge="end"
-                    aria-label="edit"
-                    href="#"
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell> */}
-              </TableRow>
-            ))}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                colSpan={4}
-                count={arrayProducts.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    'aria-label': 'rows per page',
-                  },
-                  native: true,
-                }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
+          ))}
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
             </TableRow>
-          </TableFooter>
-        </Table>
-      </TableContainer>
-    </Box>
+          )}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              colSpan={3}
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              SelectProps={{
+                inputProps: {
+                  'aria-label': 'rows per page',
+                },
+                native: true,
+              }}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
+            />
+          </TableRow>
+        </TableFooter>
+      </Table>
+    </TableContainer>
   );
 }
