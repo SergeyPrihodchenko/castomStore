@@ -1,16 +1,15 @@
 export type Catalog = {
     id: number,
-    title: string
+    catalog_title: string
 }
 
-export type Categories = {
+export type Category = {
     id: number,
-    title: string,
+    category_title: string,
     catalog_id: number
 }
 
 export interface SchemaCatalogs {
     catalogs: Catalog[]
-
-    categoriesCatalog: Categories[]
+    categoriesCatalog: Category[]
 }

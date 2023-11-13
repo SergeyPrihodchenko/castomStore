@@ -12,7 +12,7 @@ Route::post('admin/catalogs/addCategory', [CatalogsPageController::class, 'addCa
 Route::post('admin/catalogs/updateCatalog', [CatalogsPageController::class, 'updateCatalog'])->name('updateCatalog');
 Route::post('admin/catalogs/updateCategory', [CatalogsPageController::class, 'updateCategory'])->name('updateCategory');
 
-Route::post('admin/catalogs/updateCatalogForCategory', [CatalogsPageController::class, 'index'])->name('updateCatalogForCategory');
+Route::post('admin/catalogs/updateCatalogForCategory', [CatalogsPageController::class, 'updateCatalogForCategory'])->name('updateCatalogForCategory');
 
 Route::get('admin/catalogs/deleteCatalog/{id}', [CatalogsPageController::class, 'deleteCatalog'])->name('deleteCatalog');
 Route::get('admin/catalogs/deleteCategory/{id}', [CatalogsPageController::class, 'deleteCategory'])->name('deleteCategory');
