@@ -9,10 +9,10 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SliderMobile from '@/image/SliderMobile.png';
 import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
-import CategoryPage from '@/Pages/AdminPage/Form/ui/CategoryPage';
+import CatalogsPage from '@/Pages/AdminPage/Form/ui/CatalogsPage';
+import CategoriesPage from '@/Pages/AdminPage/Form/ui/CategoriesPage';
 import TextField from '@mui/material/TextField';
 import AddCircle from '@mui/icons-material/AddCircle';
-import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 
 const arrayCompany = [
@@ -161,7 +161,7 @@ export default function MainAdminPage() {
               <Typography>Каталоги</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <CategoryPage />
+              <CatalogsPage />
               <TextField
                 id="standard-basic"
                 label="Новый каталог"
@@ -177,13 +177,25 @@ export default function MainAdminPage() {
               >
                 <AddCircle />
               </IconButton>
-              <IconButton
-                edge="end"
-                aria-label="edit"
-                href="#"
-              >
-                <EditIcon />
-              </IconButton>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            sx={{
+              width: '350px',
+              minHeight: '40px',
+              color: 'black',
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>Категории</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <CategoriesPage />
+
               <TextField
                 id="standard-basic"
                 label="Новая категория"
@@ -198,13 +210,6 @@ export default function MainAdminPage() {
                 sx={{ margin: '10px' }}
               >
                 <AddCircle />
-              </IconButton>
-              <IconButton
-                edge="end"
-                aria-label="edit"
-                href="#"
-              >
-                <EditIcon />
               </IconButton>
             </AccordionDetails>
           </Accordion>
