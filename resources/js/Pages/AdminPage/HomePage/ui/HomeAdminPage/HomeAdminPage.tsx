@@ -9,6 +9,11 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SliderMobile from '@/image/SliderMobile.png';
 import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
+import CategoryPage from '@/Pages/AdminPage/Form/ui/CategoryPage';
+import TextField from '@mui/material/TextField';
+import AddCircle from '@mui/icons-material/AddCircle';
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
 
 const arrayCompany = [
   {
@@ -82,9 +87,7 @@ export default function MainAdminPage() {
                   );
                 })
               ) : (
-                <Typography variant="h5">
-                  Вы еще не внести данные о вашем сайте
-                </Typography>
+                <Typography variant="h5">Вы еще не внести данные о вашем сайте</Typography>
               )}
 
               <Button
@@ -129,9 +132,7 @@ export default function MainAdminPage() {
                   );
                 })
               ) : (
-                <Typography variant="h5">
-                  Вы еще не внести данные о вашем сайте
-                </Typography>
+                <Typography variant="h5">Вы еще не внести данные о вашем сайте</Typography>
               )}
 
               <Button
@@ -159,7 +160,53 @@ export default function MainAdminPage() {
             >
               <Typography>Каталоги</Typography>
             </AccordionSummary>
-            <AccordionDetails>Форма</AccordionDetails>
+            <AccordionDetails>
+              <CategoryPage />
+              <TextField
+                id="standard-basic"
+                label="Новый каталог"
+                variant="standard"
+                sx={{ marginLeft: '20px' }}
+              />
+
+              <IconButton
+                edge="end"
+                aria-label="edit"
+                href="#"
+                sx={{ margin: '10px' }}
+              >
+                <AddCircle />
+              </IconButton>
+              <IconButton
+                edge="end"
+                aria-label="edit"
+                href="#"
+              >
+                <EditIcon />
+              </IconButton>
+              <TextField
+                id="standard-basic"
+                label="Новая категория"
+                variant="standard"
+                sx={{ marginLeft: '20px' }}
+              />
+
+              <IconButton
+                edge="end"
+                aria-label="edit"
+                href="#"
+                sx={{ margin: '10px' }}
+              >
+                <AddCircle />
+              </IconButton>
+              <IconButton
+                edge="end"
+                aria-label="edit"
+                href="#"
+              >
+                <EditIcon />
+              </IconButton>
+            </AccordionDetails>
           </Accordion>
           <Accordion
             sx={{
