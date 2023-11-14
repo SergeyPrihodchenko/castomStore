@@ -34,9 +34,8 @@ export default function MainPage() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          marginTop: '20px',
           textAlign: 'center',
-          width: '390px',
+          width: '320px',
         }}
       >
         {/* текст о сайте */}
@@ -71,15 +70,15 @@ export default function MainPage() {
                 paddingLeft: '20px',
               }}
             >
-              У нас есть сайт, который вы можете настроить по своему усмотрению
-              и начать или расширить свою деятельность.
+              У нас есть сайт, который вы можете настроить по своему усмотрению и начать или
+              расширить свою деятельность.
             </Typography>
             {/* кнопка перехода в настройки */}
             <Button
               variant="contained"
               size="small"
               sx={{
-                width: '358px',
+                minWidth: '258px',
                 height: '52px',
                 alignContent: 'center',
                 borderRadius: '62px',
@@ -100,23 +99,33 @@ export default function MainPage() {
         <Box
           sx={{
             background: '#F2F0F1',
-            paddingLeft: '20px',
           }}
         >
           <Container fixed>
             <Box
               sx={{
-                margin: '10px 0 50px 0',
+                margin: '10px 0 50px -20px',
                 padding: '60px 0 0 40px',
-                minWidth: '390px',
                 height: '448px',
                 background: 'url(' + SliderMobile + ') no-repeat #F2F0F1',
               }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={4}></Grid>
-                <Grid item xs={4}></Grid>
-                <Grid item xs={4}>
+              <Grid
+                container
+                spacing={8}
+              >
+                <Grid
+                  item
+                  xs={4}
+                ></Grid>
+                <Grid
+                  item
+                  xs={4}
+                ></Grid>
+                <Grid
+                  item
+                  xs={4}
+                >
                   <img
                     src={Vector}
                     width={'76'}
@@ -124,15 +133,25 @@ export default function MainPage() {
                     alt="vectorBig"
                   />
                 </Grid>
-                <Grid item xs={4}>
-                  <img
-                    src={Vector}
-                    width={'44'}
-                    height={'44'}
-                    alt="vectorSmall"
-                  />
-                  <Grid item xs={4}></Grid>
-                  <Grid item xs={4}></Grid>
+                <Grid
+                  item
+                  xs={4}
+                >
+                  <Grid
+                    item
+                    xs={6}
+                  >
+                    <img
+                      src={Vector}
+                      width={'44'}
+                      height={'44'}
+                      alt="vectorSmall"
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={4}
+                  ></Grid>
                 </Grid>
               </Grid>
             </Box>
@@ -153,122 +172,114 @@ export default function MainPage() {
             >
               НОВИНКИ
             </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={2}>
+
+            <Box
+              sx={{
+                marginBottom: '32px',
+                display: 'flex',
+                alignContent: 'space-between',
+              }}
+            >
+              <Card sx={{ width: '187px', borderRadius: '16px', marginRight: '10px' }}>
+                <CardMedia
+                  sx={{ height: 200 }}
+                  image={T_shirtWithTapeDetales}
+                  title="item"
+                />
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={'left'}
+                    fontWeight={'700'}
+                    fontSize={'16px'}
+                  >
+                    T-shirt with Tape Detales
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Rating
+                    name="half-rating"
+                    size="small"
+                    defaultValue={4.5}
+                    precision={0.5}
+                  />
+                  <Box sx={{ fontSize: '12px' }}>4.5/5</Box>
+                </CardActions>
                 <Box
                   sx={{
-                    marginBottom: '32px',
+                    ml: 2,
                   }}
                 >
-                  <Card sx={{ width: 187, borderRadius: '16px' }}>
-                    <CardMedia
-                      sx={{ height: 200 }}
-                      image={T_shirtWithTapeDetales}
-                      title="item"
-                    />
-                    <CardContent>
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        textAlign={'left'}
-                        fontWeight={'700'}
-                        fontSize={'16px'}
-                      >
-                        T-shirt with Tape Detales
-                      </Typography>
-                    </CardContent>
-                    <CardActions sx={{ ml: 1 }}>
-                      <Rating
-                        name="half-rating"
-                        size="small"
-                        defaultValue={4.5}
-                        precision={0.5}
-                      />
-                      <Box sx={{ ml: 2, fontSize: '12px' }}>4.5/5</Box>
-                    </CardActions>
-                    <Box
-                      sx={{
-                        ml: 2,
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        textAlign={'left'}
-                        fontWeight={'700'}
-                        fontSize={'20px'}
-                      >
-                        $120
-                      </Typography>
-                    </Box>
-                  </Card>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={'left'}
+                    fontWeight={'700'}
+                    fontSize={'20px'}
+                    paddingBottom={'10px'}
+                  >
+                    $120
+                  </Typography>
                 </Box>
-              </Grid>
-              <Grid item xs={5}></Grid>
-              <Grid item xs={2}>
+              </Card>
+              <Card sx={{ width: '187px', borderRadius: '16px' }}>
+                <CardMedia
+                  sx={{ height: 200 }}
+                  image={SkinnyFitJeans}
+                  title="item"
+                />
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={'left'}
+                    fontWeight={'700'}
+                    fontSize={'16px'}
+                  >
+                    Skinny Fit Jeans
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Rating
+                    name="half-rating"
+                    size="small"
+                    defaultValue={3.5}
+                    precision={0.5}
+                  />
+                  <Box sx={{ fontSize: '12px' }}>3.5/5</Box>
+                </CardActions>
                 <Box
                   sx={{
-                    marginBottom: '32px',
+                    ml: 2,
                   }}
                 >
-                  <Card sx={{ width: 187, borderRadius: '16px' }}>
-                    <CardMedia
-                      sx={{ height: 200 }}
-                      image={SkinnyFitJeans}
-                      title="item"
-                    />
-                    <CardContent>
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        textAlign={'left'}
-                        fontWeight={'700'}
-                        fontSize={'16px'}
-                        paddingBottom={'25px'}
-                      >
-                        Skinny Fit Jeans
-                      </Typography>
-                    </CardContent>
-                    <CardActions sx={{ ml: 1 }}>
-                      <Rating
-                        name="half-rating"
-                        size="small"
-                        defaultValue={3.5}
-                        precision={0.5}
-                      />
-                      <Box sx={{ ml: 2, fontSize: '12px' }}>3.5/5</Box>
-                    </CardActions>
-                    <Box
-                      sx={{
-                        ml: 2,
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        textAlign={'left'}
-                        fontWeight={'700'}
-                        fontSize={'20px'}
-                      >
-                        $120
-                      </Typography>
-                    </Box>
-                  </Card>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={'left'}
+                    fontWeight={'700'}
+                    fontSize={'20px'}
+                    paddingBottom={'10px'}
+                  >
+                    $120
+                  </Typography>
                 </Box>
-              </Grid>
-            </Grid>
+              </Card>
+            </Box>
+
             {/* кнопка перехода в каталог новинок */}
             <Button
               variant="contained"
               size="small"
               sx={{
-                width: '358px',
+                minWidth: '258px',
                 height: '52px',
                 alignContent: 'center',
                 borderRadius: '62px',
                 fontWeight: 400,
                 fontSize: '12px',
-                margin: '0 40px 20px 0',
+                margin: '0 30px 10px 0',
               }}
               href="#"
               color="secondary"
@@ -282,7 +293,8 @@ export default function MainPage() {
         <Container fixed>
           <Box
             sx={{
-              margin: '40px 0 50px 0',
+              margin: '30px 0 50px 0',
+              // width: '320px',
               borderTop: '1px solid rgba(0, 0, 0, 0.1)',
             }}
           >
@@ -297,121 +309,125 @@ export default function MainPage() {
             >
               ПОПУЛЯРНЫЕ ТОВАРЫ
             </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={2}>
+            <Box
+              sx={{
+                marginBottom: '32px',
+                display: 'flex',
+                alignContent: 'space-between',
+              }}
+            >
+              <Card
+                sx={{
+                  width: '187px',
+                  borderRadius: '16px',
+                  marginRight: '10px',
+                }}
+              >
+                <CardMedia
+                  sx={{ height: 200 }}
+                  image={VerticalStripedShirt}
+                  title="item"
+                />
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={'left'}
+                    fontWeight={'700'}
+                    fontSize={'16px'}
+                  >
+                    Vertical Striped Shirt
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Rating
+                    name="half-rating"
+                    size="small"
+                    defaultValue={5}
+                    precision={0.5}
+                  />
+                  <Box sx={{ fontSize: '12px' }}>5/5</Box>
+                </CardActions>
                 <Box
                   sx={{
-                    marginBottom: '32px',
+                    ml: 2,
                   }}
                 >
-                  <Card sx={{ width: 187, borderRadius: '16px' }}>
-                    <CardMedia
-                      sx={{ height: 200 }}
-                      image={VerticalStripedShirt}
-                      title="item"
-                    />
-                    <CardContent>
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        textAlign={'left'}
-                        fontWeight={'700'}
-                        fontSize={'16px'}
-                      >
-                        Vertical Striped Shirt
-                      </Typography>
-                    </CardContent>
-                    <CardActions sx={{ ml: 1 }}>
-                      <Rating
-                        name="half-rating"
-                        size="small"
-                        defaultValue={5}
-                        precision={0.5}
-                      />
-                      <Box sx={{ ml: 2, fontSize: '12px' }}>5/5</Box>
-                    </CardActions>
-                    <Box
-                      sx={{
-                        ml: 2,
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        textAlign={'left'}
-                        fontWeight={'700'}
-                        fontSize={'20px'}
-                      >
-                        $212
-                      </Typography>
-                    </Box>
-                  </Card>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={'left'}
+                    fontWeight={'700'}
+                    fontSize={'20px'}
+                    paddingBottom={'10px'}
+                  >
+                    $212
+                  </Typography>
                 </Box>
-              </Grid>
-              <Grid item xs={5}></Grid>
-              <Grid item xs={2}>
+              </Card>
+
+              <Card
+                sx={{
+                  width: '187px',
+                  borderRadius: '16px',
+                }}
+              >
+                <CardMedia
+                  sx={{ height: 200 }}
+                  image={CourageGraphicT_shirt}
+                  title="item"
+                />
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={'left'}
+                    fontWeight={'700'}
+                    fontSize={'16px'}
+                  >
+                    Courage Graphic T-shirt
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Rating
+                    name="half-rating"
+                    size="small"
+                    defaultValue={4}
+                    precision={0.5}
+                  />
+                  <Box sx={{ fontSize: '12px' }}>4/5</Box>
+                </CardActions>
                 <Box
                   sx={{
-                    marginBottom: '32px',
+                    ml: 2,
                   }}
                 >
-                  <Card sx={{ width: 187, borderRadius: '16px' }}>
-                    <CardMedia
-                      sx={{ height: 200 }}
-                      image={CourageGraphicT_shirt}
-                      title="item"
-                    />
-                    <CardContent>
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        textAlign={'left'}
-                        fontWeight={'700'}
-                        fontSize={'16px'}
-                      >
-                        Courage Graphic T-shirt
-                      </Typography>
-                    </CardContent>
-                    <CardActions sx={{ ml: 1 }}>
-                      <Rating
-                        name="half-rating"
-                        size="small"
-                        defaultValue={4}
-                        precision={0.5}
-                      />
-                      <Box sx={{ ml: 2, fontSize: '12px' }}>4/5</Box>
-                    </CardActions>
-                    <Box
-                      sx={{
-                        ml: 2,
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        component="div"
-                        textAlign={'left'}
-                        fontWeight={'700'}
-                        fontSize={'20px'}
-                      >
-                        $145
-                      </Typography>
-                    </Box>
-                  </Card>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textAlign={'left'}
+                    fontWeight={'700'}
+                    fontSize={'20px'}
+                    paddingBottom={'10px'}
+                  >
+                    $145
+                  </Typography>
                 </Box>
-              </Grid>
-            </Grid>
+              </Card>
+            </Box>
+
             {/* кнопка перехода в каталог товаров */}
             <Button
               variant="contained"
               size="small"
               sx={{
-                width: '358px',
+                minWidth: '258px',
                 height: '52px',
                 alignContent: 'center',
                 borderRadius: '62px',
                 fontWeight: 400,
                 fontSize: '12px',
-                margin: '0 40px 20px 0',
+                margin: '0 30px 20px 0',
               }}
               href="#"
               color="secondary"

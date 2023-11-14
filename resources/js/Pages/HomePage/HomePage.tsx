@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 
 export default function Welcome() {
   return (
-    <Box sx={{ minWidth: '390px' }}>
+    <Box sx={{ width: '320px' }}>
       <Header />
       <HomePage />
       <Footer />
