@@ -10,10 +10,18 @@ use App\Models\Product\Option;
 use App\Models\Product\Product;
 use App\Models\Product\ProductImage;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AdminProductController extends Controller
 {
+    public function index(): JsonResponse
+    {
+        $product = Product::all();
+
+        return response()->json($product);
+    }
+
     public function create(ProductRequest $request): JsonResponse
     {
         $data = $request->validated();
