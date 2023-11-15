@@ -17,68 +17,15 @@ import TablePaginationActions from '@mui/material/TablePagination/TablePaginatio
 import { useSetCatalogMutation, useSetCategoryMutation, useUpdateCatalogForCategoryMutation, useUpdateCatalogMutation, useUpdateCategoryMutation, useDeleteCatalogMutation, useDeleteCategoryMutation, useGetCatalogsQuery, useGetCategoriesQuery,  } from "../model/reducers/query/rtkCatalogs"  
 import { useState } from 'react';
 
-const ArrayСatalog = [
-  {
-    id: 1,
-    title: 'Не выбрано',
-  },
-  {
-    id: 2,
-    title: 'Одежда',
-  },
-  {
-    id: 3,
-    title: 'Обувь',
-  },
-  {
-    id: 4,
-    title: 'Головные уборы',
-  },
-  {
-    id: 5,
-    title: 'Акссесуары',
-  },
-];
-
-const ArrayCategory = [
-  {
-    id: 1,
-    title: 'Мужская одежда',
-  },
-  {
-    id: 2,
-    title: 'Женская одежда',
-  },
-  {
-    id: 3,
-    title: 'Детская одежда',
-  },
-  {
-    id: 4,
-    title: 'Мужская обувь',
-  },
-  {
-    id: 5,
-    title: 'Женская обувь',
-  },
-  {
-    id: 6,
-    title: 'Детская обувь',
-  },
-];
-
 export default function Categories() {
 
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
-  const [catalogId, setCatalogID] = useState(0)
-  
+  const [catalogId, setCatalogID] = useState(0)  
 
   const {data: catalogs, isSuccess: isSuccessCatalogs} = useGetCatalogsQuery('')
   const {data: categories, isSuccess: isSuccessCategories} = useGetCategoriesQuery(catalogId)
   const [deleteCategory, {}] = useDeleteCategoryMutation()
-
-
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (isSuccessCategories ? categories.length : 0)) : 0;
@@ -87,7 +34,7 @@ export default function Categories() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
+  const handleChangeRowsPerPage = ( 
     event,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -104,7 +51,6 @@ export default function Categories() {
             Каталог
           </InputLabel>
           <NativeSelect
-            autoFocus 
             inputProps={{
               name: 'catalogs'
             }}
