@@ -30,12 +30,12 @@ export default function Categories() {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (isSuccessCategories ? categories.length : 0)) : 0;
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = ( 
-    event,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
@@ -54,7 +54,7 @@ export default function Categories() {
             inputProps={{
               name: 'catalogs'
             }}
-            onChange={(e) => {setCatalogID(e.target.value)}}
+            onChange={(e) => {setCatalogID(Number(e.target.value))}}
           >
             {(isSuccessCatalogs ? catalogs : []).map((catalog) => {
               return <option value={catalog.id} key={catalog.id}>{catalog.title}</option>;
