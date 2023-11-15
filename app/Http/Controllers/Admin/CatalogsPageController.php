@@ -36,7 +36,7 @@ class CatalogsPageController extends Controller
     {
         $data = $request->validated();
 
-        $value = $data['catalog_title'];
+        $value = $data['title'];
 
         $catalog = new Catalog();
 
@@ -49,7 +49,7 @@ class CatalogsPageController extends Controller
         $data = $request->validated();
 
         $id = (int) $data['catalog_id'];
-        $value = $data['category_title'];
+        $value = $data['title'];
 
         $category = new Category();
 
@@ -60,8 +60,8 @@ class CatalogsPageController extends Controller
     {
         $data = $request->validated();
 
-        $id = (int) $data['catalog_id'];
-        $value = $data['catalog_title'];
+        $id = (int) $data['id'];
+        $value = $data['title'];
 
         $catalog = new Catalog();
 
@@ -72,8 +72,8 @@ class CatalogsPageController extends Controller
     {
         $data = $request->validated();
 
-        $id = (int) $data['category_id'];
-        $value = $data['category_title'];
+        $id = (int) $data['id'];
+        $value = $data['title'];
 
         $category = new Category();
 
