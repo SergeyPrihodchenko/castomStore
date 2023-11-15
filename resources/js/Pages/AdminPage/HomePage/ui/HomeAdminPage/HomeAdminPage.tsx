@@ -9,11 +9,15 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SliderMobile from '@/image/SliderMobile.png';
 import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
-import CatalogsPage from '@/Pages/AdminPage/Form/ui/CatalogsPage';
-import CategoriesPage from '@/Pages/AdminPage/Form/ui/CategoriesPage';
+// import CatalogsPage from '@/Pages/AdminPage/Form/ui/CatalogsPage';
+// import CategoriesPage from '@/Pages/AdminPage/Form/ui/CategoriesPage';
 import TextField from '@mui/material/TextField';
 import AddCircle from '@mui/icons-material/AddCircle';
 import IconButton from '@mui/material/IconButton';
+import Categories from '@/Features/Admin/CatalogsPanel/ui/Categories';
+import Catalogs from '@/Features/Admin/CatalogsPanel/ui/Catalogs';
+import { useSetCatalogMutation, useSetCategoryMutation } from '@/Features/Admin/CatalogsPanel/model/reducers/query/rtkCatalogs';
+import { useState } from 'react';
 
 const arrayCompany = [
   {
@@ -46,6 +50,33 @@ const theme = createTheme({
 });
 
 export default function MainAdminPage() {
+
+  const [catalogValue, setCatalogValue] = useState('')
+  const [categoryValue, setCategoryValue] = useState('')
+  const [catalogID, setCatalogID] = useState(0)
+
+  const handleChangeCatalog = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const value = e.target.value
+    setCatalogValue(value)
+  }
+  const handleChangeCategory = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const value = e.target.value
+    setCategoryValue(value)
+  }
+
+  const [setCatalog, {}] = useSetCatalogMutation()
+  const [setCategory, {}] = useSetCategoryMutation()
+
+  const setCatalogC = () => {
+    setCatalog({title: catalogValue})
+    setCatalogValue('')
+  }
+
+  const setCategoryC = () => {
+    setCategory({catalog_id: catalogID, title: categoryValue})
+    setCategoryValue('')
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container fixed>
@@ -161,18 +192,20 @@ export default function MainAdminPage() {
               <Typography>Каталоги</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <CatalogsPage />
+              <Catalogs/>
               <TextField
                 id="standard-basic"
                 label="Новый каталог"
                 variant="standard"
+                value={catalogValue}
+                onChange={(e) => {handleChangeCatalog(e)}}
                 sx={{ marginLeft: '20px' }}
               />
 
               <IconButton
                 edge="end"
                 aria-label="edit"
-                href="#"
+                onClick={setCatalogC}
                 sx={{ margin: '10px' }}
               >
                 <AddCircle />
@@ -194,20 +227,22 @@ export default function MainAdminPage() {
               <Typography>Категории</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <CategoriesPage />
+              <Categories getCatalogID={setCatalogID}/>
 
               <TextField
                 id="standard-basic"
                 label="Новая категория"
                 variant="standard"
+                value={categoryValue}
+                onChange={(e) => {handleChangeCategory(e)}}
                 sx={{ marginLeft: '20px' }}
               />
 
               <IconButton
                 edge="end"
                 aria-label="edit"
-                href="#"
                 sx={{ margin: '10px' }}
+                onClick={setCategoryC}
               >
                 <AddCircle />
               </IconButton>

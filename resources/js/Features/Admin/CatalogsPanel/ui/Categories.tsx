@@ -14,12 +14,17 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions';
-import { useSetCatalogMutation, useSetCategoryMutation, useUpdateCatalogForCategoryMutation, useUpdateCatalogMutation, useUpdateCategoryMutation, useDeleteCatalogMutation, useDeleteCategoryMutation, useGetCatalogsQuery, useGetCategoriesQuery,  } from "../model/reducers/query/rtkCatalogs"  
+import { useDeleteCategoryMutation, useGetCatalogsQuery, useGetCategoriesQuery } from "../model/reducers/query/rtkCatalogs"  
 import { useState } from 'react';
 
-export default function Categories() {
+export default function Categories({getCatalogID}) {
 
-  const [page, setPage] = useState(0)
+  const changeSelectCatalog = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCatalogID(Number(e.target.value))
+    getCatalogID(e.target.value)
+  }
+
+  const [page, setPage] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   const [catalogId, setCatalogID] = useState(1)  
 
@@ -54,8 +59,9 @@ export default function Categories() {
             inputProps={{
               name: 'catalogs'
             }}
-            onChange={(e) => {setCatalogID(Number(e.target.value))}}
+            onChange={changeSelectCatalog}
           >
+            <option>Каталог не выбран</option>
             {(isSuccessCatalogs ? catalogs : []).map((catalog) => {
               return <option value={catalog.id} key={catalog.id}>{catalog.title}</option>;
             })}

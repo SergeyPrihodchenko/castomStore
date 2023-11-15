@@ -24,6 +24,8 @@ class CatalogRequest extends FormRequest
         return [
             'title' => 'nullable|string|max:50',
             'id' => 'nullable|integer',
+            'catalog_id' => 'nullable|integer',
+            'category_id' => 'nullable|integer',
         ];
     }
 }
