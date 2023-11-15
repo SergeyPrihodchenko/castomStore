@@ -1,6 +1,7 @@
 import { axiosBaseQuery } from "@/App/providers/StoreProvider/config/axiosConfigQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
 import { IProduct } from "../types/types";
+import { ProductSchema } from "@/Features/Admin/AddProduct/model/types/product";
 
 export const productApi = createApi({
     reducerPath: 'product/api',
@@ -20,11 +21,11 @@ export const productApi = createApi({
                 method: 'GET',
             })
         }),
-        createProduct: build.mutation<any, any>({
-            query: (product_data) => ({
+        createProduct: build.mutation<IProduct, Partial<IProduct>>({
+            query: (product: ProductSchema) => ({
                 url: '/products/create',
                 method: 'POST',
-                body: product_data
+                data: product
             })
         }),
         deleteProductById: build.mutation<IProduct, number>({

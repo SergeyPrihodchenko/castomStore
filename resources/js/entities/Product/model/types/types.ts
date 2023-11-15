@@ -23,4 +23,3 @@ export interface ProductVideo {
     url: string,
     product_id: number
 }
-
