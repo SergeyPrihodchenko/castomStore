@@ -21,7 +21,7 @@ export default function Categories() {
 
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
-  const [catalogId, setCatalogID] = useState(0)  
+  const [catalogId, setCatalogID] = useState(1)  
 
   const {data: catalogs, isSuccess: isSuccessCatalogs} = useGetCatalogsQuery('')
   const {data: categories, isSuccess: isSuccessCategories} = useGetCategoriesQuery(catalogId)
