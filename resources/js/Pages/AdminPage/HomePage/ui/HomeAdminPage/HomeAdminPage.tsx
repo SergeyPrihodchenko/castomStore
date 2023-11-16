@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SliderMobile from '@/image/SliderMobile.png';
 import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
-import { useGetMainPageTitleQuery } from '@/Shared/api/admin.api';
 
 const arrayCompany = [
   {
@@ -42,8 +41,6 @@ const theme = createTheme({
 });
 
 export default function MainAdminPage() {
-  const { isLoading, error, data } = useGetMainPageTitleQuery();
-  console.log(data);
   return (
     <ThemeProvider theme={theme}>
       <Container fixed>

@@ -12,13 +12,5 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        'setAttribute',
-        '/admin/dashboard/main',
-        'admin/dashboard/users',
-        '/admin/products/create',
-        '/admin/product/*',
-        '/admin/addCatalog',
-        '/admin/addCategory',
-        'admin/categoriesForCatalog/{id}'
     ];
 }

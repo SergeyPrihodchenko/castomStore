@@ -1,5 +1,4 @@
 import { MainPageSchema } from '@/Features/Admin/AddMainPageSettings';
-import { currentTitle } from '@/Features/Admin/AddMainPageSettings/model/types/mainPage';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const adminApi = createApi({

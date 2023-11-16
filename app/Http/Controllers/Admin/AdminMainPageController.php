@@ -20,15 +20,27 @@ class AdminMainPageController extends Controller
 
         $mainPage = MainPage::find($this::ROW_ID);
 
-        $data[] = ['title' => $mainPage->title->title];
-        $data[] = ['header' => $mainPage->header->header];
-        $data[] = ['title' => $mainPage->subheader->subheader];
-        $data[] = ['img_path' => $mainPage->imagePath->img_path];
+        $data['current_settings'] = [
+          'title' => $mainPage->title->title, 
+          'header' => $mainPage->header->header,
+          'subheader' => $mainPage->subheader->subheader,
+          'img_path' => $mainPage->imagePath->img_path
+        ];
+        // $data['current_settings'] = ['header' => $mainPage->header->header];
+        // $data[] = ['subheader' => $mainPage->subheader->subheader];
+        // $data[] = ['img_path' => $mainPage->imagePath->img_path];
+    $data['list_settings'] = [
+      'all_title' => Title::all()->toArray(),
+      'all_header' => Header::all()->toArray(),
+      'all_subheader' => Subheader::all()->toArray(),
+      'all_img_path' => Image::all()->toArray()
 
-        $data[] = ['all_title' => Title::all()->toArray()];
-        $data[] = ['all_header' => Header::all()->toArray()];
-        $data[] = ['all_subheader' => Subheader::all()->toArray()];
-        $data[] = ['all_img_path' => Image::all()->toArray()];
+    ];
+
+        // $data[] = ['all_title' => Title::all()->toArray()];
+        // $data[] = ['all_header' => Header::all()->toArray()];
+        // $data[] = ['all_subheader' => Subheader::all()->toArray()];
+        // $data[] = ['all_img_path' => Image::all()->toArray()];
 
         return response()->json($data);
     }
