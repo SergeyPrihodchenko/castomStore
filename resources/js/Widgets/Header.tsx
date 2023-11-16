@@ -223,6 +223,13 @@ export default function Header() {
                 <MenuItem>Каталоги</MenuItem>
               </Link>
               <Link
+                href={route('CategoryPage')}
+                underline="none"
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Категории</MenuItem>
+              </Link>
+              <Link
                 href="#"
                 underline="none"
                 onClick={handleCloseSettings}
