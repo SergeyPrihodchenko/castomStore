@@ -9,7 +9,7 @@ import ProductTable from '../AdminPage/Form/ui/ProductsTable';
 
 export default function Welcome() {
   return (
-    <Box sx={{ minWidth: '390px' }}>
+    <Box sx={{ minWidth: '320px' }}>
       <Header />
       {/* <Catalogs/>  подключал для тестирования */}
       {/* <AddProduct /> */}
