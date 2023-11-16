@@ -1,6 +1,7 @@
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
 import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
@@ -9,6 +10,9 @@ import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
+import SortIcon from '@mui/icons-material/Sort';
+import Box from '@mui/material/Box';
+
 import { useState } from 'react';
 import TablePaginationActions from './TablePaginationAction';
 import {
@@ -49,9 +53,53 @@ export default function Catalogs() {
   return (
     <TableContainer component={Paper}>
       <Table
-        sx={{ minWidth: 290 }}
+
+        style={{ minWidth: 290 }}
         aria-label="custom pagination table"
       >
+        <TableHead>
+          <TableRow>
+            <TableCell
+              style={{
+                fontFamily: 'Satoshi',
+                fontWeight: '700',
+                fontSize: '18px',
+                display: 'flex',
+              }}
+            >
+              <IconButton
+                edge="end"
+                aria-label="edit"
+                //onClick={}
+                sx={{ marginRight: '10px' }}
+              >
+                <SortIcon />
+              </IconButton>
+              <Box sx={{ marginTop: '7px' }}> Наименование</Box>
+            </TableCell>
+            <TableCell
+              align="left"
+              style={{
+                fontFamily: 'Satoshi',
+                fontWeight: '700',
+                fontSize: '18px',
+              }}
+            >
+              Изм
+            </TableCell>
+            <TableCell
+              align="left"
+              style={{
+                fontFamily: 'Satoshi',
+                fontWeight: '700',
+                fontSize: '18px',
+              }}
+            >
+              Уд
+            </TableCell>
+          </TableRow>
+        </TableHead>
+
         <TableBody>
           {(rowsPerPage > 0
             ? isSuccess
@@ -65,6 +113,13 @@ export default function Catalogs() {
               <TableCell
                 component="th"
                 scope="row"
+
+                style={{
+                  fontFamily: 'Satoshi',
+                  fontWeight: '500',
+                  fontSize: '18px',
+                }}
+
               >
                 {catalog.title}
               </TableCell>
@@ -106,7 +161,9 @@ export default function Catalogs() {
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+
+              rowsPerPageOptions={[5, 10, 25, { label: 'Все', value: -1 }]}
+
               colSpan={3}
               count={isSuccess ? catalogs.length : 0}
               rowsPerPage={rowsPerPage}

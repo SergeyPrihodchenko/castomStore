@@ -216,11 +216,18 @@ export default function Header() {
                 <MenuItem>Настройка страниц</MenuItem>
               </Link>
               <Link
-                href="#"
+                href={route('CatalogPage')}
                 underline="none"
                 onClick={handleCloseSettings}
               >
                 <MenuItem>Каталоги</MenuItem>
+              </Link>
+              <Link
+                href={route('CategoryPage')}
+                underline="none"
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Категории</MenuItem>
               </Link>
               <Link
                 href="#"
