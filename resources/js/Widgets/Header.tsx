@@ -216,7 +216,7 @@ export default function Header() {
                 <MenuItem>Настройка страниц</MenuItem>
               </Link>
               <Link
-                href="#"
+                href={route('CatalogPage')}
                 underline="none"
                 onClick={handleCloseSettings}
               >
