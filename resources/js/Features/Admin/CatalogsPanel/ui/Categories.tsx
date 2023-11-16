@@ -16,13 +16,8 @@ import NativeSelect from '@mui/material/NativeSelect';
 import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions';
 import { useDeleteCategoryMutation, useGetCatalogsQuery, useGetCategoriesQuery } from "../model/reducers/query/rtkCatalogs"  
 import { useState } from 'react';
-import { Dispatch } from '@reduxjs/toolkit';
-interface PropsCategories {
-  getCatalogID: Dispatch<any>
-}
 
-
-export default function Categories({getCatalogID}: PropsCategories) {
+export default function Categories({getCatalogID}: any) {
 
   const changeSelectCatalog = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCatalogID(Number(e.target.value))

@@ -11,7 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 import TablePaginationActions from './TablePaginationAction';
-import { useSetCatalogMutation, useSetCategoryMutation, useUpdateCatalogForCategoryMutation, useUpdateCatalogMutation, useUpdateCategoryMutation, useDeleteCatalogMutation, useDeleteCategoryMutation, useGetCatalogsQuery, useGetCategoriesQuery,  } from "../model/reducers/query/rtkCatalogs"  
+import { useDeleteCatalogMutation, useGetCatalogsQuery } from "../model/reducers/query/rtkCatalogs"  
 
   
   export default function Catalogs() {
@@ -36,7 +36,7 @@ import { useSetCatalogMutation, useSetCategoryMutation, useUpdateCatalogForCateg
       setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
     };
-  
+
     return (
       <TableContainer component={Paper}>
         <Table
