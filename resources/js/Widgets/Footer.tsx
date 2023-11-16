@@ -28,7 +28,7 @@ export default function Footer() {
 
       <Box
         sx={{
-          minWidth: '390px',
+          minWidth: '320px',
           backgroundColor: '#F0F0F0',
           paddingLeft: '20px',
         }}
@@ -57,8 +57,8 @@ export default function Footer() {
               alignContent: 'left',
             }}
           >
-            У нас есть сайт, который вы можете настроить по своему усмотрению и
-            начать или расширить свою деятельность.
+            У нас есть сайт, который вы можете настроить по своему усмотрению и начать или расширить
+            свою деятельность.
           </Typography>
 
           <IconButton
