@@ -13,7 +13,6 @@ class CatalogsSeed extends Seeder
      */
     public function run(): void
     {
-        DB::table('catalogs')->insert(['id' => 0, 'title' => 'Каталог не выбран']);
         DB::table('catalogs')->insert($this::getData());
     }
 
