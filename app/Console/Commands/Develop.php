@@ -5,13 +5,18 @@ namespace App\Console\Commands;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AdminMainPageController;
 use App\Http\Controllers\MailController;
+use App\Models\Admin\Catalog\Category;
 use App\Models\Admin\MainPage\Header;
 use App\Models\Admin\MainPage\Image;
 use App\Models\Admin\MainPage\MainPage;
 use App\Models\Admin\MainPage\Subheader;
 use App\Models\Admin\MainPage\Title;
-use App\Models\Category;
+use App\Models\Registr2FA;
+use App\Models\TimeZone;
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class Develop extends Command
@@ -48,10 +53,11 @@ class Develop extends Command
         // $main = new AdminMainPageController;
         // $main->getAttributes();
 
+        // $zone = new TimeZone();
 
-        $mail = new MailController();
+        // $timeZone = $zone->getTimeZoneFromIP();
 
-        $mail->sendMail();
+        (User::find(10))->delete();
         
     }
 }

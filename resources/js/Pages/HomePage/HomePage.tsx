@@ -12,7 +12,7 @@ export default function Welcome() {
     <Box sx={{ minWidth: '390px' }}>
       <Header />
       {/* <Catalogs/>  подключал для тестирования */}
-      <AddProduct />  
+      {/* <AddProduct />   */}
       {/* <ProductTable /> */}
       <Footer />
     </Box>

@@ -11,7 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 import TablePaginationActions from './TablePaginationAction';
-import { useDeleteCatalogMutation, useGetCatalogsQuery } from "../model/reducers/query/rtkCatalogs"  
+import { useDeleteCatalogMutation, useGetCatalogsQuery } from "../model/reducers/query/rtkCatalogs";
 
   
   export default function Catalogs() {

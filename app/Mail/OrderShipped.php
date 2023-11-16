@@ -13,12 +13,14 @@ class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $token;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -27,7 +29,7 @@ class OrderShipped extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Order Shipped',
+            subject: 'Код будет не действителен через 10 минут',
         );
     }
 
@@ -37,7 +39,10 @@ class OrderShipped extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.test',
+            view: 'mails.email2FA',
+            with: [
+                'token' => $this->token
+            ]
         );
     }
 

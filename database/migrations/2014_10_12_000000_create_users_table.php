@@ -21,6 +21,8 @@ return new class extends Migration
             $table->boolean('isSuperAdmin')->default(0);
             $table->rememberToken();
             $table->timestamps();
+            $table->dateTime('email_stamp_at');
+            $table->bigInteger('fa2_token');
         });
     }
 
