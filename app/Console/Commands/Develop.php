@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AdminMainPageController;
+use App\Http\Controllers\MailController;
 use App\Models\Admin\MainPage\Header;
 use App\Models\Admin\MainPage\Image;
 use App\Models\Admin\MainPage\MainPage;
@@ -48,7 +49,9 @@ class Develop extends Command
         // $main->getAttributes();
 
 
+        $mail = new MailController();
 
+        $mail->sendMail();
         
     }
 }

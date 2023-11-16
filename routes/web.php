@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('HomePage/HomePage', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('AdminPage/HomePage/HomeAdminPage');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -35,13 +35,31 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-require __DIR__.'/Admin/MainPage/mainPage.php';
+require __DIR__ . '/Admin/MainPage/mainPage.php';
 
-require __DIR__.'/Admin/UsersPage/usersPage.php';
+require __DIR__ . '/Admin/UsersPage/usersPage.php';
+require __DIR__ . '/Admin/ProductsPage/productsPage.php';
 
-require __DIR__.'/Admin/CatalogPage/catalogPage.php';
+require __DIR__ . '/Admin/CatalogPage/catalogPage.php';
 
-require __DIR__.'/Admin/ProductsPage/productsPage.php';
+require __DIR__ . '/Admin/ProductsPage/productsPage.php';
+require __DIR__ . '/Admin/CatalogPage/catalogPage.php';
 
+//test
+Route::get('/editShopDetails', function () {
+    return Inertia::render('AdminPage/Form/EditShopDetailsPage');
+})->middleware(['auth', 'verified'])->name('editShopDetails');
+
+Route::get('/EditHomeShop', function () {
+    return Inertia::render('AdminPage/Form/EditHomeShopPage');
+})->middleware(['auth', 'verified'])->name('EditHomeShop');
+
+Route::get('/EditShopProduct', function () {
+    return Inertia::render('AdminPage/Form/EditShopProductPage');
+})->middleware(['auth', 'verified'])->name('EditShopProduct');
+
+Route::get('/AddShopProduct', function () {
+    return Inertia::render('AdminPage/Form/AddShopProductPage');
+})->middleware(['auth', 'verified'])->name('AddShopProduct');

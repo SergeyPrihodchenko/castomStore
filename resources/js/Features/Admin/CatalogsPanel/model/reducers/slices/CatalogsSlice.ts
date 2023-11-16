@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SchemaCatalogs } from "../types/types";
-import { fetchCatalogs } from "../functions/catalogs";
-import { getCategoriesForCatalogs } from "./asyncFunctions";
+import { SchemaCatalogs } from "../../types/types";
+import { fetchCatalogs } from "../../functions/catalogs";
+import { getCategoriesForCatalogs } from "../../functions/asyncFunctions";
 
 const initialState: SchemaCatalogs = {
     catalogs: await fetchCatalogs(),

@@ -3,7 +3,7 @@ export type Catalog = {
     title: string
 }
 
-export type Categories = {
+export type Category = {
     id: number,
     title: string,
     catalog_id: number
@@ -11,6 +11,12 @@ export type Categories = {
 
 export interface SchemaCatalogs {
     catalogs: Catalog[]
-
-    categoriesCatalog: Categories[]
+    categoriesCatalog: Category[]
 }
+
+export interface TablePaginationActionsProps {
+    count: number;
+    page: number;
+    rowsPerPage: number;
+    onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
+  }

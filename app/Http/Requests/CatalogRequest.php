@@ -22,10 +22,10 @@ class CatalogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'catalog_title' => 'nullable|string|max:50',
+            'title' => 'nullable|string|max:50',
+            'id' => 'nullable|integer',
             'catalog_id' => 'nullable|integer',
             'category_id' => 'nullable|integer',
-            'category_title' => 'nullable|string|max:50'
         ];
     }
 }
