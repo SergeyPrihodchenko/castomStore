@@ -59,7 +59,7 @@ export default function Categories({ getCatalogID }: PropsCategories) {
   };
   return (
     <TableContainer component={Paper}>
-      <Box sx={{ margin: '5px' }}>
+      <Box sx={{ margin: '20px' }}>
         <FormControl fullWidth>
           <InputLabel
             variant="standard"
