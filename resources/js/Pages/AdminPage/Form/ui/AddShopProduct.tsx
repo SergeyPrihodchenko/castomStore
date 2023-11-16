@@ -117,7 +117,10 @@ export default function EditShopDetails() {
               <Typography variant="h5">Добавить товар</Typography>
               <Box>
                 <FormControl fullWidth>
-                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                  <InputLabel
+                    variant="standard"
+                    htmlFor="uncontrolled-native"
+                  >
                     Каталог
                   </InputLabel>
                   <NativeSelect
@@ -128,14 +131,24 @@ export default function EditShopDetails() {
                     }}
                   >
                     {ArrayСatalog.map((el) => {
-                      return <option value={10}>{el.title}</option>;
+                      return (
+                        <option
+                          value={10}
+                          key={el.id}
+                        >
+                          {el.title}
+                        </option>
+                      );
                     })}
                   </NativeSelect>
                 </FormControl>
               </Box>
               <Box>
                 <FormControl fullWidth>
-                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                  <InputLabel
+                    variant="standard"
+                    htmlFor="uncontrolled-native"
+                  >
                     Категория
                   </InputLabel>
                   <NativeSelect
@@ -146,7 +159,14 @@ export default function EditShopDetails() {
                     }}
                   >
                     {ArrayCategory.map((el) => {
-                      return <option value={10}>{el.title}</option>;
+                      return (
+                        <option
+                          value={10}
+                          key={el.id}
+                        >
+                          {el.title}
+                        </option>
+                      );
                     })}
                   </NativeSelect>
                 </FormControl>
@@ -162,7 +182,11 @@ export default function EditShopDetails() {
                 label="Подробное описание"
                 variant="standard"
               />
-              <TextField id="standard-basic" label="Цена" variant="standard" />
+              <TextField
+                id="standard-basic"
+                label="Цена"
+                variant="standard"
+              />
               <TextField
                 id="standard-basic"
                 label="Количество"
@@ -188,7 +212,12 @@ export default function EditShopDetails() {
             >
               Сохранить
             </Button>
-            <Button variant="contained" size="small" href="#" color="secondary">
+            <Button
+              variant="contained"
+              size="small"
+              href="#"
+              color="secondary"
+            >
               Удалить
             </Button>
           </Container>

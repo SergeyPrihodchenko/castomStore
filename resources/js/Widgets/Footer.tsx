@@ -70,55 +70,55 @@ export default function Footer() {
             >
               ПОДПИШИТЕСЬ НА НОВИНКИ
             </Typography>
-            <form>
-              <Paper
-                component="form"
-                sx={{
-                  p: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  width: 311,
-                  height: 42,
-                  borderRadius: '62px',
-                }}
+
+            <Paper
+              component="form"
+              sx={{
+                p: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                width: 311,
+                height: 42,
+                borderRadius: '62px',
+              }}
+            >
+              <IconButton
+                sx={{ p: '10px' }}
+                aria-label="menu"
               >
-                <IconButton
-                  sx={{ p: '10px' }}
-                  aria-label="menu"
-                >
-                  <MailOutlineIcon sx={{ width: '20px', height: '20px' }} />
-                </IconButton>
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="Введите свой Email"
-                  inputProps={{ 'aria-label': 'Введите свой Email' }}
-                />
-              </Paper>
-              <Button
-                variant="contained"
-                size="small"
-                sx={{
-                  width: '311px',
-                  height: '42px',
-                  alignContent: 'center',
-                  borderRadius: '62px',
-                  fontWeight: 700,
-                  fontSize: '14px',
-                  margin: '12px 10px 0 0',
-                  fontFamily: 'Satoshi',
-                  paddingTop: '10px',
-                }}
-                color="secondary"
-              >
-                Подписаться
-              </Button>
-            </form>
+                <MailOutlineIcon sx={{ width: '20px', height: '20px' }} />
+              </IconButton>
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Введите свой Email"
+                inputProps={{ 'aria-label': 'Введите свой Email' }}
+              />
+            </Paper>
+            <Button
+              variant="contained"
+              size="small"
+              sx={{
+                width: '311px',
+                height: '42px',
+                alignContent: 'center',
+                borderRadius: '62px',
+                fontWeight: 700,
+                fontSize: '14px',
+                margin: '12px 10px 0 0',
+                fontFamily: 'Satoshi',
+                paddingTop: '10px',
+              }}
+              color="secondary"
+            >
+              Подписаться
+            </Button>
           </Box>
         </Box>
         <Box
           sx={{
             height: '140px',
             backgroundColor: '#FFFF',
+            minWidth: '320px',
           }}
         ></Box>
         <Box

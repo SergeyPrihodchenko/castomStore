@@ -75,18 +75,22 @@ const arrayTopSelling = [
 ];
 const arrayCategories = [
   {
+    id: 1,
     img: `${CasualMobile}`,
     title: 'Casual',
   },
   {
+    id: 2,
     img: `${FormalMobile}`,
     title: 'Formal',
   },
   {
+    id: 3,
     img: `${PartyMobile}`,
     title: 'Party',
   },
   {
+    id: 4,
     img: `${GymMobile}`,
     title: 'Gym',
   },
@@ -294,6 +298,7 @@ export default function MainPage() {
                 return (
                   <Box>
                     <Card
+                      key={item.id}
                       sx={{
                         maxWidth: '187px',
                         borderRadius: '16px',
@@ -407,6 +412,7 @@ export default function MainPage() {
                 return (
                   <Box>
                     <Card
+                      key={item.id}
                       sx={{
                         maxWidth: '187px',
                         borderRadius: '16px',
@@ -514,7 +520,10 @@ export default function MainPage() {
             <>
               {arrayCategories.map((item) => {
                 return (
-                  <ImageListItem sx={{ minWidth: '260px', margin: '0 15px 15px 15px' }}>
+                  <ImageListItem
+                    sx={{ minWidth: '260px', margin: '0 15px 15px 15px' }}
+                    key={item.id}
+                  >
                     <Box
                       sx={{
                         height: '160px',

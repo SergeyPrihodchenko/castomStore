@@ -67,7 +67,11 @@ export default function EditShopDetails() {
                 label="Наименование магазина"
                 variant="standard"
               />
-              <TextField id="standard-basic" label="Email" variant="standard" />
+              <TextField
+                id="standard-basic"
+                label="Email"
+                variant="standard"
+              />
               <TextField
                 id="standard-basic"
                 label="Веб сайт"
@@ -89,10 +93,17 @@ export default function EditShopDetails() {
                 label="Телефон"
                 variant="standard"
               />
-              <TextField id="standard-basic" label="Адрес" variant="standard" />
+              <TextField
+                id="standard-basic"
+                label="Адрес"
+                variant="standard"
+              />
               <Box>
                 <FormControl fullWidth>
-                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                  <InputLabel
+                    variant="standard"
+                    htmlFor="uncontrolled-native"
+                  >
                     СоцСети
                   </InputLabel>
                   <NativeSelect
@@ -126,7 +137,12 @@ export default function EditShopDetails() {
             >
               Сохранить
             </Button>
-            <Button variant="contained" size="small" href="#" color="secondary">
+            <Button
+              variant="contained"
+              size="small"
+              href="#"
+              color="secondary"
+            >
               Удалить
             </Button>
           </Container>
