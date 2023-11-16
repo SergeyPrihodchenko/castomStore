@@ -109,14 +109,16 @@ export default function MainAdminPage() {
               {arrayCompany != null ? (
                 arrayCompany.map((el) => {
                   return (
-                    <Box key={el.id}>
+                    <div key={el.id}>
+<!--                     <Box key={el.id}> -->
                       <Typography variant="h5">{el.title}</Typography>
                       <Typography variant="h6">{el.website}</Typography>
                       <Typography variant="h6">{el.email}</Typography>
                       <Typography variant="h6">{el.phone}</Typography>
                       <Typography variant="h6">{el.adress}</Typography>
                       <Typography variant="h6">{el.socialNetworks}</Typography>
-                    </Box>
+                    </div>
+<!--                     </Box> -->
                   );
                 })
               ) : (

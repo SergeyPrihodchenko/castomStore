@@ -53,6 +53,7 @@ export default function Catalogs() {
   return (
     <TableContainer component={Paper}>
       <Table
+
         style={{ minWidth: 290 }}
         aria-label="custom pagination table"
       >
@@ -98,6 +99,7 @@ export default function Catalogs() {
             </TableCell>
           </TableRow>
         </TableHead>
+
         <TableBody>
           {(rowsPerPage > 0
             ? isSuccess
@@ -111,11 +113,13 @@ export default function Catalogs() {
               <TableCell
                 component="th"
                 scope="row"
+
                 style={{
                   fontFamily: 'Satoshi',
                   fontWeight: '500',
                   fontSize: '18px',
                 }}
+
               >
                 {catalog.title}
               </TableCell>
@@ -157,7 +161,9 @@ export default function Catalogs() {
         <TableFooter>
           <TableRow>
             <TablePagination
+
               rowsPerPageOptions={[5, 10, 25, { label: 'Все', value: -1 }]}
+
               colSpan={3}
               count={isSuccess ? catalogs.length : 0}
               rowsPerPage={rowsPerPage}

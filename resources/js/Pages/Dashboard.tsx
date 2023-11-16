@@ -5,12 +5,11 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { AddSettingsForm } from '@/Features/Admin/AddMainPageSettings';
 
-
 export default function Dashboard({ auth }: PageProps) {
-  useEffect(() => {
-    const res = axios.post(` /admin/dashboard/main`);
-    console.log(res);
-  }, []);
+  // useEffect(() => {
+  //   const res = axios.post(` /admin/dashboard/main`);
+  //   console.log(res);
+  // }, []);
   return (
     <AuthenticatedLayout
       user={auth.user}
