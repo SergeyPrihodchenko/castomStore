@@ -134,6 +134,7 @@ export default function MainPage() {
           minWidth: '320px',
           leadingTrim: 'both',
           textEdge: 'cap',
+          marginBottom: '50px',
         }}
       >
         {/* текст о сайте */}
@@ -265,6 +266,7 @@ export default function MainPage() {
         </Box>
 
         {/* новинки */}
+
         <Container fixed>
           <Box>
             <Typography
@@ -373,6 +375,7 @@ export default function MainPage() {
         </Container>
 
         {/* популярные товары */}
+
         <Container fixed>
           <Box
             sx={{
@@ -483,7 +486,9 @@ export default function MainPage() {
             </Button>
           </Box>
         </Container>
+
         {/* категории */}
+
         <Container fixed>
           <Box
             sx={{
@@ -532,13 +537,12 @@ export default function MainPage() {
           </Box>
         </Container>
 
-        {/* отзывы и*/}
+        {/* отзывы */}
 
         <Container fixed>
           <Box
             sx={{
-              marginBottom: '50px',
-
+              //marginBottom: '185px',
               borderRadius: '16px',
               paddingBottom: '15px',
             }}
@@ -649,7 +653,6 @@ export default function MainPage() {
             </Box>
           </Box>
         </Container>
-        {/*обратная связь отнести к родвалу сайта*/}
       </Box>
     </ThemeProvider>
   );
