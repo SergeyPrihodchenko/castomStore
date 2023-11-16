@@ -62,7 +62,7 @@ export interface ListSettings {
   all_title: ITitle[];
   all_header: IHeader[];
   all_img_path: AllImgPath[];
-  all_subheader: AllSubheader[];
+  all_subheader: ISubheader[];
 }
 
 export interface ITitle {
@@ -72,7 +72,7 @@ export interface ITitle {
 
 export interface IHeader {
   id: number;
-  header: string;
+  title: string;
 }
 
 export interface AllImgPath {
@@ -80,7 +80,7 @@ export interface AllImgPath {
   img_path: string;
 }
 
-export interface AllSubheader {
+export interface ISubheader {
   id: number;
-  subheader: string;
+  title: string;
 }

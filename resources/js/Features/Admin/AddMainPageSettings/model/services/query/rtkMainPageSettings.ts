@@ -1,36 +1,70 @@
 import { axiosBaseQuery } from '@/App/providers/StoreProvider/config/axiosConfigQuery';
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { CurrentSettings, IHeader, MainPageSchema } from '../../types/mainPage';
+import { CurrentSettings, IHeader, ISubheader, ITitle, MainPageSchema } from '../../types/mainPage';
 
 export const queryMainPageSettings = createApi({
   reducerPath: 'query/MainPageSettings',
   baseQuery: axiosBaseQuery({ baseUrl: '/' }),
-  tagTypes: ['Settings'], // 1
+  tagTypes: ['settings', 'titles'], // 1
   endpoints: (build) => ({
     getMainPageSettingsLists: build.query<MainPageSchema, void>({
       query: () => ({
         url: 'admin/dashboard/main',
         method: 'GET',
       }),
-      providesTags: (result) => ['Settings'], // 2
+      providesTags: (result) => ['settings', 'titles'], // 2
     }),
     addMainPageSettings: build.mutation<
-      { title: string; header: 'string' },
-      Partial<{ title: string; header: 'string' }>
+      { title: string; header: string; subheader: string; image_path: string },
+      Partial<{ title: string; header: string; subheader: string; image_path: string }>
     >({
       query: (data) => ({
         url: 'setAttribute',
         method: 'POST',
         data: data,
       }),
-      invalidatesTags: ['Settings'], // 3
+      invalidatesTags: ['settings'], // 3
     }),
-    updateHeader: build.mutation<IHeader, Partial<IHeader>>({
-      query: (body) => ({
-        url: `updateHeader/${body.id} `,
+    updateHeader: build.mutation<IHeader, number>({
+      query: (id: number) => ({
+        url: `updateHeader/${id} `,
         method: 'POST',
-        data: body,
+        data: id,
       }),
+    }),
+    updateTitle: build.mutation<ITitle, number>({
+      query: (id: number) => ({
+        url: `updateTitle/${id} `,
+        method: 'POST',
+        data: id,
+      }),
+    }),
+    updateSubheader: build.mutation<ISubheader, number>({
+      query: (id: number) => ({
+        url: `updateSubheader/${id} `,
+        method: 'POST',
+      }),
+    }),
+    deleteTitleById: build.mutation<ITitle, number>({
+      query: (id: number) => ({
+        url: `deleteTitle/${id} `,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['settings'],
+    }),
+    deleteHeaderById: build.mutation<IHeader, number>({
+      query: (id: number) => ({
+        url: `deleteHeader/${id} `,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['settings'],
+    }),
+    deleteSubheaderById: build.mutation<ISubheader, number>({
+      query: (id: number) => ({
+        url: `deleteSubheader/${id} `,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['settings'],
     }),
   }),
 });
@@ -39,4 +73,9 @@ export const {
   useAddMainPageSettingsMutation,
   useGetMainPageSettingsListsQuery,
   useUpdateHeaderMutation,
+  useUpdateTitleMutation,
+  useUpdateSubheaderMutation,
+  useDeleteTitleByIdMutation,
+  useDeleteHeaderByIdMutation,
+  useDeleteSubheaderByIdMutation,
 } = queryMainPageSettings;

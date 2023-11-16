@@ -17,7 +17,7 @@ class Subheader extends Model
 
     public function set(string $value): void
     {
-        $this->subheader = $value;
+        $this->title = $value;
         $this->save();
     }
 

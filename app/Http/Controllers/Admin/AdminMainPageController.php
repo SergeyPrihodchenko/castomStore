@@ -22,19 +22,18 @@ class AdminMainPageController extends Controller
 
         $data['current_settings'] = [
           'title' => $mainPage->title->title, 
-          'header' => $mainPage->header->header,
-          'subheader' => $mainPage->subheader->subheader,
+          'header' => $mainPage->header->title,
+          'subheader' => $mainPage->subheader->title,
           'img_path' => $mainPage->imagePath->img_path
         ];
         // $data['current_settings'] = ['header' => $mainPage->header->header];
         // $data[] = ['subheader' => $mainPage->subheader->subheader];
         // $data[] = ['img_path' => $mainPage->imagePath->img_path];
-    $data['list_settings'] = [
-      'all_title' => Title::all()->toArray(),
-      'all_header' => Header::all()->toArray(),
-      'all_subheader' => Subheader::all()->toArray(),
-      'all_img_path' => Image::all()->toArray()
-
+        $data['list_settings'] = [
+          'all_title' => Title::all()->toArray(),
+          'all_header' => Header::all()->toArray(),
+          'all_subheader' => Subheader::all()->toArray(),
+          'all_img_path' => Image::all()->toArray()
     ];
 
         // $data[] = ['all_title' => Title::all()->toArray()];
@@ -52,6 +51,8 @@ class AdminMainPageController extends Controller
         $mainPage = new MainPage();
 
         $mainPage->addAttributes($data);
+        
+        
     }
 
     public function updateTitle($id)
@@ -68,6 +69,10 @@ class AdminMainPageController extends Controller
         $title = new Title();
 
         $title->deleteTitle((int)$id);
+
+        return response()->json([
+          "message" => "Title with id $id successfuly deleted"
+      ]);
     }
 
     public function updateHeader($id)
@@ -84,6 +89,7 @@ class AdminMainPageController extends Controller
         $header = new Header();
 
         $header->deleteHeader((int)$id);
+        
     }
 
     public function updateSubheader($id)
