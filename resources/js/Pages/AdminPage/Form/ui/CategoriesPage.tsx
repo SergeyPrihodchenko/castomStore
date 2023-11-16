@@ -167,7 +167,14 @@ export default function CategoriesPage() {
             }}
           >
             {ArrayСatalog.map((el) => {
-              return <option value={10}>{el.title}</option>;
+              return (
+                <option
+                  value={10}
+                  key={el.id}
+                >
+                  {el.title}
+                </option>
+              );
             })}
           </NativeSelect>
         </FormControl>
