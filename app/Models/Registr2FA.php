@@ -11,7 +11,7 @@ class Registr2FA extends Model
 
     static function generateToken(): int
     {
-        $token = rand(100000, 999999);
+        $token = \rand(100000, 999999);
         return $token;
     }
 }

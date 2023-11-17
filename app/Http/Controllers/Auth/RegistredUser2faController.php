@@ -25,7 +25,7 @@ class RegistredUser2faController extends Controller
 
         if($user->fa2_token == $token) {
 
-            event(new Registered($user));
+            \event(new Registered($user));
 
             Auth::login($user);
 

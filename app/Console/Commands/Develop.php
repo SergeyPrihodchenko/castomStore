@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AdminMainPageController;
 use App\Http\Controllers\MailController;
+use App\Mail\OrderShipped;
 use App\Models\Admin\Catalog\Category;
 use App\Models\Admin\MainPage\Header;
 use App\Models\Admin\MainPage\Image;
@@ -18,6 +19,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class Develop extends Command
 {
@@ -57,7 +59,7 @@ class Develop extends Command
 
         // $timeZone = $zone->getTimeZoneFromIP();
 
-        (User::find(3))->delete();
-        
+        Mail::to('S.prihodchenko@yandex.ru')->send(new OrderShipped(123123));
+
     }
 }
