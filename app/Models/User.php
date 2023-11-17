@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        '2fa_token',
+        'fa2_token',
         'email_stamp_at'
     ];
 

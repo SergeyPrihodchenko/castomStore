@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendMail2faJob;
 use App\Mail\OrderShipped;
 use App\Models\Registr2FA;
 use App\Models\User;
@@ -48,16 +49,12 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            '2fa_token' => $email_token,
+            'fa2_token' => $email_token,
             'email_stamp_at' => Carbon::now()->addMinute(10)->toDateTimeString()
         ]);
 
-        Mail::to($user)->send(new OrderShipped($email_token));
+        SendMail2faJob::dispatch($user, $email_token);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME); 
+        return \redirect();
     }
 }

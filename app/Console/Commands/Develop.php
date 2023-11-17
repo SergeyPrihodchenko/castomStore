@@ -57,7 +57,7 @@ class Develop extends Command
 
         // $timeZone = $zone->getTimeZoneFromIP();
 
-        (User::find(10))->delete();
+        (User::find(3))->delete();
         
     }
 }
