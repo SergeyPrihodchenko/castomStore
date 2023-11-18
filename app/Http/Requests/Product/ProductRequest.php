@@ -32,6 +32,7 @@ class ProductRequest extends FormRequest
             // 'images.*' => 'nullable|file'
             'video_link' => 'nullable|string|max:350',
             'options' => 'nullable|array',
+            'images' => 'nullable'
         ];
     }
 }

@@ -11,8 +11,10 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useGetCatalogsQuery, useGetCategoriesQuery } from '../../CatalogsPanel/model/reducers/query/rtkCatalogs';
 import { useCreateProductMutation } from '@/entities/Product/model/slice/productApi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ProductSchema } from '../model/types/product';
+import { Block } from '@mui/icons-material';
+import { error } from 'console';
 
 const theme = createTheme({
     palette: {
@@ -42,9 +44,11 @@ const VisuallyHiddenInput = styled('input')({
 
 function AddProduct() {
 
-    const [perPage, setPerPage] = useState(10)
     const [catalogId, setCatalogId] = useState(0);
-
+    const [categoryId, setCategoryId] = useState(0);
+    const [files, setFiles] = useState([]);
+    const [previewImg, setPreviewImg] = useState([]);
+    
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
@@ -55,14 +59,21 @@ function AddProduct() {
 
     const [createProduct, {}] = useCreateProductMutation();
 
+    useEffect(() => {
+        setPreviewImg([...files].map(file => URL.createObjectURL(file)))
+    }, [files])
+    
     const hadnleSave = async () => {
-        await createProduct({
-            title,
-            description,
-            category_id: 1,
-            price,
-            quantity
-        } as ProductSchema)
+        const productData = new FormData();
+        productData.append('title', title);
+        productData.append('description', description);
+        productData.append('price', price);
+        productData.append('quantity', quantity);
+        productData.append('category_id', categoryId);
+        for(let file of files){
+            productData.append('images[]', file);
+        }
+        await createProduct(productData)
     }
     
     return(
@@ -121,7 +132,9 @@ function AddProduct() {
                                           name: 'category',
                                           id: 'uncontrolled-native',
                                         }}
+                                        onChange={(e) => setCategoryId(Number(e.target.value))}
                                     >
+                                        <option>Категория не выбрана</option>
                                         {categories && categories.map((el) => {
                                             return <option key={el.id} value={el.id}>{el.title}</option>
                                         })}
@@ -160,7 +173,8 @@ function AddProduct() {
                                 startIcon={<CloudUploadIcon />}
                             >
                                  Загрузить фото
-                                <VisuallyHiddenInput type="file" />
+                                <VisuallyHiddenInput type="file" multiple onChange={(e) => setFiles(e.target.files)} />
+                                {previewImg && previewImg.map((url, index) => <img src={url} key={index} width={100} height={100}/>)}
                             </Button>
                         </Box>
                         <Button
