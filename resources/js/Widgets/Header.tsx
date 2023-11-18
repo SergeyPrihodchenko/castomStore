@@ -40,8 +40,7 @@ export default function Header() {
   };
 
   //открыть и закрыть меню иконки профиля
-  const [anchorElProfile, setAnchorElProfile] =
-    React.useState<null | HTMLElement>(null);
+  const [anchorElProfile, setAnchorElProfile] = React.useState<null | HTMLElement>(null);
   const openProfile = Boolean(anchorElProfile);
   const handleClickProfile = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElProfile(event.currentTarget);
@@ -51,8 +50,7 @@ export default function Header() {
   };
 
   //открыть и закрыть меню иконки настройик
-  const [anchorElSettings, setAnchorElSettings] =
-    React.useState<null | HTMLElement>(null);
+  const [anchorElSettings, setAnchorElSettings] = React.useState<null | HTMLElement>(null);
   const openSettings = Boolean(anchorElSettings);
   const handleClickSettings = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElSettings(event.currentTarget);
@@ -63,152 +61,191 @@ export default function Header() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" color="primary">
-        <Container fixed>
-          <Toolbar>
+      <AppBar
+        position="static"
+        color="primary"
+      >
+        <Toolbar sx={{ marginRight: '10px' }}>
+          <IconButton
+            edge="start"
+            aria-label="menu"
+            onClick={handleClick}
+            color="inherit"
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <Menu
+            id="demo-customized-menu"
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            sx={{ marginLeft: '10px' }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          >
+            <Link
+              href="#"
+              underline="none"
+              onClick={handleClose}
+            >
+              <MenuItem>Категории</MenuItem>
+            </Link>
+            <Link
+              href="#"
+              underline="none"
+              onClick={handleClose}
+            >
+              <MenuItem>Акции</MenuItem>
+            </Link>
+            <Link
+              href="#"
+              underline="none"
+              onClick={handleClose}
+            >
+              <MenuItem>Новинки</MenuItem>
+            </Link>
+          </Menu>
+
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          >
+            <Button
+              href="/"
+              sx={{ fontWeight: 700 }}
+            >
+              Shop.com
+            </Button>
+          </Typography>
+          <Box>
+            <IconButton color="inherit">
+              <SearchIcon />
+            </IconButton>
+            <IconButton color="inherit">
+              <ShoppingBasketIcon />
+            </IconButton>
             <IconButton
-              edge="start"
-              aria-label="menu"
-              onClick={handleClick}
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClickProfile}
               color="inherit"
             >
-              <MenuIcon />
+              <AccountCircleIcon />
             </IconButton>
-
             <Menu
-              id="demo-customized-menu"
+              id="basic-menu"
+              anchorEl={anchorElProfile}
+              open={openProfile}
+              onClose={handleCloseProfile}
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'left',
+                horizontal: 'right',
               }}
-              sx={{ marginLeft: '10px' }}
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
+              sx={{ marginLeft: '30px' }}
             >
-              <Link href="#" underline="none" onClick={handleClose}>
-                <MenuItem>Категории</MenuItem>
+              <Link
+                href={route('profile.edit')}
+                underline="none"
+                onClick={handleCloseProfile}
+              >
+                <MenuItem>Профиль</MenuItem>
               </Link>
-              <Link href="#" underline="none" onClick={handleClose}>
-                <MenuItem>Акции</MenuItem>
+              <Link
+                href="#"
+                underline="none"
+                onClick={handleCloseProfile}
+              >
+                <MenuItem>Личный кабинет</MenuItem>
               </Link>
-              <Link href="#" underline="none" onClick={handleClose}>
-                <MenuItem>Новинки</MenuItem>
+              <Link
+                href={route('logout')}
+                underline="none"
+                onClick={handleCloseProfile}
+              >
+                <MenuItem>Выйти</MenuItem>
               </Link>
             </Menu>
 
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Button href="/" sx={{ fontWeight: 700 }}>
-                Shop.com
-              </Button>
-            </Typography>
-            <Box>
-              <IconButton color="inherit">
-                <SearchIcon />
-              </IconButton>
-              <IconButton color="inherit">
-                <ShoppingBasketIcon />
-              </IconButton>
-              <IconButton
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClickProfile}
-                color="inherit"
+            <IconButton
+              id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClickSettings}
+              color="inherit"
+              sx={{ mr: -3 }}
+            >
+              <SettingsIcon />
+            </IconButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorElSettings}
+              open={openSettings}
+              onClose={handleCloseSettings}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              sx={{ marginLeft: '30px' }}
+            >
+              <Link
+                href={route('dashboard')}
+                underline="none"
+                onClick={handleCloseSettings}
               >
-                <AccountCircleIcon />
-              </IconButton>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorElProfile}
-                open={openProfile}
-                onClose={handleCloseProfile}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                sx={{ marginLeft: '30px' }}
+                <MenuItem>Настройки</MenuItem>
+              </Link>
+              <Link
+                href={route('editShopDetails')}
+                underline="none"
+                onClick={handleCloseSettings}
               >
-                <Link
-                  href={route('profile.edit')}
-                  underline="none"
-                  onClick={handleCloseProfile}
-                >
-                  <MenuItem>Профиль</MenuItem>
-                </Link>
-                <Link href="#" underline="none" onClick={handleCloseProfile}>
-                  <MenuItem>Личный кабинет</MenuItem>
-                </Link>
-                <Link
-                  href={route('logout')}
-                  underline="none"
-                  onClick={handleCloseProfile}
-                >
-                  <MenuItem>Выйти</MenuItem>
-                </Link>
-              </Menu>
-
-              <IconButton
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClickSettings}
-                color="inherit"
-                sx={{ mr: -3 }}
+                <MenuItem>О магазине</MenuItem>
+              </Link>
+              <Link
+                href={route('EditHomeShop')}
+                underline="none"
+                onClick={handleCloseSettings}
               >
-                <SettingsIcon />
-              </IconButton>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorElSettings}
-                open={openSettings}
-                onClose={handleCloseSettings}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                sx={{ marginLeft: '30px' }}
+                <MenuItem>Настройка страниц</MenuItem>
+              </Link>
+              <Link
+                href={route('CatalogPage')}
+                underline="none"
+                onClick={handleCloseSettings}
               >
-                <Link
-                  href={route('dashboard')}
-                  underline="none"
-                  onClick={handleCloseSettings}
-                >
-                  <MenuItem>Настройки</MenuItem>
-                </Link>
-                <Link
-                  href={route('editShopDetails')}
-                  underline="none"
-                  onClick={handleCloseSettings}
-                >
-                  <MenuItem>О магазине</MenuItem>
-                </Link>
-                <Link
-                  href={route('EditHomeShop')}
-                  underline="none"
-                  onClick={handleCloseSettings}
-                >
-                  <MenuItem>Настройка страниц</MenuItem>
-                </Link>
-                <Link href="#" underline="none" onClick={handleCloseSettings}>
-                  <MenuItem>Каталоги</MenuItem>
-                </Link>
-                <Link href="#" underline="none" onClick={handleCloseSettings}>
-                  <MenuItem>Товары</MenuItem>
-                </Link>
-                <Link
-                  href={route('logout')}
-                  underline="none"
-                  onClick={handleCloseSettings}
-                >
-                  <MenuItem>Выйти</MenuItem>
-                </Link>
-              </Menu>
-            </Box>
-          </Toolbar>
-        </Container>
+                <MenuItem>Каталоги</MenuItem>
+              </Link>
+              <Link
+                href={route('CategoryPage')}
+                underline="none"
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Категории</MenuItem>
+              </Link>
+              <Link
+                href="#"
+                underline="none"
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Товары</MenuItem>
+              </Link>
+              <Link
+                href={route('logout')}
+                underline="none"
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Выйти</MenuItem>
+              </Link>
+            </Menu>
+          </Box>
+        </Toolbar>
       </AppBar>
     </ThemeProvider>
   );
