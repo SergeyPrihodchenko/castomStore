@@ -26,6 +26,10 @@ class Product extends Model
         'category_id'
     ];
 
+    protected $casts = [
+       'images' => 'array'
+    ];
+
     public function setOptions(Request $request): void
     {   
         $options = $request['options'];
@@ -58,7 +62,7 @@ class Product extends Model
     public function setImages(Request $request): void
     {  
         if($request['images']){
-            $files = $request->file();
+            $files = $request['images'];
 
             foreach($files as $file){
                 $name = $file->getClientOriginalName();
