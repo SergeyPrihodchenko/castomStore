@@ -5,14 +5,14 @@ import { CurrentSettings, IHeader, ISubheader, ITitle, MainPageSchema } from '..
 export const queryMainPageSettings = createApi({
   reducerPath: 'query/MainPageSettings',
   baseQuery: axiosBaseQuery({ baseUrl: '/' }),
-  tagTypes: ['settings', 'titles'], // 1
+  tagTypes: ['settings'], // 1
   endpoints: (build) => ({
     getMainPageSettingsLists: build.query<MainPageSchema, void>({
       query: () => ({
         url: 'admin/dashboard/main',
         method: 'GET',
       }),
-      providesTags: (result) => ['settings', 'titles'], // 2
+      providesTags: (result) => ['settings'], // 2
     }),
     addMainPageSettings: build.mutation<
       { title: string; header: string; subheader: string; image_path: string },
@@ -31,6 +31,7 @@ export const queryMainPageSettings = createApi({
         method: 'POST',
         data: id,
       }),
+      invalidatesTags: ['settings'],
     }),
     updateTitle: build.mutation<ITitle, number>({
       query: (id: number) => ({
@@ -38,12 +39,14 @@ export const queryMainPageSettings = createApi({
         method: 'POST',
         data: id,
       }),
+      invalidatesTags: ['settings'],
     }),
     updateSubheader: build.mutation<ISubheader, number>({
       query: (id: number) => ({
         url: `updateSubheader/${id} `,
         method: 'POST',
       }),
+      invalidatesTags: ['settings'],
     }),
     deleteTitleById: build.mutation<ITitle, number>({
       query: (id: number) => ({

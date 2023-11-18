@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './AddSettingsForm.module.css';
 import cn from 'classnames';
 import { createTheme, Input, ListItemText, ThemeProvider } from '@mui/material';
@@ -74,11 +74,6 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
     addSetting({ title: nameStore });
     console.log(settings?.list_settings.all_title);
 
-    const id_title = settings?.list_settings.all_title.find((title) => {
-      if (title.title === nameStore) return title.id;
-    });
-    console.log(id_title);
-
     // updateTitle(id);
   };
 
@@ -110,12 +105,14 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
             </Typography>
 
             {/* Добавление названия магазина в список, обновление происходит по нажатию пункта в списке */}
+            <span className="mb-3">
+              Текущее назавание магазина: {settings?.current_settings.title}
+            </span>
             <TextField
               id="standard-basic"
               label="Название магазина"
               name="title"
-              variant="standard"
-              defaultValue={isSuccess && settings?.current_settings.title}
+              variant="outlined"
               onChange={(e) => setNameStore(e.target.value)}
             />
             <Button onClick={() => handleAddTitleClick()}>Добавить в список</Button>
@@ -131,12 +128,14 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
                   disablePadding
                   key={titleStore.id}
                   // sx={{ bgcolor: 'rgb(22 78 99);', color: '#fff' }}
+                  className={cn({
+                    [styles.choosen]: titleStore.title === settings.current_settings.title,
+                  })}
                 >
                   <ListItemButton onClick={() => updateTitle(titleStore.id)}>
                     <ListItemText primary={`${titleStore.title}`} />
                   </ListItemButton>
                   <IconButton
-                    edge="end"
                     aria-label="delete"
                     href="#"
                     onClick={() => deleteTitleById(titleStore.id)}
@@ -148,12 +147,12 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
             </List>
 
             {/* Добавление заголовка главной страницы магазина в список, обновление происходит по нажатию пункта в списке */}
+            <span className="mb-3">Текущий заголовок: {settings?.current_settings.header}</span>
             <TextField
               id="standard-basic"
               label="Заголовок"
               name="header"
-              variant="standard"
-              defaultValue={isSuccess && settings?.current_settings.header}
+              variant="outlined"
               onChange={(e) => setHeaderStore(e.target.value)}
             />
             <Button onClick={() => addSetting({ header: headerStore })}>Добавить в список</Button>
@@ -169,12 +168,14 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
                 <ListItem
                   disablePadding
                   key={header.id}
+                  className={cn({
+                    [styles.choosen]: header.title === settings.current_settings.header,
+                  })}
                 >
                   <ListItemButton onClick={() => updateHeader(header.id)}>
                     {header.title}
                   </ListItemButton>
                   <IconButton
-                    edge="end"
                     aria-label="delete"
                     href="#"
                     onClick={() => deleteHeaderById(header.id)}
@@ -185,12 +186,14 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
               ))}
             </List>
             {/* Добавление подзаголовка главной страницы магазина в список, обновление происходит по нажатию пункта в списке */}
+            <span className="mb-3">
+              Текущий подзаголовок: {settings?.current_settings.subheader}
+            </span>
             <TextField
               id="standard-basic"
               label="Подзаголовок"
               name="subheader"
-              variant="standard"
-              defaultValue={isSuccess && settings?.current_settings.subheader}
+              variant="outlined"
               onChange={(e) => setSubheader(e.target.value)}
             />
             <Button onClick={() => addSetting({ subheader: subheader })}>Добавить в список</Button>
@@ -205,12 +208,14 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
                 <ListItem
                   disablePadding
                   key={subheader.id}
+                  className={cn({
+                    [styles.choosen]: subheader.title === settings.current_settings.subheader,
+                  })}
                 >
                   <ListItemButton onClick={() => updateSubheader(subheader.id)}>
                     {subheader.title}
                   </ListItemButton>
                   <IconButton
-                    edge="end"
                     aria-label="delete"
                     href="#"
                     onClick={() => deleteSubheaderById(subheader.id)}
