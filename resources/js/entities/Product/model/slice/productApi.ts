@@ -8,12 +8,14 @@ export const productApi = createApi({
     baseQuery: axiosBaseQuery({
         baseUrl: '/admin'
     }),
+    tagTypes: ['Product'],
     endpoints: build => ({
         getProducts: build.query<IProduct[], number>({
             query: (limit?: number) => ({
                 url: '/products',
                 method: 'GET',
-            })
+            }),
+            providesTags: ['Product']
         }),
         getProductById: build.query<IProduct, number>({
             query: (product_id: number) => ({
@@ -21,18 +23,22 @@ export const productApi = createApi({
                 method: 'GET',
             })
         }),
-        createProduct: build.mutation<IProduct, Partial<IProduct>>({
+        createProduct: build.mutation<IProduct, any>({
             query: (product: ProductSchema) => ({
                 url: '/products/create',
                 method: 'POST',
-                data: product
+                data: product,
+                headers: {
+                    'content-Type': 'multipart/form-data'
+                }
             })
         }),
         deleteProductById: build.mutation<IProduct, number>({
             query: (product_id: number) => ({
                 url: `/product/${product_id}`,
                 method: 'DELETE',
-            })
+            }),
+            invalidatesTags: ['Product']
         })
     })
 })

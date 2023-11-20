@@ -14,7 +14,10 @@ import AddCircle from '@mui/icons-material/AddCircle';
 import IconButton from '@mui/material/IconButton';
 import Categories from '@/Features/Admin/CatalogsPanel/ui/Categories';
 import Catalogs from '@/Features/Admin/CatalogsPanel/ui/Catalogs';
-import { useSetCatalogMutation, useSetCategoryMutation } from '@/Features/Admin/CatalogsPanel/model/reducers/query/rtkCatalogs';
+import {
+  useSetCatalogMutation,
+  useSetCategoryMutation,
+} from '@/Features/Admin/CatalogsPanel/model/reducers/query/rtkCatalogs';
 import { useState } from 'react';
 
 const arrayCompany = [
@@ -48,10 +51,9 @@ const theme = createTheme({
 });
 
 export default function MainAdminPage() {
-
-  const [catalogValue, setCatalogValue] = useState('')
-  const [categoryValue, setCategoryValue] = useState('')
-  const [catalogID, setCatalogID] = useState(0)
+  const [catalogValue, setCatalogValue] = useState('');
+  const [categoryValue, setCategoryValue] = useState('');
+  const [catalogID, setCatalogID] = useState(0);
 
   const textValidate = (str: string) => {
     const newStr = str.replace(/[^A-zА-я^ ]/gm, '')
@@ -68,18 +70,19 @@ export default function MainAdminPage() {
     setCategoryValue(value)
   }
 
-  const [setCatalog, {}] = useSetCatalogMutation()
-  const [setCategory, {}] = useSetCategoryMutation()
+
+  const [setCatalog, {}] = useSetCatalogMutation();
+  const [setCategory, {}] = useSetCategoryMutation();
 
   const setCatalogC = () => {
-    setCatalog({title: catalogValue})
-    setCatalogValue('')
-  }
+    setCatalog({ title: catalogValue });
+    setCatalogValue('');
+  };
 
   const setCategoryC = () => {
-    setCategory({catalog_id: catalogID, title: categoryValue})
-    setCategoryValue('')
-  }
+    setCategory({ catalog_id: catalogID, title: categoryValue });
+    setCategoryValue('');
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -111,14 +114,16 @@ export default function MainAdminPage() {
               {arrayCompany != null ? (
                 arrayCompany.map((el) => {
                   return (
-                    <>
+                    <div key={el.id}>
+<!--                     <Box key={el.id}> -->
                       <Typography variant="h5">{el.title}</Typography>
                       <Typography variant="h6">{el.website}</Typography>
                       <Typography variant="h6">{el.email}</Typography>
                       <Typography variant="h6">{el.phone}</Typography>
                       <Typography variant="h6">{el.adress}</Typography>
                       <Typography variant="h6">{el.socialNetworks}</Typography>
-                    </>
+                    </div>
+<!--                     </Box> -->
                   );
                 })
               ) : (
@@ -154,7 +159,7 @@ export default function MainAdminPage() {
               {arrayHomePage != null ? (
                 arrayHomePage.map((el) => {
                   return (
-                    <>
+                    <Box key={el.id}>
                       <Typography variant="h5">{el.title}</Typography>
                       <Typography variant="h6">{el.desc}</Typography>
 
@@ -163,7 +168,7 @@ export default function MainAdminPage() {
                         width={'200'}
                         alt="SliderMobile"
                       />
-                    </>
+                    </Box>
                   );
                 })
               ) : (
@@ -196,13 +201,15 @@ export default function MainAdminPage() {
               <Typography>Каталоги</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Catalogs/>
+              <Catalogs />
               <TextField
                 id="standard-basic"
                 label="Новый каталог"
                 variant="standard"
                 value={catalogValue}
-                onChange={(e) => {handleChangeCatalog(e)}}
+                onChange={(e) => {
+                  handleChangeCatalog(e);
+                }}
                 sx={{ marginLeft: '20px' }}
               />
 
@@ -231,14 +238,16 @@ export default function MainAdminPage() {
               <Typography>Категории</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Categories getCatalogID={setCatalogID}/>
+              <Categories getCatalogID={setCatalogID} />
 
               <TextField
                 id="standard-basic"
                 label="Новая категория"
                 variant="standard"
                 value={categoryValue}
-                onChange={(e) => {handleChangeCategory(e)}}
+                onChange={(e) => {
+                  handleChangeCategory(e);
+                }}
                 sx={{ marginLeft: '20px' }}
               />
 
