@@ -110,7 +110,7 @@ export default function MainAdminPage() {
                 arrayCompany.map((el) => {
                   return (
                     <div key={el.id}>
-<!--                     <Box key={el.id}> -->
+                      {/* <Box key={el.id}> */}
                       <Typography variant="h5">{el.title}</Typography>
                       <Typography variant="h6">{el.website}</Typography>
                       <Typography variant="h6">{el.email}</Typography>
@@ -118,7 +118,7 @@ export default function MainAdminPage() {
                       <Typography variant="h6">{el.adress}</Typography>
                       <Typography variant="h6">{el.socialNetworks}</Typography>
                     </div>
-<!--                     </Box> -->
+                    //  </Box>
                   );
                 })
               ) : (

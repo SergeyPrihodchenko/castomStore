@@ -30,7 +30,8 @@ export default function Footer() {
         sx={{
           minWidth: '320px',
           backgroundColor: '#F0F0F0',
-          paddingLeft: '20px',
+          padding: '145px 0 0 20px',
+          marginTop: '20px',
         }}
       >
         {/* о компании */}
@@ -44,7 +45,6 @@ export default function Footer() {
                 flexGrow: 1,
                 fontWeight: 900,
                 mr: 4,
-                paddingTop: '165px',
               }}
             >
               SHOP.COM
