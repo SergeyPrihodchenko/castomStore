@@ -57,7 +57,7 @@ export default function AuthenticationTwoFactor() {
               </Typography>
               <Typography
                 fontFamily="Integral CF"
-                fontSize="16px"
+                fontSize="18px"
                 textAlign="center"
                 marginBottom={'10px'}
               >
