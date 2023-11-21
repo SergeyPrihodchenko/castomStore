@@ -31,7 +31,6 @@ export default function Footer() {
           minWidth: '320px',
           backgroundColor: '#F0F0F0',
           padding: '145px 0 0 20px',
-          marginTop: '20px',
         }}
       >
         {/* о компании */}

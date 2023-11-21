@@ -26,8 +26,9 @@ export default function Subscription() {
   return (
     <ThemeProvider theme={theme}>
       {/* подписка */}
-      <Container fixed>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Container fixed>
           <Box
             sx={{
               zIndex: '1',
@@ -102,13 +103,13 @@ export default function Subscription() {
 
           <Box
             sx={{
-              height: '140px',
+              height: '100px',
               backgroundColor: '#FFFF',
               minWidth: '310px',
             }}
           />
-        </Box>
-      </Container>
+        </Container>
+      </Box>
     </ThemeProvider>
   );
 }
