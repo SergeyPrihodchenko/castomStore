@@ -61,7 +61,7 @@ export interface CurrentSettings {
 export interface ListSettings {
   all_title: ITitle[];
   all_header: IHeader[];
-  all_img_path: AllImgPath[];
+  all_img_path: IImgPath[];
   all_subheader: ISubheader[];
 }
 
@@ -75,7 +75,7 @@ export interface IHeader {
   title: string;
 }
 
-export interface AllImgPath {
+export interface IImgPath extends Blob {
   id: number;
   img_path: string;
 }
