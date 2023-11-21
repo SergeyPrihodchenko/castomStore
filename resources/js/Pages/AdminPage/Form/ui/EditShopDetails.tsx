@@ -40,18 +40,18 @@ export default function EditShopDetails() {
   return (
     <form>
       <ThemeProvider theme={theme}>
-        <Box
-          component="form"
-          sx={{
-            minWidth: '390px',
-            marginLeft: '40px',
-          }}
-        >
-          <Container fixed>
+        <Container fixed>
+          <Box
+            component="form"
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
             <Box
               component="form"
               sx={{
-                marginTop: '20px',
+                margin: '20px 0 0 20px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -126,27 +126,28 @@ export default function EditShopDetails() {
                   />
                 </FormControl>
               </Box>
+              <Box>
+                <Button
+                  variant="contained"
+                  size="small"
+                  href="#"
+                  color="secondary"
+                  sx={{ margin: '20px' }}
+                >
+                  Сохранить
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  href="#"
+                  color="secondary"
+                >
+                  Удалить
+                </Button>
+              </Box>
             </Box>
-
-            <Button
-              variant="contained"
-              size="small"
-              href="#"
-              color="secondary"
-              sx={{ margin: '20px' }}
-            >
-              Сохранить
-            </Button>
-            <Button
-              variant="contained"
-              size="small"
-              href="#"
-              color="secondary"
-            >
-              Удалить
-            </Button>
-          </Container>
-        </Box>
+          </Box>
+        </Container>
       </ThemeProvider>
     </form>
   );

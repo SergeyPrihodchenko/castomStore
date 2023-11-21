@@ -96,8 +96,8 @@ export default function EditShopDetails() {
         <Box
           component="form"
           sx={{
-            minWidth: '390px',
-            marginLeft: '40px',
+            minWidth: '320px',
+            marginLeft: '10px',
           }}
         >
           <Container fixed>
