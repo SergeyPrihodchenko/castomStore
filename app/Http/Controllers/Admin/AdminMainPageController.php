@@ -51,6 +51,10 @@ class AdminMainPageController extends Controller
         $mainPage = new MainPage();
 
         $mainPage->addAttributes($data);
+
+        return response()->json([
+          "status" => "ok"
+      ]);
         
         
     }

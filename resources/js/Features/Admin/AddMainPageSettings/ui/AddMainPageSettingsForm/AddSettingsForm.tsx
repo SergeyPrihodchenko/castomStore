@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import styles from './AddSettingsForm.module.css';
 import cn from 'classnames';
 import { createTheme, Input, ListItemText, ThemeProvider } from '@mui/material';
@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Chip from '@mui/material/Chip';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -18,14 +19,16 @@ import Typography from '@mui/material/Typography';
 import {
   useAddMainPageSettingsMutation,
   useDeleteHeaderByIdMutation,
+  useDeleteImageByIdMutation,
   useDeleteSubheaderByIdMutation,
   useDeleteTitleByIdMutation,
   useGetMainPageSettingsListsQuery,
   useUpdateHeaderMutation,
+  useUpdateImageMutation,
   useUpdateSubheaderMutation,
   useUpdateTitleMutation,
 } from '../../model/services/query/rtkMainPageSettings';
-import { IHeader, ISubheader, ITitle } from '../../model/types/mainPage';
+import { IHeader, IImgPath, ISubheader, ITitle } from '../../model/types/mainPage';
 
 const theme = createTheme({
   palette: {
@@ -34,8 +37,8 @@ const theme = createTheme({
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#FFFFFF',
-      contrastText: '#000000',
+      main: '#4f378b',
+      contrastText: '#fff',
     },
   },
 });
@@ -57,29 +60,54 @@ interface AddSettingsFormProps {
 }
 
 export const AddSettingsForm = (props: AddSettingsFormProps) => {
-  const { className } = props;
-  const [nameStore, setNameStore] = useState(''); //
+  const [nameStore, setNameStore] = useState('');
   const [headerStore, setHeaderStore] = useState('');
   const [subheader, setSubheader] = useState('');
+  const [image, setImage] = useState<File | null>(null);
+  const [previewImg, setPreviewImg] = useState('');
+
   const { data: settings, isLoading, isSuccess } = useGetMainPageSettingsListsQuery();
   const [addSetting, {}] = useAddMainPageSettingsMutation();
   const [updateHeader, {}] = useUpdateHeaderMutation();
   const [updateTitle, { isSuccess: isSuccessTitle }] = useUpdateTitleMutation();
   const [updateSubheader, {}] = useUpdateSubheaderMutation();
+  const [updateImage, {}] = useUpdateImageMutation();
   const [deleteTitleById, {}] = useDeleteTitleByIdMutation();
   const [deleteHeaderById, {}] = useDeleteHeaderByIdMutation();
   const [deleteSubheaderById, {}] = useDeleteSubheaderByIdMutation();
+  const [deleteImageById, {}] = useDeleteImageByIdMutation();
 
-  const handleAddTitleClick = () => {
+  useEffect(() => {
+    if (!image) {
+      return;
+    }
+    setPreviewImg(URL.createObjectURL(image));
+  }, [image]);
+
+  const handleAddTitleClick = useCallback(() => {
     addSetting({ title: nameStore });
-    console.log(settings?.list_settings.all_title);
+    setNameStore('');
+  }, [nameStore]);
+  const handleAddHeaderClick = useCallback(() => {
+    addSetting({ header: headerStore });
+    setHeaderStore('');
+  }, [headerStore]);
 
-    // updateTitle(id);
+  const handleAddImageChange = async (image: File | null) => {
+    if (!image) {
+      return null;
+    }
+    setImage(image);
+    const formData = new FormData();
+    formData.append('image', image);
+
+    console.log('formData', formData.get('image'));
+
+    await addSetting({ image: formData.get('image') });
   };
 
-  console.log(settings?.list_settings.all_header);
-
   if (isLoading) return <h2>Loading...</h2>;
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -105,18 +133,40 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
             </Typography>
 
             {/* Добавление названия магазина в список, обновление происходит по нажатию пункта в списке */}
-            <span className="mb-3">
-              Текущее назавание магазина: {settings?.current_settings.title}
-            </span>
-            <TextField
-              id="standard-basic"
-              label="Название магазина"
-              name="title"
-              variant="outlined"
-              onChange={(e) => setNameStore(e.target.value)}
+            <Chip
+              sx={{ alignSelf: 'flex-start', marginBottom: '10px' }}
+              color="secondary"
+              variant="filled"
+              size="small"
+              label={`Установлено: ${settings?.current_settings.title}`}
             />
-            <Button onClick={() => handleAddTitleClick()}>Добавить в список</Button>
-            <List sx={{ width: '100%' }}>
+            <Box sx={{ display: 'flex', gap: '10px', marginBottom: '15px' }}>
+              <TextField
+                sx={{ flexGrow: 1 }}
+                id="standard-basic"
+                label="Название магазина"
+                value={nameStore}
+                name="title"
+                variant="outlined"
+                onChange={(e) => setNameStore(e.target.value)}
+              />
+              <Button
+                onClick={handleAddTitleClick}
+                variant="contained"
+                size="small"
+              >
+                Добавить
+              </Button>
+            </Box>
+            <List
+              sx={{
+                width: '100%',
+                marginBottom: '20px',
+                overflow: 'auto',
+                maxHeight: 200,
+                padding: 0,
+              }}
+            >
               <ListSubheader
                 component="div"
                 id="nested-list-subheader"
@@ -147,17 +197,33 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
             </List>
 
             {/* Добавление заголовка главной страницы магазина в список, обновление происходит по нажатию пункта в списке */}
-            <span className="mb-3">Текущий заголовок: {settings?.current_settings.header}</span>
-            <TextField
-              id="standard-basic"
-              label="Заголовок"
-              name="header"
-              variant="outlined"
-              onChange={(e) => setHeaderStore(e.target.value)}
+            <Chip
+              sx={{ alignSelf: 'flex-start', marginBottom: '10px' }}
+              color="secondary"
+              variant="filled"
+              size="small"
+              label={`Установлено: ${settings?.current_settings.header}`}
             />
-            <Button onClick={() => addSetting({ header: headerStore })}>Добавить в список</Button>
+            <Box sx={{ display: 'flex', gap: '10px', marginBottom: '15px' }}>
+              <TextField
+                sx={{ flexGrow: 1 }}
+                id="standard-basic"
+                label="Заголовок"
+                value={headerStore}
+                name="header"
+                variant="outlined"
+                onChange={(e) => setHeaderStore(e.target.value)}
+              />
+              <Button
+                onClick={handleAddHeaderClick}
+                variant="contained"
+                size="small"
+              >
+                Добавить
+              </Button>
+            </Box>
 
-            <List sx={{ width: '100%' }}>
+            <List sx={{ width: '100%', marginBottom: '20px' }}>
               <ListSubheader
                 component="div"
                 id="nested-list-subheader"
@@ -187,7 +253,7 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
             </List>
             {/* Добавление подзаголовка главной страницы магазина в список, обновление происходит по нажатию пункта в списке */}
             <span className="mb-3">
-              Текущий подзаголовок: {settings?.current_settings.subheader}
+              Текущий подзаголовок: <b> {settings?.current_settings.subheader} </b>
             </span>
             <TextField
               id="standard-basic"
@@ -197,7 +263,7 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
               onChange={(e) => setSubheader(e.target.value)}
             />
             <Button onClick={() => addSetting({ subheader: subheader })}>Добавить в список</Button>
-            <List sx={{ width: '100%' }}>
+            <List sx={{ width: '100%', marginBottom: '20px' }}>
               <ListSubheader
                 component="div"
                 id="nested-list-subheader"
@@ -225,16 +291,64 @@ export const AddSettingsForm = (props: AddSettingsFormProps) => {
                 </ListItem>
               ))}
             </List>
-            {/* <Button
-              component="label"
-              variant="text"
-              color="primary"
-              size="small"
-              startIcon={<CloudUploadIcon />}
-            >
-              Загрузить фото
-              <VisuallyHiddenInput type="file" />
-            </Button> */}
+            <div className="my-6">
+              <Button
+                component="label"
+                variant="text"
+                color="primary"
+                size="small"
+                startIcon={<CloudUploadIcon />}
+              >
+                Загрузить фото
+                <VisuallyHiddenInput
+                  accept="image/*,.jpg"
+                  type="file"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    handleAddImageChange(e.target.files[0])
+                  }
+                />
+              </Button>
+              {previewImg && (
+                <img
+                  alt=""
+                  src={previewImg}
+                  width={100}
+                />
+              )}
+              <List sx={{ width: '100%', marginBottom: '20px' }}>
+                <ListSubheader
+                  component="div"
+                  id="nested-list-subheader"
+                >
+                  Список картинок
+                </ListSubheader>
+                {settings?.list_settings.all_img_path.map((image: IImgPath) => (
+                  <ListItem
+                    disablePadding
+                    key={image.id}
+                    // sx={{ bgcolor: 'rgb(22 78 99);', color: '#fff' }}
+                    className={cn({
+                      [styles.choosen]: image.img_path === settings?.current_settings.img_path,
+                    })}
+                  >
+                    <ListItemButton onClick={() => updateImage(image.id)}>
+                      {/* <ListItemText primary={`${image.img_path}`} /> */}
+                      <img
+                        src={`${image.img_path}`}
+                        width={100}
+                      />
+                    </ListItemButton>
+                    <IconButton
+                      aria-label="delete"
+                      href="#"
+                      onClick={() => deleteImageById(image.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </ListItem>
+                ))}
+              </List>
+            </div>
           </Box>
 
           {/* <Button

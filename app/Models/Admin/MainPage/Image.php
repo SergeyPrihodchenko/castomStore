@@ -10,7 +10,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    const PATH_IMAGE_MAIN = 'public/mainPage/image';
+    const PATH_IMAGE_MAIN = 'public/mainPage/images';
 
     protected $fillable = [
         'img_path'
@@ -21,6 +21,7 @@ class Image extends Model
     public function set($image): void
     {
         $name = $image->store($this::PATH_IMAGE_MAIN);
+        // dd($name);
 
         $this->img_path = $name;
 
