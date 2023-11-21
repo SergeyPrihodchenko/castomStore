@@ -16,6 +16,9 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
 import * as locales from '@mui/material/locale';
 import Typography from '@mui/material/Typography';
 
@@ -96,49 +99,64 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-const rows = [
+const ArrayСatalog = [
   {
     id: 1,
-    title: 'Одежда',
+    title: 'Не выбрано',
   },
   {
     id: 2,
-    title: 'Обувь',
+    title: 'Одежда',
   },
   {
     id: 3,
-    title: 'Головные уборы',
+    title: 'Обувь',
   },
   {
     id: 4,
-    title: 'Акссесуары',
+    title: 'Головные уборы',
   },
   {
     id: 5,
-    title: 'Опять Одежда',
+    title: 'Акссесуары',
+  },
+];
+
+const ArrayCategory = [
+  {
+    id: 1,
+    title: 'Мужская одежда',
+  },
+  {
+    id: 2,
+    title: 'Женская одежда',
+  },
+  {
+    id: 3,
+    title: 'Детская одежда',
+  },
+  {
+    id: 4,
+    title: 'Мужская обувь',
+  },
+  {
+    id: 5,
+    title: 'Женская обувь',
   },
   {
     id: 6,
-    title: 'Опять Обувь',
-  },
-  {
-    id: 7,
-    title: 'Опять Головные уборы',
-  },
-  {
-    id: 8,
-    title: 'Опять Акссесуары',
+    title: 'Детская обувь',
   },
 ];
 
 type SupportedLocales = keyof typeof locales;
 
-export default function CatalogsTableDesc() {
+export default function CategoriesTableDesc() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - ArrayCategory.length) : 0;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -160,22 +178,52 @@ export default function CatalogsTableDesc() {
   return (
     <ThemeProvider theme={themeWithLocale}>
       <TableContainer component={Paper}>
+        <Box sx={{ margin: '5px' }}>
+          <FormControl fullWidth>
+            <InputLabel
+              variant="standard"
+              htmlFor="uncontrolled-native"
+              sx={{ fontFamily: 'Integral CF', fontSize: '24px' }}
+            >
+              Каталог
+            </InputLabel>
+            <NativeSelect
+              defaultValue={10}
+              inputProps={{
+                name: 'catalog',
+                id: 'uncontrolled-native',
+              }}
+            >
+              {ArrayСatalog.map((el) => {
+                return (
+                  <option
+                    value={10}
+                    key={el.id}
+                  >
+                    {el.title}
+                  </option>
+                );
+              })}
+            </NativeSelect>
+          </FormControl>
+        </Box>
+
         <Table
           sx={{ minWidth: 290 }}
           aria-label="custom pagination table"
         >
           <TableBody>
             {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-            ).map((row) => (
-              <TableRow key={row.title}>
+              ? ArrayCategory.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : ArrayCategory
+            ).map((ArrayCategory) => (
+              <TableRow key={ArrayCategory.title}>
                 <TableCell
                   component="th"
                   scope="row"
                   sx={{ fontSize: '20px' }}
                 >
-                  {row.title}
+                  {ArrayCategory.title}
                 </TableCell>
                 <TableCell
                   style={{ width: 10 }}
@@ -214,7 +262,7 @@ export default function CatalogsTableDesc() {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={3}
-                count={rows.length}
+                count={ArrayCategory.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 labelRowsPerPage={
