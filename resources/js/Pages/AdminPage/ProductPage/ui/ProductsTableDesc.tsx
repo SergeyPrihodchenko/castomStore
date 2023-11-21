@@ -154,119 +154,115 @@ export default function ProductTableDesc() {
   const themeWithLocale = React.useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
 
   return (
-    <Box sx={{ minWidth: '320px' }}>
-      <ThemeProvider theme={themeWithLocale}>
-        <Container fixed>
-          <TableContainer component={Paper}>
-            <Table aria-label="a product table">
-              <TableHead>
-                <TableRow>
-                  {arrayHeadTabs.map((el) => (
-                    <TableCell
-                      align="left"
-                      sx={{ fontSize: '20px', fontWeight: '700' }}
-                    >
-                      {el}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(rowsPerPage > 0
-                  ? arrayProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  : arrayProducts
-                ).map((arrayProducts) => (
-                  <TableRow key={arrayProducts.title}>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={{ fontSize: '20px' }}
-                    >
-                      {arrayProducts.title}
-                    </TableCell>
-                    <TableCell
-                      align="left"
-                      sx={{ fontSize: '20px' }}
-                    >
-                      {arrayProducts.price}
-                    </TableCell>
-                    <TableCell
-                      align="left"
-                      sx={{ fontSize: '20px' }}
-                    >
-                      {arrayProducts.quantity}
-                    </TableCell>
-                    <TableCell
-                      align="left"
-                      sx={{ fontSize: '20px' }}
-                    >
-                      {arrayProducts.categoryName}
-                    </TableCell>
-                    <TableCell
-                      align="left"
-                      sx={{ fontSize: '20px' }}
-                    >
-                      {arrayProducts.desc}
-                    </TableCell>
-                    <TableCell
-                      style={{ width: 10 }}
-                      align="left"
-                    >
-                      <IconButton
-                        edge="end"
-                        aria-label="edit"
-                        href="#"
-                      >
-                        <EditIcon />
-                      </IconButton>
-                    </TableCell>
-                    <TableCell
-                      style={{ width: 10 }}
-                      align="right"
-                    >
-                      <IconButton
-                        edge="end"
-                        aria-label="edit"
-                        href="#"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 53 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-              <TableFooter>
-                <TableRow>
-                  <TablePagination
-                    rowsPerPageOptions={[10, 25, 50, 100, { label: 'Все', value: -1 }]}
-                    colSpan={7}
-                    count={arrayProducts.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    labelRowsPerPage={
-                      <Typography
-                        fontFamily="Integral CF"
-                        fontSize="20px"
-                      >
-                        Всего товаров на странице
-                      </Typography>
-                    }
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    ActionsComponent={TablePaginationActions}
-                    sx={{ fontSize: '20px' }}
-                  />
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </TableContainer>
-        </Container>
-      </ThemeProvider>
-    </Box>
+    <ThemeProvider theme={themeWithLocale}>
+      <TableContainer component={Paper}>
+        <Table aria-label="a product table">
+          <TableHead>
+            <TableRow>
+              {arrayHeadTabs.map((el) => (
+                <TableCell
+                  align="left"
+                  sx={{ fontSize: '20px', fontWeight: '700' }}
+                >
+                  {el}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {(rowsPerPage > 0
+              ? arrayProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : arrayProducts
+            ).map((arrayProducts) => (
+              <TableRow key={arrayProducts.title}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{ fontSize: '20px' }}
+                >
+                  {arrayProducts.title}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{ fontSize: '20px' }}
+                >
+                  {arrayProducts.price}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{ fontSize: '20px' }}
+                >
+                  {arrayProducts.quantity}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{ fontSize: '20px' }}
+                >
+                  {arrayProducts.categoryName}
+                </TableCell>
+                <TableCell
+                  align="left"
+                  sx={{ fontSize: '20px' }}
+                >
+                  {arrayProducts.desc}
+                </TableCell>
+                <TableCell
+                  style={{ width: 10 }}
+                  align="left"
+                >
+                  <IconButton
+                    edge="end"
+                    aria-label="edit"
+                    href="#"
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </TableCell>
+                <TableCell
+                  style={{ width: 10 }}
+                  align="right"
+                >
+                  <IconButton
+                    edge="end"
+                    aria-label="edit"
+                    href="#"
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 50, 100, { label: 'Все', value: -1 }]}
+                colSpan={7}
+                count={arrayProducts.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                labelRowsPerPage={
+                  <Typography
+                    fontFamily="Integral CF"
+                    fontSize="20px"
+                  >
+                    Всего товаров на странице
+                  </Typography>
+                }
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+                sx={{ fontSize: '20px' }}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+    </ThemeProvider>
   );
 }
