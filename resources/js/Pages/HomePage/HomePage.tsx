@@ -7,7 +7,7 @@ import Catalogs from '@/Features/Admin/CatalogsPanel/ui/Catalogs';
 //import AddProduct from '@/Features/Admin/AddProduct/ui/AddProduct';
 import ProductTable from '../AdminPage/Form/ui/ProductsTable';
 import AdminProductList from '../AdminPage/ProductList/ui/AdminProductList';
-
+import AuthenticationTwoFactor from '../AdminPage/Form/AuthenticationTwoFactor';
 export default function Welcome() {
   return (
     <>
@@ -15,6 +15,7 @@ export default function Welcome() {
       {/* <Catalogs/>  подключал для тестирования */}
       {/* <AddProduct /> */}
       {/* <ProductTable /> */}
+      <AuthenticationTwoFactor />
       <HomePage />
       <Subscription />
       {/* <AdminProductList /> */}
