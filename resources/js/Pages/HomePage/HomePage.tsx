@@ -2,7 +2,6 @@ import Header from '@/Widgets/Header';
 import HomePage from './ui/HomePage';
 import Footer from '@/Widgets/Footer';
 import Subscription from '@/Widgets/Subscription';
-import Box from '@mui/material/Box';
 import Categories from '@/Features/Admin/CatalogsPanel/ui/Categories';
 import Catalogs from '@/Features/Admin/CatalogsPanel/ui/Catalogs';
 //import AddProduct from '@/Features/Admin/AddProduct/ui/AddProduct';
@@ -11,7 +10,7 @@ import AdminProductList from '../AdminPage/ProductList/ui/AdminProductList';
 
 export default function Welcome() {
   return (
-    <Box sx={{ width: '390px' }}>
+    <>
       <Header />
       {/* <Catalogs/>  подключал для тестирования */}
       {/* <AddProduct /> */}
@@ -20,6 +19,6 @@ export default function Welcome() {
       <Subscription />
       {/* <AdminProductList /> */}
       <Footer />
-    </Box>
+    </>
   );
 }

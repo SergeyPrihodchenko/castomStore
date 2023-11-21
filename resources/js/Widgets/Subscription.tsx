@@ -27,84 +27,87 @@ export default function Subscription() {
     <ThemeProvider theme={theme}>
       {/* подписка */}
       <Container fixed>
-        <Box
-          sx={{
-            zIndex: '1',
-            marginBottom: '50px',
-          }}
-        >
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box
             sx={{
-              position: 'absolute',
-              maxWidth: '360px',
-              height: '290px',
-              background: '#000000',
-              borderRadius: '20px',
-              zIndex: '2',
-              padding: '32px 24px 28px 24px',
+              zIndex: '1',
+              marginBottom: '50px',
             }}
           >
-            <Typography
-              fontFamily="Integral CF"
-              fontWeight="700"
-              fontSize="32px"
-              color="#FFFFFF"
-              textAlign="left"
-              marginBottom={'32px'}
-            >
-              ПОДПИШИТЕСЬ НА НОВИНКИ
-            </Typography>
-
-            <Paper
-              component="form"
+            <Box
               sx={{
-                p: '12px',
-                display: 'flex',
-                alignItems: 'center',
-                maxWidth: '349px',
-                height: 42,
-                borderRadius: '62px',
+                position: 'absolute',
+                //maxWidth: '410px',
+                //maxHeight: '290px',
+                background: '#000000',
+                borderRadius: '20px',
+                zIndex: '2',
+                padding: '32px 24px 28px 24px',
               }}
             >
-              <IconButton
-                sx={{ p: '10px' }}
-                aria-label="menu"
+              <Typography
+                fontFamily="Integral CF"
+                fontWeight="700"
+                fontSize="30px"
+                color="#FFFFFF"
+                textAlign="left"
+                marginBottom={'32px'}
               >
-                <MailOutlineIcon sx={{ width: '20px', height: '20px' }} />
-              </IconButton>
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="Введите свой Email"
-                inputProps={{ 'aria-label': 'Введите свой Email' }}
-              />
-            </Paper>
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                minWidth: '310px',
-                height: '42px',
-                alignContent: 'center',
-                borderRadius: '62px',
-                fontWeight: 700,
-                fontSize: '14px',
-                margin: '12px 10px 0 0',
-                fontFamily: 'Satoshi',
-                paddingTop: '10px',
-              }}
-              color="secondary"
-            >
-              Подписаться
-            </Button>
+                ПОДПИШИТЕСЬ НА НОВИНКИ
+              </Typography>
+
+              <Paper
+                component="form"
+                sx={{
+                  p: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  maxWidth: '310px',
+                  height: 42,
+                  borderRadius: '62px',
+                }}
+              >
+                <IconButton
+                  sx={{ p: '10px' }}
+                  aria-label="menu"
+                >
+                  <MailOutlineIcon sx={{ width: '20px', height: '20px' }} />
+                </IconButton>
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Введите свой Email"
+                  inputProps={{ 'aria-label': 'Введите свой Email' }}
+                />
+              </Paper>
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  minWidth: '245px',
+                  height: '42px',
+                  alignContent: 'center',
+                  borderRadius: '62px',
+                  fontWeight: 700,
+                  fontSize: '14px',
+                  margin: '12px 10px 0 0',
+                  fontFamily: 'Satoshi',
+                  paddingTop: '10px',
+                }}
+                color="secondary"
+              >
+                Подписаться
+              </Button>
+            </Box>
           </Box>
+
+          <Box
+            sx={{
+              height: '140px',
+              backgroundColor: '#FFFF',
+              minWidth: '310px',
+            }}
+          />
         </Box>
-        <Box
-          sx={{
-            height: '140px',
-            backgroundColor: '#FFFF',
-            minWidth: '310px',
-          }}
-        ></Box>
       </Container>
     </ThemeProvider>
   );
