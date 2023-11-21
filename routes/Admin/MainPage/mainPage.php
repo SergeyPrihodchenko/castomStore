@@ -11,7 +11,7 @@ Route::post('/updateHeader/{id}', [AdminMainPageController::class, 'updateHeader
 Route::post('/updateSubheader/{id}', [AdminMainPageController::class, 'updateSubheader'])->name('updateSubheader');
 Route::post('/updateImage/{id}', [AdminMainPageController::class, 'updateImage'])->name('updateImage');
 
-Route::post('/deleteImg/{id}', [AdminMainPageController::class, 'deleteImg'])->name('deleteImg');
+Route::delete('/deleteImg/{id}', [AdminMainPageController::class, 'deleteImg'])->name('deleteImg');
 Route::delete('/deleteTitle/{id}', [AdminMainPageController::class, 'deleteTitle'])->name('deleteTitle');
 Route::delete('/deleteHeader/{id}', [AdminMainPageController::class, 'deleteHeader'])->name('deleteHeader');
 Route::delete('/deleteSubheader/{id}', [AdminMainPageController::class, 'deleteSubheader'])->name('deleteSubheader');
