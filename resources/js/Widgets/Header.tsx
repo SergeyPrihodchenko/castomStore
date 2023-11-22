@@ -94,7 +94,6 @@ export default function Header() {
                 open={open}
                 onClose={handleClose}
               >
-
                 <Link
                   href="#"
                   underline="none"
@@ -117,14 +116,20 @@ export default function Header() {
                   <MenuItem>Новинки</MenuItem>
                 </Link>
               </Menu>
-
-              <Typography
+              <Link
+                //href={route('CategoryPage')}
+                underline="none"
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Настройка страниц</MenuItem>
+              </Link>
+              {/* <Typography
                 variant="h6"
                 component="div"
                 sx={{ flexGrow: 1 }}
 
                 <MenuItem>Настройка страниц</MenuItem>
-              </Link>
+                </Typography> */}
               <NavLink
                 active={route().current('catalogs.*')}
                 href={route('catalogs')}
@@ -150,7 +155,6 @@ export default function Header() {
                 href={route('logout')}
                 underline="none"
                 onClick={handleCloseSettings}
-
               >
                 <Button
                   href="/"
@@ -158,7 +162,8 @@ export default function Header() {
                 >
                   Shop.com
                 </Button>
-              </Typography>
+              </Link>
+
               <Box>
                 <IconButton color="inherit">
                   <SearchIcon />
