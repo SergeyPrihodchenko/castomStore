@@ -1,9 +1,9 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import MainLayout from '@/Layouts/MainLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { AddSettingsForm } from '@/Features/Admin/AddMainPageSettings';
+import AddSettingsForm from '@/Features/Admin/AddMainPageSettings';
 
 export default function Dashboard({ auth }: PageProps) {
   // useEffect(() => {
@@ -11,7 +11,7 @@ export default function Dashboard({ auth }: PageProps) {
   //   console.log(res);
   // }, []);
   return (
-    <AuthenticatedLayout
+    <MainLayout
       user={auth.user}
       header={
         <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -30,6 +30,6 @@ export default function Dashboard({ auth }: PageProps) {
           </div>
         </div>
       </div>
-    </AuthenticatedLayout>
+    </MainLayout>
   );
 }

@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import MainLayout from '@/Layouts/MainLayout';
 import { PageProps } from '@/types';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -35,7 +35,7 @@ export default function CategoryPage({ auth }: PageProps) {
     setCategoryValue('');
   };
   return (
-    <AuthenticatedLayout user={auth.user}>
+    <MainLayout user={auth.user}>
       <ThemeProvider theme={theme}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box sx={{ width: 1200 }}>
@@ -85,6 +85,6 @@ export default function CategoryPage({ auth }: PageProps) {
           </Box>
         </Box>
       </ThemeProvider>
-    </AuthenticatedLayout>
+    </MainLayout>
   );
 }

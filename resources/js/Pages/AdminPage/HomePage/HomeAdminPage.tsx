@@ -1,11 +1,16 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import MainLayout from '@/Layouts/MainLayout';
 import { PageProps } from '@/types';
 import HomeAdminPage from './ui/HomeAdminPage/HomeAdminPage';
 
 export default function Dashboard({ auth }: PageProps) {
   return (
-    <AuthenticatedLayout user={auth.user}>
-      <HomeAdminPage />
-    </AuthenticatedLayout>
+
+    <Container fixed>
+      <MainLayout user={auth.user}>
+         </AuthenticatedLayout>
+        <HomeAdminPage />
+      </MainLayout>
+    </Container>
+
   );
 }

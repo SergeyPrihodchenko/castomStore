@@ -9,8 +9,6 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SliderMobile from '@/image/SliderMobile.png';
 import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
-// import CatalogsPage from '@/Pages/AdminPage/Form/ui/CatalogsPage';
-// import CategoriesPage from '@/Pages/AdminPage/Form/ui/CategoriesPage';
 import TextField from '@mui/material/TextField';
 import AddCircle from '@mui/icons-material/AddCircle';
 import IconButton from '@mui/material/IconButton';
@@ -57,14 +55,21 @@ export default function MainAdminPage() {
   const [categoryValue, setCategoryValue] = useState('');
   const [catalogID, setCatalogID] = useState(0);
 
+  const textValidate = (str: string) => {
+    const newStr = str.replace(/[^A-zА-я^ ]/gm, '')
+    return newStr
+  }
+
   const handleChangeCatalog = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    setCatalogValue(value);
-  };
+    const value = textValidate(e.target.value)
+    setCatalogValue(value)
+  }
+
   const handleChangeCategory = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    setCategoryValue(value);
-  };
+    const value = textValidate(e.target.value)
+    setCategoryValue(value)
+  }
+
 
   const [setCatalog, {}] = useSetCatalogMutation();
   const [setCategory, {}] = useSetCategoryMutation();
@@ -109,15 +114,15 @@ export default function MainAdminPage() {
                 arrayCompany.map((el) => {
                   return (
                     <div key={el.id}>
-                      {/* <Box key={el.id}> */}
-                      <Typography variant="h5">{el.title}</Typography>
-                      <Typography variant="h6">{el.website}</Typography>
-                      <Typography variant="h6">{el.email}</Typography>
-                      <Typography variant="h6">{el.phone}</Typography>
-                      <Typography variant="h6">{el.adress}</Typography>
-                      <Typography variant="h6">{el.socialNetworks}</Typography>
+                      <Box key={el.id}>
+                        <Typography variant="h5">{el.title}</Typography>
+                        <Typography variant="h6">{el.website}</Typography>
+                        <Typography variant="h6">{el.email}</Typography>
+                        <Typography variant="h6">{el.phone}</Typography>
+                        <Typography variant="h6">{el.adress}</Typography>
+                        <Typography variant="h6">{el.socialNetworks}</Typography>
+                      </Box>
                     </div>
-                    //  </Box>
                   );
                 })
               ) : (

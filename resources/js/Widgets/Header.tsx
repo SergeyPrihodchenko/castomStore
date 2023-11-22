@@ -18,6 +18,7 @@ import Menu from '@mui/material/Menu';
 import { IconButton } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
+import NavLink from '@/Shared/ui/NavLink';
 
 //меняем цвет header
 const theme = createTheme({
@@ -93,6 +94,7 @@ export default function Header() {
                 open={open}
                 onClose={handleClose}
               >
+
                 <Link
                   href="#"
                   underline="none"
@@ -120,6 +122,35 @@ export default function Header() {
                 variant="h6"
                 component="div"
                 sx={{ flexGrow: 1 }}
+
+                <MenuItem>Настройка страниц</MenuItem>
+              </Link>
+              <NavLink
+                active={route().current('catalogs.*')}
+                href={route('catalogs')}
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Каталоги</MenuItem>
+              </NavLink>
+              <Link
+                href={route('CategoryPage')}
+                underline="none"
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Категории</MenuItem>
+              </Link>
+              <Link
+                href="#"
+                underline="none"
+                onClick={handleCloseSettings}
+              >
+                <MenuItem>Товары</MenuItem>
+              </Link>
+              <Link
+                href={route('logout')}
+                underline="none"
+                onClick={handleCloseSettings}
+
               >
                 <Button
                   href="/"

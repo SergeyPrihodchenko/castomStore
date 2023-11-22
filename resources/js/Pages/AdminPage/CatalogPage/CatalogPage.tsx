@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import MainLayout from '@/Layouts/MainLayout';
 import { PageProps } from '@/types';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -34,7 +34,7 @@ export default function CatalogPage({ auth }: PageProps) {
     setCatalogValue('');
   };
   return (
-    <AuthenticatedLayout user={auth.user}>
+    <MainLayout user={auth.user}>
       <ThemeProvider theme={theme}>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box sx={{ width: 1200 }}>
@@ -78,6 +78,6 @@ export default function CatalogPage({ auth }: PageProps) {
           </Box>
         </Box>
       </ThemeProvider>
-    </AuthenticatedLayout>
+    </MainLayout>
   );
 }

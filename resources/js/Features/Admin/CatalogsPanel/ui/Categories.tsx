@@ -24,8 +24,10 @@ export default function Categories({ getCatalogID }: any) {
     getCatalogID(Number(e.target.value));
   };
 
+
   const [page] = useState<number>(0);
   const [rowsPerPage] = useState(5);
+
   const [catalogId, setCatalogID] = useState(1);
 
   const { data: catalogs, isSuccess: isSuccessCatalogs } = useGetCatalogsQuery('');
@@ -37,7 +39,7 @@ export default function Categories({ getCatalogID }: any) {
     page > 0
       ? Math.max(0, (1 + page) * rowsPerPage - (isSuccessCategories ? categories.length : 0))
       : 0;
-
+  
   return (
     <TableContainer component={Paper}>
       <Box sx={{ margin: '5px' }}>
