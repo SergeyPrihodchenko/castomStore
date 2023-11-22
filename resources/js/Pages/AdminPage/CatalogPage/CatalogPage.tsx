@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import MainLayout from '@/Layouts/MainLayout';
 import { PageProps } from '@/types';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -35,7 +35,7 @@ export default function CatalogPage({ auth }: PageProps) {
     setCatalogValue('');
   };
   return (
-    <AuthenticatedLayout user={auth.user}>
+    <MainLayout user={auth.user}>
       <ThemeProvider theme={theme}>
         <Container
           fixed
@@ -73,6 +73,6 @@ export default function CatalogPage({ auth }: PageProps) {
           <Catalogs />
         </Container>
       </ThemeProvider>
-    </AuthenticatedLayout>
+    </MainLayout>
   );
 }

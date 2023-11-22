@@ -9,7 +9,7 @@ export const queryCatalogs = createApi({
     endpoints: (build) => ({
         getCatalogs: build.query<Catalog[], string>({
             query: (arg) => ({
-                url: '/',
+                url: '/acardion',
                 method: 'GET',
                 params: arg
             }),

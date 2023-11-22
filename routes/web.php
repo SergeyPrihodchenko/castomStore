@@ -37,15 +37,20 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-require __DIR__ . '/Admin/MainPage/mainPage.php';
+require __DIR__ . '/Admin/mainPage.php';
 
-require __DIR__ . '/Admin/UsersPage/usersPage.php';
-require __DIR__ . '/Admin/ProductsPage/productsPage.php';
+require __DIR__ . '/Admin/usersPage.php';
 
-require __DIR__ . '/Admin/CatalogPage/catalogPage.php';
+require __DIR__ . '/Admin/catalogPage.php';
 
-require __DIR__ . '/Admin/ProductsPage/productsPage.php';
-require __DIR__ . '/Admin/CatalogPage/catalogPage.php';
+require __DIR__ . '/Admin/productsPage.php';
+
+
+
+
+
+
+
 
 //test
 Route::get('/editShopDetails', function () {
