@@ -18,6 +18,7 @@ import Menu from '@mui/material/Menu';
 import { IconButton } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
+import NavLink from '@/Shared/ui/NavLink';
 
 //меняем цвет header
 const theme = createTheme({
@@ -215,13 +216,13 @@ export default function Header() {
               >
                 <MenuItem>Настройка страниц</MenuItem>
               </Link>
-              <Link
-                href={route('CatalogPage')}
-                underline="none"
+              <NavLink
+                active={route().current('catalogs.*')}
+                href={route('catalogs')}
                 onClick={handleCloseSettings}
               >
                 <MenuItem>Каталоги</MenuItem>
-              </Link>
+              </NavLink>
               <Link
                 href={route('CategoryPage')}
                 underline="none"

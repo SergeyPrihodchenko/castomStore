@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import MainLayout from '@/Layouts/MainLayout';
 import { PageProps } from '@/types';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -34,7 +34,7 @@ export default function CategoryPage({ auth }: PageProps) {
     setCategoryValue('');
   };
   return (
-    <AuthenticatedLayout user={auth.user}>
+    <MainLayout user={auth.user}>
       <ThemeProvider theme={theme}>
         <Container
           fixed
@@ -72,6 +72,6 @@ export default function CategoryPage({ auth }: PageProps) {
           <Categories getCatalogID={setCatalogID} />
         </Container>
       </ThemeProvider>
-    </AuthenticatedLayout>
+    </MainLayout>
   );
 }
