@@ -132,536 +132,548 @@ export default function MainPage() {
   };
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          textAlign: 'center',
-          minWidth: '320px',
-          leadingTrim: 'both',
-          textEdge: 'cap',
-          marginBottom: '50px',
-        }}
-      >
-        {/* текст о сайте */}
-
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            marginTop: '63px',
+            textAlign: 'center',
+            minWidth: '320px',
+            leadingTrim: 'both',
+            textEdge: 'cap',
+            marginBottom: '50px',
           }}
         >
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontWeight: 700,
-              textAlign: 'left',
-              paddingLeft: '20px',
-              fontFamily: 'Integral CF',
-              fontSize: '36px',
-              lineHeight: '1',
-              marginBottom: '20px',
-            }}
-          >
-            СОЗДАЙТЕ САЙТ ВАШЕЙ МЕЧТЫ
-          </Typography>
-
-          <Typography
-            variant="h5"
-            component="div"
-            sx={{
-              flexGrow: 1,
-              fontSize: '14px',
-              textAlign: 'left',
-              paddingLeft: '20px',
-              fontWeight: 400,
-              fontFamily: 'Satoshi',
-            }}
-          >
-            У нас есть сайт, который вы можете настроить по своему усмотрению и начать или расширить
-            свою деятельность.
-          </Typography>
-
-          {/* кнопка перехода в настройки */}
-          <Button
-            variant="contained"
-            size="small"
-            sx={{
-              maxWidth: '280px',
-              height: '52px',
-              alignContent: 'center',
-              borderRadius: '62px',
-              fontWeight: 500,
-              fontSize: '16px',
-              fontFamily: 'Satoshi',
-              margin: '20px 0 20px 20px',
-            }}
-            href="/dashboard"
-            color="primary"
-          >
-            Настройки магазина
-          </Button>
-        </Box>
-
-        {/* картинка */}
-
-        <Box
-          sx={{
-            background: '#F2F0F1',
-          }}
-        >
+          {/* текст о сайте */}
           <Container fixed>
             <Box
               sx={{
-                margin: '10px 0 50px -20px',
-                padding: '60px 0 0 40px',
-                height: '448px',
-                background: 'url(' + SliderMobile + ') no-repeat #F2F0F1',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                marginTop: '63px',
               }}
             >
-              <Grid
-                container
-                spacing={8}
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  fontWeight: 700,
+                  textAlign: 'left',
+                  paddingLeft: '20px',
+                  fontFamily: 'Integral CF',
+                  fontSize: '36px',
+                  lineHeight: '1',
+                  marginBottom: '20px',
+                }}
+              >
+                СОЗДАЙТЕ САЙТ ВАШЕЙ МЕЧТЫ
+              </Typography>
+
+              <Typography
+                variant="h5"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  fontSize: '14px',
+                  textAlign: 'left',
+                  paddingLeft: '20px',
+                  fontWeight: 400,
+                  fontFamily: 'Satoshi',
+                }}
+              >
+                У нас есть сайт, который вы можете настроить по своему усмотрению и начать или
+                расширить свою деятельность.
+              </Typography>
+
+              {/* кнопка перехода в настройки */}
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  maxWidth: '280px',
+                  height: '52px',
+                  alignContent: 'center',
+                  borderRadius: '62px',
+                  fontWeight: 500,
+                  fontSize: '16px',
+                  fontFamily: 'Satoshi',
+                  margin: '20px 0 20px 20px',
+                }}
+                href="/dashboard"
+                color="primary"
+              >
+                Настройки магазина
+              </Button>
+            </Box>
+          </Container>
+          {/* картинка */}
+
+          <Box
+            sx={{
+              background: '#F2F0F1',
+            }}
+          >
+            <Container fixed>
+              <Box
+                sx={{
+                  margin: '10px 0 50px -20px',
+                  padding: '60px 0 0 40px',
+                  height: '448px',
+                  background: 'url(' + SliderMobile + ') no-repeat #F2F0F1',
+                }}
               >
                 <Grid
-                  item
-                  xs={4}
-                ></Grid>
-                <Grid
-                  item
-                  xs={4}
-                ></Grid>
-                <Grid
-                  item
-                  xs={4}
-                >
-                  <img
-                    src={Vector}
-                    width={'76'}
-                    height={'76'}
-                    alt="vectorBig"
-                  />
-                </Grid>
-                <Grid
-                  item
-                  xs={4}
+                  container
+                  spacing={8}
                 >
                   <Grid
                     item
-                    xs={6}
+                    xs={4}
+                  ></Grid>
+                  <Grid
+                    item
+                    xs={4}
+                  ></Grid>
+                  <Grid
+                    item
+                    xs={4}
                   >
                     <img
                       src={Vector}
-                      width={'44'}
-                      height={'44'}
-                      alt="vectorSmall"
+                      width={'76'}
+                      height={'76'}
+                      alt="vectorBig"
                     />
                   </Grid>
                   <Grid
                     item
                     xs={4}
-                  ></Grid>
+                  >
+                    <Grid
+                      item
+                      xs={6}
+                    >
+                      <img
+                        src={Vector}
+                        width={'44'}
+                        height={'44'}
+                        alt="vectorSmall"
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={4}
+                    ></Grid>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-          </Container>
-        </Box>
-
-        {/* новинки */}
-
-        <Container fixed>
-          <Box>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                fontWeight: 700,
-                marginBottom: '32px',
-                fontFamily: 'Integral CF',
-                fontSize: '32px',
-              }}
-            >
-              НОВИНКИ
-            </Typography>
-
-            <Box
-              sx={{
-                marginBottom: '32px',
-                display: 'flex',
-                alignContent: 'space-between',
-              }}
-            >
-              {arrayNewArrivals.map((item) => {
-                return (
-                  <Box>
-                    <Card
-                      key={item.id}
-                      sx={{
-                        maxWidth: '187px',
-                        borderRadius: '16px',
-                        marginLeft: '15px',
-                      }}
-                    >
-                      <CardMedia
-                        sx={{ height: 200 }}
-                        image={item.img}
-                        title="item"
-                      />
-                      <CardContent>
-                        <Typography
-                          variant="h6"
-                          component="div"
-                          textAlign={'left'}
-                          fontWeight={'700'}
-                          fontSize={'16px'}
-                          fontFamily={'Satoshi'}
-                        >
-                          {item.title}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Rating
-                          name="half-rating"
-                          size="small"
-                          defaultValue={item.rating}
-                        />
-                        <Box
-                          sx={{ ml: 1, fontSize: '12px', fontFamily: 'Satoshi', fontWeight: '700' }}
-                        >
-                          {item.rating}
-                        </Box>
-                      </CardActions>
-                      <Box
-                        sx={{
-                          ml: 2,
-                        }}
-                      >
-                        <Typography
-                          variant="h6"
-                          component="div"
-                          textAlign={'left'}
-                          fontWeight={'700'}
-                          fontSize={'20px'}
-                          paddingBottom={'10px'}
-                          fontFamily={'Satoshi'}
-                        >
-                          ${item.price}
-                        </Typography>
-                      </Box>
-                    </Card>
-                  </Box>
-                );
-              })}
-            </Box>
-
-            {/* кнопка перехода в каталог новинок */}
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                width: '280px',
-                height: '52px',
-                alignContent: 'center',
-                borderRadius: '62px',
-                fontWeight: 500,
-                fontSize: '14px',
-                margin: '0 10px 10px 0',
-                fontFamily: 'Satoshi',
-              }}
-              href="#"
-              color="secondary"
-            >
-              Посмотреть все
-            </Button>
+              </Box>
+            </Container>
           </Box>
-        </Container>
 
-        {/* популярные товары */}
+          {/* новинки */}
 
-        <Container fixed>
-          <Box
-            sx={{
-              margin: '30px 0 50px 0',
-              borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-            }}
-          >
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                fontWeight: 700,
-                fontFamily: 'Integral CF',
-                fontSize: '32px',
-                margin: '40px 0 40px 0',
-              }}
-            >
-              ПОПУЛЯРНЫЕ ТОВАРЫ
-            </Typography>
-            <Box
-              sx={{
-                marginBottom: '32px',
-                display: 'flex',
-                alignContent: 'space-between',
-              }}
-            >
-              {arrayTopSelling.map((item) => {
-                return (
-                  <Box>
-                    <Card
-                      key={item.id}
-                      sx={{
-                        maxWidth: '187px',
-                        borderRadius: '16px',
-                        marginLeft: '15px',
-                      }}
-                    >
-                      <CardMedia
-                        sx={{ height: 200 }}
-                        image={item.img}
-                        title="item"
-                      />
-                      <CardContent>
-                        <Typography
-                          variant="h6"
-                          component="div"
-                          textAlign={'left'}
-                          fontWeight={'700'}
-                          fontSize={'16px'}
-                          fontFamily={'Satoshi'}
-                        >
-                          {item.title}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Rating
-                          name="half-rating"
-                          size="small"
-                          defaultValue={item.rating}
-                        />
-                        <Box
-                          sx={{ ml: 1, fontSize: '12px', fontFamily: 'Satoshi', fontWeight: '700' }}
-                        >
-                          {item.rating}
-                        </Box>
-                      </CardActions>
-                      <Box
-                        sx={{
-                          ml: 2,
-                        }}
-                      >
-                        <Typography
-                          variant="h6"
-                          component="div"
-                          textAlign={'left'}
-                          fontWeight={'700'}
-                          fontSize={'20px'}
-                          paddingBottom={'10px'}
-                          fontFamily={'Satoshi'}
-                        >
-                          ${item.price}
-                        </Typography>
-                      </Box>
-                    </Card>
-                  </Box>
-                );
-              })}
-            </Box>
-
-            {/* кнопка перехода в каталог товаров */}
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                width: '280px',
-                height: '52px',
-                alignContent: 'center',
-                borderRadius: '62px',
-                fontWeight: 500,
-                fontSize: '14px',
-                margin: '0 10px 50px 0',
-                fontFamily: 'Satoshi',
-              }}
-              href="#"
-              color="secondary"
-            >
-              Посмотреть все
-            </Button>
-          </Box>
-        </Container>
-
-        {/* категории */}
-
-        <Container fixed>
-          <Box
-            sx={{
-              marginBottom: '50px',
-              background: '#F2F0F1',
-              borderRadius: '16px',
-              paddingBottom: '15px',
-            }}
-          >
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                fontWeight: 700,
-                padding: '40px 0 30px 0',
-                fontFamily: 'Integral CF',
-                fontSize: '32px',
-              }}
-            >
-              КАТЕГОРИИ
-            </Typography>
-            <>
-              {arrayCategories.map((item) => {
-                return (
-                  <ImageListItem
-                    sx={{ minWidth: '260px', margin: '0 15px 15px 15px' }}
-                    key={item.id}
-                  >
-                    <Box
-                      sx={{
-                        height: '160px',
-                        textAlign: 'left',
-                        padding: '25px 0 0 15px',
-                        borderRadius: '16px',
-                        background: 'url(' + `${item.img}` + ') no-repeat',
-                        fontFamily: 'Satoshi',
-                        fontWeight: '700',
-                        fontSize: '24px',
-                        color: '#000000',
-                      }}
-                    >
-                      {item.title}
-                    </Box>
-                  </ImageListItem>
-                );
-              })}
-            </>
-          </Box>
-        </Container>
-
-        {/* отзывы */}
-
-        <Container fixed>
-          <Box
-            sx={{
-              //marginBottom: '185px',
-              borderRadius: '16px',
-              paddingBottom: '15px',
-            }}
-          >
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                fontWeight: 700,
-                padding: '40px 0 30px 0',
-                fontFamily: 'Integral CF',
-                fontSize: '32px',
-              }}
-            >
-              ОТЗЫВЫ
-            </Typography>
-            <Box
-              sx={{
-                maxWidth: 400,
-                flexGrow: 1,
-              }}
-            >
-              <MobileStepper
-                variant="text"
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                nextButton={
-                  <Button
-                    size="small"
-                    onClick={handleNext}
-                    disabled={activeStep === maxSteps - 1}
-                  >
-                    {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                  </Button>
-                }
-                backButton={
-                  <Button
-                    size="small"
-                    onClick={handleBack}
-                    disabled={activeStep === 0}
-                  >
-                    {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                  </Button>
-                }
-              />
-              <Box
+          <Container fixed>
+            <Box>
+              <Typography
+                variant="h6"
+                component="div"
                 sx={{
-                  padding: '24px 24px 12px 24px',
-                  border: '1px solid rgba(0, 0, 0, 0.1)',
-                  borderRadius: '20px',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  flexWrap: 'wrap',
-                  alignItems: 'flex-start',
-                  alignContent: 'flex-start',
-                  gap: '0px 200px',
+                  flexGrow: 1,
+                  fontWeight: 700,
+                  marginBottom: '32px',
+                  fontFamily: 'Integral CF',
+                  fontSize: '32px',
                 }}
               >
-                <Box sx={{ ml: 1, display: 'flex', marginBottom: '20px' }}>
-                  <Rating
-                    name="half-rating"
-                    size="medium"
-                    defaultValue={arrayReviews[activeStep].rating}
-                  />
-                </Box>
+                НОВИНКИ
+              </Typography>
 
-                <Box sx={{ ml: 1, display: 'flex' }}>
-                  <Typography
-                    fontFamily="Satoshi"
-                    fontWeight="700"
-                    fontSize="16px"
-                  >
-                    {arrayReviews[activeStep].author}
-                  </Typography>
-                  <IconButton
-                    aria-label="CheckCircleOutline"
-                    sx={{
-                      width: '16px',
-                      height: '16px',
-                      marginLeft: '4px',
-                      background: '#01AB31 ',
-                      color: '#FFFFFF',
-                    }}
-                  >
-                    <CheckCircleOutline />
-                  </IconButton>
-                </Box>
+              <Box
+                sx={{
+                  marginBottom: '32px',
+                  display: 'flex',
+                  alignContent: 'space-between',
+                }}
+              >
+                {arrayNewArrivals.map((item) => {
+                  return (
+                    <Box>
+                      <Card
+                        key={item.id}
+                        sx={{
+                          maxWidth: '187px',
+                          borderRadius: '16px',
+                          marginLeft: '15px',
+                        }}
+                      >
+                        <CardMedia
+                          sx={{ height: 200 }}
+                          image={item.img}
+                          title="item"
+                        />
+                        <CardContent>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            textAlign={'left'}
+                            fontWeight={'700'}
+                            fontSize={'16px'}
+                            fontFamily={'Satoshi'}
+                          >
+                            {item.title}
+                          </Typography>
+                        </CardContent>
+                        <CardActions>
+                          <Rating
+                            name="half-rating"
+                            size="small"
+                            defaultValue={item.rating}
+                          />
+                          <Box
+                            sx={{
+                              ml: 1,
+                              fontSize: '12px',
+                              fontFamily: 'Satoshi',
+                              fontWeight: '700',
+                            }}
+                          >
+                            {item.rating}
+                          </Box>
+                        </CardActions>
+                        <Box
+                          sx={{
+                            ml: 2,
+                          }}
+                        >
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            textAlign={'left'}
+                            fontWeight={'700'}
+                            fontSize={'20px'}
+                            paddingBottom={'10px'}
+                            fontFamily={'Satoshi'}
+                          >
+                            ${item.price}
+                          </Typography>
+                        </Box>
+                      </Card>
+                    </Box>
+                  );
+                })}
+              </Box>
+
+              {/* кнопка перехода в каталог новинок */}
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  width: '280px',
+                  height: '52px',
+                  alignContent: 'center',
+                  borderRadius: '62px',
+                  fontWeight: 500,
+                  fontSize: '14px',
+                  margin: '0 10px 10px 0',
+                  fontFamily: 'Satoshi',
+                }}
+                href="#"
+                color="secondary"
+              >
+                Посмотреть все
+              </Button>
+            </Box>
+          </Container>
+
+          {/* популярные товары */}
+
+          <Container fixed>
+            <Box
+              sx={{
+                margin: '30px 0 50px 0',
+                borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+              }}
+            >
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  fontWeight: 700,
+                  fontFamily: 'Integral CF',
+                  fontSize: '32px',
+                  margin: '40px 0 40px 0',
+                }}
+              >
+                ПОПУЛЯРНЫЕ ТОВАРЫ
+              </Typography>
+              <Box
+                sx={{
+                  marginBottom: '32px',
+                  display: 'flex',
+                  alignContent: 'space-between',
+                }}
+              >
+                {arrayTopSelling.map((item) => {
+                  return (
+                    <Box>
+                      <Card
+                        key={item.id}
+                        sx={{
+                          maxWidth: '187px',
+                          borderRadius: '16px',
+                          marginLeft: '15px',
+                        }}
+                      >
+                        <CardMedia
+                          sx={{ height: 200 }}
+                          image={item.img}
+                          title="item"
+                        />
+                        <CardContent>
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            textAlign={'left'}
+                            fontWeight={'700'}
+                            fontSize={'16px'}
+                            fontFamily={'Satoshi'}
+                          >
+                            {item.title}
+                          </Typography>
+                        </CardContent>
+                        <CardActions>
+                          <Rating
+                            name="half-rating"
+                            size="small"
+                            defaultValue={item.rating}
+                          />
+                          <Box
+                            sx={{
+                              ml: 1,
+                              fontSize: '12px',
+                              fontFamily: 'Satoshi',
+                              fontWeight: '700',
+                            }}
+                          >
+                            {item.rating}
+                          </Box>
+                        </CardActions>
+                        <Box
+                          sx={{
+                            ml: 2,
+                          }}
+                        >
+                          <Typography
+                            variant="h6"
+                            component="div"
+                            textAlign={'left'}
+                            fontWeight={'700'}
+                            fontSize={'20px'}
+                            paddingBottom={'10px'}
+                            fontFamily={'Satoshi'}
+                          >
+                            ${item.price}
+                          </Typography>
+                        </Box>
+                      </Card>
+                    </Box>
+                  );
+                })}
+              </Box>
+
+              {/* кнопка перехода в каталог товаров */}
+              <Button
+                variant="contained"
+                size="small"
+                sx={{
+                  width: '280px',
+                  height: '52px',
+                  alignContent: 'center',
+                  borderRadius: '62px',
+                  fontWeight: 500,
+                  fontSize: '14px',
+                  margin: '0 10px 50px 0',
+                  fontFamily: 'Satoshi',
+                }}
+                href="#"
+                color="secondary"
+              >
+                Посмотреть все
+              </Button>
+            </Box>
+          </Container>
+
+          {/* категории */}
+
+          <Container fixed>
+            <Box
+              sx={{
+                marginBottom: '50px',
+                background: '#F2F0F1',
+                borderRadius: '16px',
+                paddingBottom: '15px',
+              }}
+            >
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  fontWeight: 700,
+                  padding: '40px 0 30px 0',
+                  fontFamily: 'Integral CF',
+                  fontSize: '32px',
+                }}
+              >
+                КАТЕГОРИИ
+              </Typography>
+              <>
+                {arrayCategories.map((item) => {
+                  return (
+                    <ImageListItem
+                      sx={{ minWidth: '260px', margin: '0 15px 15px 15px' }}
+                      key={item.id}
+                    >
+                      <Box
+                        sx={{
+                          height: '160px',
+                          textAlign: 'left',
+                          padding: '25px 0 0 15px',
+                          borderRadius: '16px',
+                          background: 'url(' + `${item.img}` + ') no-repeat',
+                          fontFamily: 'Satoshi',
+                          fontWeight: '700',
+                          fontSize: '24px',
+                          color: '#000000',
+                        }}
+                      >
+                        {item.title}
+                      </Box>
+                    </ImageListItem>
+                  );
+                })}
+              </>
+            </Box>
+          </Container>
+
+          {/* отзывы */}
+
+          <Container fixed>
+            <Box
+              sx={{
+                //marginBottom: '185px',
+                borderRadius: '16px',
+                paddingBottom: '15px',
+              }}
+            >
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  fontWeight: 700,
+                  padding: '40px 0 30px 0',
+                  fontFamily: 'Integral CF',
+                  fontSize: '32px',
+                }}
+              >
+                ОТЗЫВЫ
+              </Typography>
+              <Box
+                sx={{
+                  maxWidth: 400,
+                  flexGrow: 1,
+                }}
+              >
+                <MobileStepper
+                  variant="text"
+                  steps={maxSteps}
+                  position="static"
+                  activeStep={activeStep}
+                  nextButton={
+                    <Button
+                      size="small"
+                      onClick={handleNext}
+                      disabled={activeStep === maxSteps - 1}
+                    >
+                      {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                    </Button>
+                  }
+                  backButton={
+                    <Button
+                      size="small"
+                      onClick={handleBack}
+                      disabled={activeStep === 0}
+                    >
+                      {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                    </Button>
+                  }
+                />
                 <Box
                   sx={{
-                    maxWidth: 400,
-                    width: '100%',
-                    p: 2,
-                    color: 'rgba(0, 0, 0, 0.6)',
+                    padding: '24px 24px 12px 24px',
+                    border: '1px solid rgba(0, 0, 0, 0.1)',
+                    borderRadius: '20px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    alignItems: 'flex-start',
+                    alignContent: 'flex-start',
+                    gap: '0px 200px',
                   }}
                 >
-                  <Typography
-                    fontFamily="Satoshi"
-                    fontWeight="400"
-                    fontSize="14px"
-                    textAlign={'start'}
+                  <Box sx={{ ml: 1, display: 'flex', marginBottom: '20px' }}>
+                    <Rating
+                      name="half-rating"
+                      size="medium"
+                      defaultValue={arrayReviews[activeStep].rating}
+                    />
+                  </Box>
+
+                  <Box sx={{ ml: 1, display: 'flex' }}>
+                    <Typography
+                      fontFamily="Satoshi"
+                      fontWeight="700"
+                      fontSize="16px"
+                    >
+                      {arrayReviews[activeStep].author}
+                    </Typography>
+                    <IconButton
+                      aria-label="CheckCircleOutline"
+                      sx={{
+                        width: '16px',
+                        height: '16px',
+                        marginLeft: '4px',
+                        background: '#01AB31 ',
+                        color: '#FFFFFF',
+                      }}
+                    >
+                      <CheckCircleOutline />
+                    </IconButton>
+                  </Box>
+                  <Box
+                    sx={{
+                      maxWidth: 400,
+                      width: '100%',
+                      p: 2,
+                      color: 'rgba(0, 0, 0, 0.6)',
+                    }}
                   >
-                    {arrayReviews[activeStep].description}
-                  </Typography>
+                    <Typography
+                      fontFamily="Satoshi"
+                      fontWeight="400"
+                      fontSize="14px"
+                      textAlign={'start'}
+                    >
+                      {arrayReviews[activeStep].description}
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             </Box>
-          </Box>
-        </Container>
+          </Container>
+        </Box>
       </Box>
     </ThemeProvider>
   );

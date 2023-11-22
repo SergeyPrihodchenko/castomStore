@@ -89,7 +89,6 @@ export default function MainAdminPage() {
       <Container fixed>
         <Box
           sx={{
-            minWidth: '320px',
             margin: '20px 0 50px 0',
             display: 'flex',
             alignItems: 'center',

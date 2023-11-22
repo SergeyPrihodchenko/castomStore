@@ -1,5 +1,4 @@
 import * as React from 'react';
-import TableHead from '@mui/material/TableHead';
 import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -14,9 +13,11 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import * as locales from '@mui/material/locale';
+import Typography from '@mui/material/Typography';
 
 interface TablePaginationActionsProps {
   count: number;
@@ -52,62 +53,92 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === 'rtl' ? (
+          <LastPageIcon sx={{ fontSize: '30px' }} />
+        ) : (
+          <FirstPageIcon sx={{ fontSize: '30px' }} />
+        )}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowRight sx={{ fontSize: '30px' }} />
+        ) : (
+          <KeyboardArrowLeft sx={{ fontSize: '30px' }} />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowLeft sx={{ fontSize: '30px' }} />
+        ) : (
+          <KeyboardArrowRight sx={{ fontSize: '30px' }} />
+        )}
       </IconButton>
       <IconButton
         onClick={handleLastPageButtonClick}
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === 'rtl' ? (
+          <FirstPageIcon sx={{ fontSize: '30px' }} />
+        ) : (
+          <LastPageIcon sx={{ fontSize: '30px' }} />
+        )}
       </IconButton>
     </Box>
   );
 }
 
-const arrayProducts = [
+const rows = [
   {
     id: 1,
-    title: 'Рубашка',
-    price: '120',
-    quantity: '5',
+    title: 'Одежда',
   },
   {
     id: 2,
-    title: 'Куртка',
-    price: '220',
-    quantity: '6',
+    title: 'Обувь',
   },
   {
     id: 3,
-    title: 'Платье',
-    price: '140',
-    quantity: '2',
+    title: 'Головные уборы',
+  },
+  {
+    id: 4,
+    title: 'Акссесуары',
+  },
+  {
+    id: 5,
+    title: 'Опять Одежда',
+  },
+  {
+    id: 6,
+    title: 'Опять Обувь',
+  },
+  {
+    id: 7,
+    title: 'Опять Головные уборы',
+  },
+  {
+    id: 8,
+    title: 'Опять Акссесуары',
   },
 ];
 
 type SupportedLocales = keyof typeof locales;
 
-export default function ProductTable() {
+export default function CatalogsTableDesc() {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - arrayProducts.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -127,48 +158,38 @@ export default function ProductTable() {
   const themeWithLocale = React.useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
 
   return (
-    <Box sx={{ minWidth: '320px' }}>
-      <ThemeProvider theme={themeWithLocale}>
-        <TableContainer component={Paper}>
-          <Table
-            size="small"
-            aria-label="a product table"
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell>Наименование</TableCell>
-                <TableCell align="left">Цена</TableCell>
-                <TableCell align="left">Кол</TableCell>
-                <TableCell align="left">Изм</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(rowsPerPage > 0
-                ? arrayProducts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                : arrayProducts
-              ).map((arrayProducts) => (
-                <TableRow key={arrayProducts.title}>
-                  <TableCell
-                    component="th"
-                    scope="row"
+    <ThemeProvider theme={themeWithLocale}>
+      <TableContainer component={Paper}>
+        <Table
+          sx={{ minWidth: 290 }}
+          aria-label="custom pagination table"
+        >
+          <TableBody>
+            {(rowsPerPage > 0
+              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : rows
+            ).map((row) => (
+              <TableRow key={row.title}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{ fontSize: '20px' }}
+                >
+                  {row.title}
+                </TableCell>
+                <TableCell
+                  style={{ width: 10 }}
+                  align="right"
+                >
+                  <IconButton
+                    edge="end"
+                    aria-label="edit"
+                    href="#"
                   >
-                    {arrayProducts.title}
-                  </TableCell>
-                  <TableCell align="right">{arrayProducts.price}</TableCell>
-                  <TableCell align="right">{arrayProducts.quantity}</TableCell>
-                  <TableCell
-                    style={{ width: 10 }}
-                    align="right"
-                  >
-                    <IconButton
-                      edge="end"
-                      aria-label="edit"
-                      href="#"
-                    >
-                      <EditIcon />
-                    </IconButton>
-                  </TableCell>
-                  {/* <TableCell
+                    <EditIcon />
+                  </IconButton>
+                </TableCell>
+                <TableCell
                   style={{ width: 10 }}
                   align="right"
                 >
@@ -179,33 +200,40 @@ export default function ProductTable() {
                   >
                     <DeleteIcon />
                   </IconButton>
-                </TableCell> */}
-                </TableRow>
-              ))}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[10, 25, 50, 100, { label: 'Все', value: -1 }]}
-                  colSpan={4}
-                  count={arrayProducts.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  labelRowsPerPage={''}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  ActionsComponent={TablePaginationActions}
-                />
+                </TableCell>
               </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
-      </ThemeProvider>
-    </Box>
+            ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                labelRowsPerPage={
+                  <Typography
+                    fontFamily="Integral CF"
+                    fontSize="20px"
+                  >
+                    Всего товаров на странице
+                  </Typography>
+                }
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+                sx={{ fontSize: '20px' }}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+    </ThemeProvider>
   );
 }

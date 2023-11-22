@@ -76,3 +76,7 @@ Route::get('/CatalogPage', function () {
 Route::get('/CategoryPage', function () {
     return Inertia::render('AdminPage/CategoryPage/CategoryPage');
 })->middleware(['auth', 'verified'])->name('CategoryPage');
+
+Route::get('/ProductPage', function () {
+    return Inertia::render('AdminPage/ProductPage/ProductPage');
+})->middleware(['auth', 'verified'])->name('ProductPage');
