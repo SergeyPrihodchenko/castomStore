@@ -15,7 +15,7 @@ export default function AuthenticationTwoFactor() {
 
       <Container fixed>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Box sx={{ marginTop: '20px' }}>
+          <Box sx={{ marginTop: '20px', msxWidth: '800px', height: '500px' }}>
             <Paper
               elevation={3}
               sx={{
@@ -100,8 +100,8 @@ export default function AuthenticationTwoFactor() {
                     margin: '12px 10px 0 0',
                     fontFamily: 'Satoshi',
                     paddingTop: '10px',
+                    bgcolor: '#4caf50',
                   }}
-                  color="warning"
                 >
                   Авторизоваться
                 </Button>
