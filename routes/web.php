@@ -37,15 +37,20 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-require __DIR__ . '/Admin/MainPage/mainPage.php';
+require __DIR__ . '/Admin/mainPage.php';
 
-require __DIR__ . '/Admin/UsersPage/usersPage.php';
-require __DIR__ . '/Admin/ProductsPage/productsPage.php';
+require __DIR__ . '/Admin/usersPage.php';
 
-require __DIR__ . '/Admin/CatalogPage/catalogPage.php';
+require __DIR__ . '/Admin/catalogPage.php';
 
-require __DIR__ . '/Admin/ProductsPage/productsPage.php';
-require __DIR__ . '/Admin/CatalogPage/catalogPage.php';
+require __DIR__ . '/Admin/productsPage.php';
+
+
+
+
+
+
+
 
 //test
 Route::get('/editShopDetails', function () {
@@ -63,3 +68,15 @@ Route::get('/EditShopProduct', function () {
 Route::get('/AddShopProduct', function () {
     return Inertia::render('AdminPage/Form/AddShopProductPage');
 })->middleware(['auth', 'verified'])->name('AddShopProduct');
+
+Route::get('/CatalogPage', function () {
+    return Inertia::render('AdminPage/CatalogPage/CatalogPage');
+})->middleware(['auth', 'verified'])->name('CatalogPage');
+
+Route::get('/CategoryPage', function () {
+    return Inertia::render('AdminPage/CategoryPage/CategoryPage');
+})->middleware(['auth', 'verified'])->name('CategoryPage');
+
+Route::get('/ProductPage', function () {
+    return Inertia::render('AdminPage/ProductPage/ProductPage');
+})->middleware(['auth', 'verified'])->name('ProductPage');

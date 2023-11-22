@@ -16,3 +16,5 @@ Route::post('admin/catalogs/updateCatalogForCategory', [CatalogsPageController::
 
 Route::get('admin/catalogs/deleteCatalog/{id}', [CatalogsPageController::class, 'deleteCatalog'])->name('deleteCatalog');
 Route::get('admin/catalogs/deleteCategory/{id}', [CatalogsPageController::class, 'deleteCategory'])->name('deleteCategory');
+
+Route::get('admin/catalogs/acardion', [CatalogsPageController::class, 'indexAcardion'])->name('catalogs.acardion');

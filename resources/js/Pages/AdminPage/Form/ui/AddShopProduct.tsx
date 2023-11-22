@@ -93,105 +93,136 @@ export default function EditShopDetails() {
   return (
     <form>
       <ThemeProvider theme={theme}>
-        <Box
-          component="form"
-          sx={{
-            minWidth: '390px',
-            marginLeft: '40px',
-          }}
-        >
-          <Container fixed>
-            <Box
-              component="form"
-              sx={{
-                marginTop: '20px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                '& > :not(style)': { m: 1, width: '25ch' },
-              }}
-              noValidate
-              autoComplete="off"
-              alignContent={'center'}
-            >
-              <Typography variant="h5">Добавить товар</Typography>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                    Каталог
-                  </InputLabel>
-                  <NativeSelect
-                    defaultValue={10}
-                    inputProps={{
-                      name: 'catalog',
-                      id: 'uncontrolled-native',
-                    }}
-                  >
-                    {ArrayСatalog.map((el) => {
-                      return <option value={10}>{el.title}</option>;
-                    })}
-                  </NativeSelect>
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                    Категория
-                  </InputLabel>
-                  <NativeSelect
-                    defaultValue={10}
-                    inputProps={{
-                      name: 'social',
-                      id: 'uncontrolled-native',
-                    }}
-                  >
-                    {ArrayCategory.map((el) => {
-                      return <option value={10}>{el.title}</option>;
-                    })}
-                  </NativeSelect>
-                </FormControl>
-              </Box>
-
-              <TextField
-                id="standard-basic"
-                label="Наименование"
-                variant="standard"
-              />
-              <TextField
-                id="standard-basic"
-                label="Подробное описание"
-                variant="standard"
-              />
-              <TextField id="standard-basic" label="Цена" variant="standard" />
-              <TextField
-                id="standard-basic"
-                label="Количество"
-                variant="standard"
-              />
-              <Button
-                component="label"
-                variant="text"
-                color="primary"
-                size="small"
-                startIcon={<CloudUploadIcon />}
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box
+            component="form"
+            sx={{
+              minWidth: '320px',
+              marginLeft: '10px',
+            }}
+          >
+            <Container fixed>
+              <Box
+                component="form"
+                sx={{
+                  marginTop: '20px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  '& > :not(style)': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+                alignContent={'center'}
               >
-                Загрузить фото
-                <VisuallyHiddenInput type="file" />
+                <Typography variant="h5">Добавить товар</Typography>
+                <Box>
+                  <FormControl fullWidth>
+                    <InputLabel
+                      variant="standard"
+                      htmlFor="uncontrolled-native"
+                    >
+                      Каталог
+                    </InputLabel>
+                    <NativeSelect
+                      defaultValue={10}
+                      inputProps={{
+                        name: 'catalog',
+                        id: 'uncontrolled-native',
+                      }}
+                    >
+                      {ArrayСatalog.map((el) => {
+                        return (
+                          <option
+                            value={10}
+                            key={el.id}
+                          >
+                            {el.title}
+                          </option>
+                        );
+                      })}
+                    </NativeSelect>
+                  </FormControl>
+                </Box>
+                <Box>
+                  <FormControl fullWidth>
+                    <InputLabel
+                      variant="standard"
+                      htmlFor="uncontrolled-native"
+                    >
+                      Категория
+                    </InputLabel>
+                    <NativeSelect
+                      defaultValue={10}
+                      inputProps={{
+                        name: 'social',
+                        id: 'uncontrolled-native',
+                      }}
+                    >
+                      {ArrayCategory.map((el) => {
+                        return (
+                          <option
+                            value={10}
+                            key={el.id}
+                          >
+                            {el.title}
+                          </option>
+                        );
+                      })}
+                    </NativeSelect>
+                  </FormControl>
+                </Box>
+
+                <TextField
+                  id="standard-basic"
+                  label="Наименование"
+                  variant="standard"
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Подробное описание"
+                  variant="standard"
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Цена"
+                  variant="standard"
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Количество"
+                  variant="standard"
+                />
+                <Button
+                  component="label"
+                  variant="text"
+                  color="primary"
+                  size="small"
+                  startIcon={<CloudUploadIcon />}
+                >
+                  Загрузить фото
+                  <VisuallyHiddenInput type="file" />
+                </Button>
+              </Box>
+              <Button
+                variant="contained"
+                size="small"
+                href="#"
+                color="secondary"
+                sx={{ margin: '20px' }}
+              >
+                Сохранить
               </Button>
-            </Box>
-            <Button
-              variant="contained"
-              size="small"
-              href="#"
-              color="secondary"
-              sx={{ margin: '20px' }}
-            >
-              Сохранить
-            </Button>
-            <Button variant="contained" size="small" href="#" color="secondary">
-              Удалить
-            </Button>
-          </Container>
+              <Button
+                variant="contained"
+                size="small"
+                href="#"
+                color="secondary"
+              >
+                Удалить
+              </Button>
+            </Container>
+          </Box>
         </Box>
       </ThemeProvider>
     </form>

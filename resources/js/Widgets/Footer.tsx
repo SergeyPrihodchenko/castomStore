@@ -21,18 +21,20 @@ import {
 
 let today = new Date();
 let year = today.getFullYear();
+
 export default function Footer() {
   return (
     <React.Fragment>
       <CssBaseline />
-
       <Box
         sx={{
-          minWidth: '390px',
+          minWidth: '320px',
           backgroundColor: '#F0F0F0',
-          paddingLeft: '20px',
+          padding: '145px 0 0 20px',
         }}
       >
+        {/* о компании */}
+
         <Container fixed>
           <Link href="/">
             <Typography
@@ -42,7 +44,6 @@ export default function Footer() {
                 flexGrow: 1,
                 fontWeight: 900,
                 mr: 4,
-                paddingTop: '165px',
               }}
             >
               SHOP.COM
@@ -57,9 +58,11 @@ export default function Footer() {
               alignContent: 'left',
             }}
           >
-            У нас есть сайт, который вы можете настроить по своему усмотрению и
-            начать или расширить свою деятельность.
+            У нас есть сайт, который вы можете настроить по своему усмотрению и начать или расширить
+            свою деятельность.
           </Typography>
+
+          {/* соцсети */}
 
           <IconButton
             href="/"
@@ -132,6 +135,9 @@ export default function Footer() {
             >
               Shop.com © {year}, Все права защищены
             </Typography>
+
+            {/* платежные системы */}
+
             <IconButton
               href="/"
               sx={{
