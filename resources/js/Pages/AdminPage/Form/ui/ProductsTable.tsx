@@ -127,7 +127,7 @@ export default function ProductTable() {
   const themeWithLocale = React.useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
 
   return (
-    <Box sx={{ minWidth: '320px' }}>
+    <Box sx={{ minWidth: '320px', marginTop: '10px' }}>
       <ThemeProvider theme={themeWithLocale}>
         <TableContainer component={Paper}>
           <Table

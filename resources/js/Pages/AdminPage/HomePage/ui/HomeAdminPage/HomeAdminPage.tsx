@@ -20,6 +20,8 @@ import {
 } from '@/Features/Admin/CatalogsPanel/model/reducers/query/rtkCatalogs';
 import { useState } from 'react';
 
+import Search from '@/Shared/ui/SearchProduct';
+
 const arrayCompany = [
   {
     id: 1,
@@ -56,20 +58,19 @@ export default function MainAdminPage() {
   const [catalogID, setCatalogID] = useState(0);
 
   const textValidate = (str: string) => {
-    const newStr = str.replace(/[^A-zА-я^ ]/gm, '')
-    return newStr
-  }
+    const newStr = str.replace(/[^A-zА-я^ ]/gm, '');
+    return newStr;
+  };
 
   const handleChangeCatalog = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const value = textValidate(e.target.value)
-    setCatalogValue(value)
-  }
+    const value = textValidate(e.target.value);
+    setCatalogValue(value);
+  };
 
   const handleChangeCategory = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const value = textValidate(e.target.value)
-    setCategoryValue(value)
-  }
-
+    const value = textValidate(e.target.value);
+    setCategoryValue(value);
+  };
 
   const [setCatalog, {}] = useSetCatalogMutation();
   const [setCategory, {}] = useSetCategoryMutation();
@@ -275,7 +276,9 @@ export default function MainAdminPage() {
               <Typography>Товары</Typography>
             </AccordionSummary>
             <AccordionDetails>
+              <Search />
               <ProductTable />
+
               <Button
                 sx={{ marginTop: '20px' }}
                 variant="contained"

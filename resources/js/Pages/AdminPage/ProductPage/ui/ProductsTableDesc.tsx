@@ -155,7 +155,10 @@ export default function ProductTableDesc() {
 
   return (
     <ThemeProvider theme={themeWithLocale}>
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        sx={{ margin: '20px 0 50px 0' }}
+      >
         <Table aria-label="a product table">
           <TableHead>
             <TableRow>
