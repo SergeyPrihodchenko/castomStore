@@ -1,11 +1,12 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import MainLayout from '@/Layouts/MainLayout';
 import { PageProps } from '@/types';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ProductTableDesc from './ui/ProductsTableDesc';
+import ButtonAddProduct from './ui/ButtonAddProduct';
+import Search from '@/Shared/ui/SearchProduct';
 
 const theme = createTheme({
   palette: {
@@ -18,7 +19,7 @@ const theme = createTheme({
 
 export default function ProductPage({ auth }: PageProps) {
   return (
-    <AuthenticatedLayout user={auth.user}>
+    <MainLayout user={auth.user}>
       <ThemeProvider theme={theme}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Container fixed>
@@ -32,19 +33,13 @@ export default function ProductPage({ auth }: PageProps) {
               Товары
             </Typography>
 
-            <Button
-              sx={{ margin: '20px 0 20px 25px', fontSize: '20px' }}
-              variant="contained"
-              size="medium"
-              href={route('AddShopProduct')}
-              color="secondary"
-            >
-              Добавить новый товар
-            </Button>
+            <ButtonAddProduct />
+            <Search />
+
             <ProductTableDesc />
           </Container>
         </Box>
       </ThemeProvider>
-    </AuthenticatedLayout>
+    </MainLayout>
   );
 }
