@@ -8,6 +8,10 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
@@ -120,30 +124,6 @@ const ArrayCategory = [
     id: 6,
     title: 'Детская обувь',
   },
-  {
-    id: 7,
-    title: 'Мужская одежда',
-  },
-  {
-    id: 8,
-    title: 'Женская одежда',
-  },
-  {
-    id: 9,
-    title: 'Детская одежда',
-  },
-  {
-    id: 10,
-    title: 'Мужская обувь',
-  },
-  {
-    id: 11,
-    title: 'Женская обувь',
-  },
-  {
-    id: 12,
-    title: 'Детская обувь',
-  },
 ];
 
 type SupportedLocales = keyof typeof locales;
@@ -206,71 +186,80 @@ export default function CategoriesTable({ catalogs }: any) {
           </FormControl>
         </Box>
 
-          <Table
-            sx={{ minWidth: 290 }}
-            aria-label="custom pagination table"
-          >
-            <TableBody>
-              {(rowsPerPage > 0
-                ? ArrayCategory.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                : ArrayCategory
-              ).map((ArrayCategory) => (
-                <TableRow key={ArrayCategory.title}>
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    sx={{ fontSize: '20px' }}
+        <Table
+          sx={{ minWidth: 290 }}
+          aria-label="custom pagination table"
+        >
+          <TableBody>
+            {(rowsPerPage > 0
+              ? ArrayCategory.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : ArrayCategory
+            ).map((ArrayCategory) => (
+              <TableRow key={ArrayCategory.title}>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{ fontSize: '20px' }}
+                >
+                  {ArrayCategory.title}
+                </TableCell>
+                <TableCell
+                  style={{ width: 10 }}
+                  align="right"
+                >
+                  <IconButton
+                    edge="end"
+                    aria-label="edit"
+                    href="#"
                   >
-                    {ArrayCategory.title}
-                  </TableCell>
-                  <TableCell
-                    style={{ width: 10 }}
-                    align="right"
+                    <EditIcon />
+                  </IconButton>
+                </TableCell>
+                <TableCell
+                  style={{ width: 10 }}
+                  align="right"
+                >
+                  <IconButton
+                    edge="end"
+                    aria-label="edit"
+                    href="#"
                   >
-                    <IconButton
-                      edge="end"
-                      aria-label="edit"
-                      href="#"
-                    >
-                      <EditIcon />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell
-                    style={{ width: 10 }}
-                    align="right"
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={ArrayCategory.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                labelRowsPerPage={
+                  <Typography
+                    fontFamily="Integral CF"
+                    fontSize="20px"
                   >
-                    <IconButton
-                      edge="end"
-                      aria-label="edit"
-                      href="#"
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={ArrayCategory.length}
-          rowsPerPage={rowsPerPage}
-          labelRowsPerPage={
-            <Typography
-              fontFamily="Integral CF"
-              fontSize="20px"
-            >
-              Всего товаров на странице
-            </Typography>
-          }
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-          sx={{ fontSize: '20px' }}
-        />
-      </Paper>
+                    Всего товаров на странице
+                  </Typography>
+                }
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+                sx={{ fontSize: '20px' }}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </TableContainer>
     </ThemeProvider>
   );
 }
