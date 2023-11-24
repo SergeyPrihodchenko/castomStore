@@ -1,5 +1,5 @@
-import * as React from 'react';
-
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -9,8 +9,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -19,6 +17,7 @@ import { IconButton } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
 import NavLink from '@/Shared/ui/NavLink';
+import { useState } from 'react';
 
 //меняем цвет header
 const theme = createTheme({
@@ -31,9 +30,9 @@ const theme = createTheme({
 
 export default function Header() {
   //открыть и закрыть основное меню
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -41,9 +40,9 @@ export default function Header() {
   };
 
   //открыть и закрыть меню иконки профиля
-  const [anchorElProfile, setAnchorElProfile] = React.useState<null | HTMLElement>(null);
+  const [anchorElProfile, setAnchorElProfile] = useState<null | HTMLElement>(null);
   const openProfile = Boolean(anchorElProfile);
-  const handleClickProfile = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClickProfile = (event: MouseEvent<HTMLElement>) => {
     setAnchorElProfile(event.currentTarget);
   };
   const handleCloseProfile = () => {
@@ -51,9 +50,9 @@ export default function Header() {
   };
 
   //открыть и закрыть меню иконки настройик
-  const [anchorElSettings, setAnchorElSettings] = React.useState<null | HTMLElement>(null);
+  const [anchorElSettings, setAnchorElSettings] = useState<null | HTMLElement>(null);
   const openSettings = Boolean(anchorElSettings);
-  const handleClickSettings = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClickSettings = (event: MouseEvent<HTMLElement>) => {
     setAnchorElSettings(event.currentTarget);
   };
   const handleCloseSettings = () => {
@@ -258,20 +257,18 @@ export default function Header() {
                   >
                     <MenuItem>Настройка страниц</MenuItem>
                   </Link>
-                  <Link
-                    href={route('CatalogPage')}
-                    underline="none"
-                    onClick={handleCloseSettings}
+                  <NavLink
+                    href={route('catalogs')}
+                    active={route().current('catalogs.*')}
                   >
                     <MenuItem>Каталоги</MenuItem>
-                  </Link>
-                  <Link
-                    href={route('CategoryPage')}
-                    underline="none"
-                    onClick={handleCloseSettings}
+                  </NavLink>
+                  <NavLink
+                    href={route('categories')}
+                    active={route().current('categories.*')}
                   >
                     <MenuItem>Категории</MenuItem>
-                  </Link>
+                  </NavLink>
                   <Link
                     href={route('ProductPage')}
                     underline="none"

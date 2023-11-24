@@ -43,6 +43,8 @@ require __DIR__ . '/Admin/usersPage.php';
 
 require __DIR__ . '/Admin/catalogPage.php';
 
+require __DIR__ . '/Admin/categoryPage.php';
+
 require __DIR__ . '/Admin/productsPage.php';
 
 

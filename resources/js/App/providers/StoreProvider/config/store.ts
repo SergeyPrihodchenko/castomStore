@@ -1,10 +1,10 @@
 import { type ReducersMapObject, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
 import { addMainPageSettingsReducer } from '@/Features/Admin/AddMainPageSettings';
-import CatalogsSlice from '@/Features/Admin/CatalogsPanel/model/reducers/slices/CatalogsSlice';
-import { queryCatalogs } from '@/Features/Admin/CatalogsPanel/model/reducers/query/rtkCatalogs';
+import { queryCatalogs } from '@/entities/Catalog/model/query/rtkCatalog';
 import { queryMainPageSettings } from '@/Features/Admin/AddMainPageSettings/model/services/query/rtkMainPageSettings';
 import { productApi } from '@/entities/Product/model/slice/productApi';
+import { queryCategory } from '@/entities/Category/model/query/rtkCategory';
 
 //функция создание стора с необязательным параметром, который
 // передаем в поле preloadedState (нужно для тестирования)
@@ -12,7 +12,7 @@ export function createReduxStore(initialState?: StateSchema) {
   const rootReducers: ReducersMapObject<StateSchema> = {
     // addMainPageSettings: addMainPageSettingsReducer,
     // MainPageSettings: addMainPageSettingsReducer,
-    CatalogsPanel: CatalogsSlice,
+    [queryCategory.reducerPath]: queryCategory.reducer,
     [queryCatalogs.reducerPath]: queryCatalogs.reducer,
     [queryMainPageSettings.reducerPath]: queryMainPageSettings.reducer,
     [productApi.reducerPath]: productApi.reducer,
@@ -24,6 +24,7 @@ export function createReduxStore(initialState?: StateSchema) {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
         queryCatalogs.middleware,
+        queryCategory.middleware,
         productApi.middleware,
         queryMainPageSettings.middleware,
       ]),

@@ -12,7 +12,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {
   useGetCatalogsQuery,
   useGetCategoriesQuery,
-} from '../../CatalogsPanel/model/reducers/query/rtkCatalogs';
+} from '../../CatalogsAccordion/model/reducers/query/rtkCatalogs';
 import { useCreateProductMutation } from '@/entities/Product/model/slice/productApi';
 import { useEffect, useState } from 'react';
 import { ProductSchema } from '../model/types/product';

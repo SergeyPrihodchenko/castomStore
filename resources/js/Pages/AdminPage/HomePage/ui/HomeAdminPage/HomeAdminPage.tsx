@@ -12,12 +12,10 @@ import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
 import TextField from '@mui/material/TextField';
 import AddCircle from '@mui/icons-material/AddCircle';
 import IconButton from '@mui/material/IconButton';
-import Categories from '@/Features/Admin/CatalogsPanel/ui/Categories';
-import Catalogs from '@/Features/Admin/CatalogsPanel/ui/Catalogs';
-import {
-  useSetCatalogMutation,
-  useSetCategoryMutation,
-} from '@/Features/Admin/CatalogsPanel/model/reducers/query/rtkCatalogs';
+import Categories from '@/Features/Admin/CategoriesAccordion/ui/Categories';
+import Catalogs from '@/Features/Admin/CatalogsAccordion/ui/Catalogs';
+import { useSetCatalogMutation } from '@/entities/Catalog/model/query/rtkCatalog';
+import { useSetCategoryMutation } from '@/entities/Category/model/query/rtkCategory';
 import { useState } from 'react';
 
 import Search from '@/Shared/ui/SearchProduct';

@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
-import { useDeleteCatalogMutation, useGetCatalogsQuery } from '../model/reducers/query/rtkCatalogs';
+import { useDeleteCatalogMutation, useGetCatalogsQuery } from '@/entities/Catalog/model/query/rtkCatalog';
 
 export default function Catalogs() {
   const { data: catalogs, isSuccess } = useGetCatalogsQuery('');

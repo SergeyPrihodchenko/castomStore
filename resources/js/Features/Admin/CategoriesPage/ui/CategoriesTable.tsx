@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -17,29 +16,84 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import * as locales from '@mui/material/locale';
 import Typography from '@mui/material/Typography';
+import { useMemo, useState } from 'react';
 
-const ArrayСatalog = [
-  {
-    id: 1,
-    title: 'Не выбрано',
-  },
-  {
-    id: 2,
-    title: 'Одежда',
-  },
-  {
-    id: 3,
-    title: 'Обувь',
-  },
-  {
-    id: 4,
-    title: 'Головные уборы',
-  },
-  {
-    id: 5,
-    title: 'Акссесуары',
-  },
-];
+interface TablePaginationActionsProps {
+  count: number;
+  page: number;
+  rowsPerPage: number;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement>, newPage: number) => void;
+}
+
+function TablePaginationActions(props: TablePaginationActionsProps) {
+  const theme = useTheme();
+  const { count, page, rowsPerPage, onPageChange } = props;
+
+  const handleFirstPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    onPageChange(event, 0);
+  };
+
+  const handleBackButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    onPageChange(event, page - 1);
+  };
+
+  const handleNextButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    onPageChange(event, page + 1);
+  };
+
+  const handleLastPageButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+  };
+
+  return (
+    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+      <IconButton
+        onClick={handleFirstPageButtonClick}
+        disabled={page === 0}
+        aria-label="first page"
+      >
+        {theme.direction === 'rtl' ? (
+          <LastPageIcon sx={{ fontSize: '30px' }} />
+        ) : (
+          <FirstPageIcon sx={{ fontSize: '30px' }} />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleBackButtonClick}
+        disabled={page === 0}
+        aria-label="previous page"
+      >
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowRight sx={{ fontSize: '30px' }} />
+        ) : (
+          <KeyboardArrowLeft sx={{ fontSize: '30px' }} />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleNextButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="next page"
+      >
+        {theme.direction === 'rtl' ? (
+          <KeyboardArrowLeft sx={{ fontSize: '30px' }} />
+        ) : (
+          <KeyboardArrowRight sx={{ fontSize: '30px' }} />
+        )}
+      </IconButton>
+      <IconButton
+        onClick={handleLastPageButtonClick}
+        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        aria-label="last page"
+      >
+        {theme.direction === 'rtl' ? (
+          <FirstPageIcon sx={{ fontSize: '30px' }} />
+        ) : (
+          <LastPageIcon sx={{ fontSize: '30px' }} />
+        )}
+      </IconButton>
+    </Box>
+  );
+}
 
 const ArrayCategory = [
   {
@@ -94,11 +148,12 @@ const ArrayCategory = [
 
 type SupportedLocales = keyof typeof locales;
 
-export default function CategoriesTableDesc() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+export default function CategoriesTable({ catalogs }: any) {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  // Avoid a layout jump when reaching the last page with empty rows.
+  const [categories, setCategories] = useState([]);
+
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - ArrayCategory.length) : 0;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
@@ -112,45 +167,44 @@ export default function CategoriesTableDesc() {
     setPage(0);
   };
 
-  const [locale] = React.useState<SupportedLocales>('ruRU');
+  const [locale] = useState<SupportedLocales>('ruRU');
 
   const theme = useTheme();
 
-  const themeWithLocale = React.useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
+  const themeWithLocale = useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
 
   return (
     <ThemeProvider theme={themeWithLocale}>
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Box sx={{ margin: '5px' }}>
-            <FormControl fullWidth>
-              <InputLabel
-                variant="standard"
-                htmlFor="uncontrolled-native"
-                sx={{ fontFamily: 'Integral CF', fontSize: '24px' }}
-              >
-                Каталог
-              </InputLabel>
-              <NativeSelect
-                defaultValue={10}
-                inputProps={{
-                  name: 'catalog',
-                  id: 'uncontrolled-native',
-                }}
-              >
-                {ArrayСatalog.map((el) => {
-                  return (
-                    <option
-                      value={10}
-                      key={el.id}
-                    >
-                      {el.title}
-                    </option>
-                  );
-                })}
-              </NativeSelect>
-            </FormControl>
-          </Box>
+      <TableContainer component={Paper}>
+        <Box sx={{ margin: '5px' }}>
+          <FormControl fullWidth>
+            <InputLabel
+              variant="standard"
+              htmlFor="uncontrolled-native"
+              sx={{ fontFamily: 'Integral CF', fontSize: '24px' }}
+            >
+              Каталог
+            </InputLabel>
+            <NativeSelect
+              defaultValue={10}
+              inputProps={{
+                name: 'catalog',
+                id: 'uncontrolled-native',
+              }}
+            >
+              {catalogs.map((catalog: any) => {
+                return (
+                  <option
+                    value={10}
+                    key={catalog.id}
+                  >
+                    {catalog.title}
+                  </option>
+                );
+              })}
+            </NativeSelect>
+          </FormControl>
+        </Box>
 
           <Table
             sx={{ minWidth: 290 }}
