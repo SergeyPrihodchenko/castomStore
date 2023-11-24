@@ -10,7 +10,7 @@
 
 <body style="margin: 0; padding: 0">
     <h4>Тестовое письмо</h4>
-    <table style="padding: 0 0 100px 300px;">
+    <table {{-- style="padding: 0 0 100px 300px;" --}}>
         <tbody>
             <tr>
                 <td>
