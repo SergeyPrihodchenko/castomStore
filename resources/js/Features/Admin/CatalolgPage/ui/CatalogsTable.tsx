@@ -96,47 +96,11 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-const rows = [
-  {
-    id: 1,
-    title: 'Одежда',
-  },
-  {
-    id: 2,
-    title: 'Обувь',
-  },
-  {
-    id: 3,
-    title: 'Головные уборы',
-  },
-  {
-    id: 4,
-    title: 'Акссесуары',
-  },
-  {
-    id: 5,
-    title: 'Опять Одежда',
-  },
-  {
-    id: 6,
-    title: 'Опять Обувь',
-  },
-  {
-    id: 7,
-    title: 'Опять Головные уборы',
-  },
-  {
-    id: 8,
-    title: 'Опять Акссесуары',
-  },
-];
-
 type SupportedLocales = keyof typeof locales;
 
-export default function CatalogsTable({catalogs}) {
-
+export default function CatalogsTable({ catalogs }) {
   console.log(catalogs);
-  
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 

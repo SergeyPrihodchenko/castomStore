@@ -4,10 +4,10 @@ import { PageProps } from '@/types';
 
 export default function CatalogPage({ auth, catalogs }: PageProps) {
   console.log(catalogs);
-  
+
   return (
     <MainLayout user={auth.user}>
-        <Catalogs catalogs={catalogs}/>
+      <Catalogs catalogs={catalogs} />
     </MainLayout>
   );
 }

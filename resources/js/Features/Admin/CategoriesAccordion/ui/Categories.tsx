@@ -12,11 +12,11 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import { useGetCatalogsQuery } from '@/entities/Catalog/model/query/rtkCatalog';
-import { 
+import {
   useDeleteCategoryMutation,
-  useGetCategoriesQuery, 
+  useGetCategoriesQuery,
 } from '@/entities/Category/model/query/rtkCategory';
-  
+
 import { useState } from 'react';
 
 export default function Categories({ getCatalogID }: any) {
@@ -24,7 +24,6 @@ export default function Categories({ getCatalogID }: any) {
     setCatalogID(Number(e.target.value));
     getCatalogID(Number(e.target.value));
   };
-
 
   const [page] = useState<number>(0);
   const [rowsPerPage] = useState(5);
@@ -35,13 +34,13 @@ export default function Categories({ getCatalogID }: any) {
   const { data: categories, isSuccess: isSuccessCategories } = useGetCategoriesQuery(catalogId);
   const [deleteCategory, {}] = useDeleteCategoryMutation();
   console.log(catalogs, categories);
-  
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0
       ? Math.max(0, (1 + page) * rowsPerPage - (isSuccessCategories ? categories.length : 0))
       : 0;
-  
+
   return (
     <TableContainer component={Paper}>
       <Box sx={{ margin: '5px' }}>

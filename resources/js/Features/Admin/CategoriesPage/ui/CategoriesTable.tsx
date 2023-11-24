@@ -128,7 +128,7 @@ const ArrayCategory = [
 
 type SupportedLocales = keyof typeof locales;
 
-export default function CategoriesTable( {catalogs}: any ) {
+export default function CategoriesTable({ catalogs }: any) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
