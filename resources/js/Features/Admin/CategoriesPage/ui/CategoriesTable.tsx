@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -16,8 +15,12 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
 import * as locales from '@mui/material/locale';
 import Typography from '@mui/material/Typography';
+import { useMemo, useState } from 'react';
 
 interface TablePaginationActionsProps {
   count: number;
@@ -96,49 +99,42 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-const rows = [
+const ArrayCategory = [
   {
     id: 1,
-    title: 'Одежда',
+    title: 'Мужская одежда',
   },
   {
     id: 2,
-    title: 'Обувь',
+    title: 'Женская одежда',
   },
   {
     id: 3,
-    title: 'Головные уборы',
+    title: 'Детская одежда',
   },
   {
     id: 4,
-    title: 'Акссесуары',
+    title: 'Мужская обувь',
   },
   {
     id: 5,
-    title: 'Опять Одежда',
+    title: 'Женская обувь',
   },
   {
     id: 6,
-    title: 'Опять Обувь',
-  },
-  {
-    id: 7,
-    title: 'Опять Головные уборы',
-  },
-  {
-    id: 8,
-    title: 'Опять Акссесуары',
+    title: 'Детская обувь',
   },
 ];
 
 type SupportedLocales = keyof typeof locales;
 
-export default function CatalogsTableDesc() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+export default function CategoriesTable( {catalogs}: any ) {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const [categories, setCategories] = useState([]);
+
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - ArrayCategory.length) : 0;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -151,31 +147,61 @@ export default function CatalogsTableDesc() {
     setPage(0);
   };
 
-  const [locale] = React.useState<SupportedLocales>('ruRU');
+  const [locale] = useState<SupportedLocales>('ruRU');
 
   const theme = useTheme();
 
-  const themeWithLocale = React.useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
+  const themeWithLocale = useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
 
   return (
     <ThemeProvider theme={themeWithLocale}>
       <TableContainer component={Paper}>
+        <Box sx={{ margin: '5px' }}>
+          <FormControl fullWidth>
+            <InputLabel
+              variant="standard"
+              htmlFor="uncontrolled-native"
+              sx={{ fontFamily: 'Integral CF', fontSize: '24px' }}
+            >
+              Каталог
+            </InputLabel>
+            <NativeSelect
+              defaultValue={10}
+              inputProps={{
+                name: 'catalog',
+                id: 'uncontrolled-native',
+              }}
+            >
+              {catalogs.map((catalog: any) => {
+                return (
+                  <option
+                    value={10}
+                    key={catalog.id}
+                  >
+                    {catalog.title}
+                  </option>
+                );
+              })}
+            </NativeSelect>
+          </FormControl>
+        </Box>
+
         <Table
           sx={{ minWidth: 290 }}
           aria-label="custom pagination table"
         >
           <TableBody>
             {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-            ).map((row) => (
-              <TableRow key={row.title}>
+              ? ArrayCategory.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : ArrayCategory
+            ).map((ArrayCategory) => (
+              <TableRow key={ArrayCategory.title}>
                 <TableCell
                   component="th"
                   scope="row"
                   sx={{ fontSize: '20px' }}
                 >
-                  {row.title}
+                  {ArrayCategory.title}
                 </TableCell>
                 <TableCell
                   style={{ width: 10 }}
@@ -214,7 +240,7 @@ export default function CatalogsTableDesc() {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={3}
-                count={rows.length}
+                count={ArrayCategory.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 labelRowsPerPage={

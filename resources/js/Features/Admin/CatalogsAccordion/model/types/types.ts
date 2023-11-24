@@ -1,13 +1,6 @@
-export type Catalog = {
-    id: number,
-    title: string
-}
+import { Catalog } from "@/entities/Catalog/model/types/tapes";
+import { Category } from "@/entities/Category/model/types/types";
 
-export type Category = {
-    id: number,
-    title: string,
-    catalog_id: number
-}
 
 export interface SchemaCatalogs {
     catalogs: Catalog[]

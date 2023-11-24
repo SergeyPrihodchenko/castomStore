@@ -11,11 +11,12 @@ import IconButton from '@mui/material/IconButton';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
-import {
+import { useGetCatalogsQuery } from '@/entities/Catalog/model/query/rtkCatalog';
+import { 
   useDeleteCategoryMutation,
-  useGetCatalogsQuery,
-  useGetCategoriesQuery,
-} from '../model/reducers/query/rtkCatalogs';
+  useGetCategoriesQuery, 
+} from '@/entities/Category/model/query/rtkCategory';
+  
 import { useState } from 'react';
 
 export default function Categories({ getCatalogID }: any) {
@@ -33,7 +34,8 @@ export default function Categories({ getCatalogID }: any) {
   const { data: catalogs, isSuccess: isSuccessCatalogs } = useGetCatalogsQuery('');
   const { data: categories, isSuccess: isSuccessCategories } = useGetCategoriesQuery(catalogId);
   const [deleteCategory, {}] = useDeleteCategoryMutation();
-
+  console.log(catalogs, categories);
+  
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0
