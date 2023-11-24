@@ -1,18 +1,23 @@
 import * as React from 'react';
 import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import LastPageIcon from '@mui/icons-material/LastPage';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import * as locales from '@mui/material/locale';
 import Typography from '@mui/material/Typography';
-import { TableFooter } from '@mui/material';
 
 interface TablePaginationActionsProps {
   count: number;
@@ -97,7 +102,7 @@ export default function CatalogsTable({ catalogs }) {
   console.log(catalogs);
 
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - catalogs.length) : 0;
@@ -106,16 +111,19 @@ export default function CatalogsTable({ catalogs }) {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value);
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  type SupportedLocales = keyof typeof locales;
+
   const [locale] = React.useState<SupportedLocales>('ruRU');
 
   const theme = useTheme();
 
   const themeWithLocale = React.useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
+
   return (
     <ThemeProvider theme={themeWithLocale}>
       <TableContainer component={Paper}>
