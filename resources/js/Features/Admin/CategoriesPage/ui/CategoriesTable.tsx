@@ -20,7 +20,8 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import * as locales from '@mui/material/locale';
 import Typography from '@mui/material/Typography';
-import { useMemo, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
+import { useDeleteCategoryMutation, useGetCategoriesQuery, useUpdateCategoryMutation } from '@/entities/Category/model/query/rtkCategory';
 
 interface TablePaginationActionsProps {
   count: number;
@@ -99,42 +100,21 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-const ArrayCategory = [
-  {
-    id: 1,
-    title: 'Мужская одежда',
-  },
-  {
-    id: 2,
-    title: 'Женская одежда',
-  },
-  {
-    id: 3,
-    title: 'Детская одежда',
-  },
-  {
-    id: 4,
-    title: 'Мужская обувь',
-  },
-  {
-    id: 5,
-    title: 'Женская обувь',
-  },
-  {
-    id: 6,
-    title: 'Детская обувь',
-  },
-];
-
 type SupportedLocales = keyof typeof locales;
 
-export default function CategoriesTable({ catalogs }: any) {
+export default function CategoriesTable({ catalogs, setCatalogID: setCatalog, categoryValue, setCategoryValue }: any) {
+
+  const [catalogID, setCatalogID] = useState(0);
+
+
+  const {data: categoryList, isSuccess} = useGetCategoriesQuery(catalogID);
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [categories, setCategories] = useState([]);
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - ArrayCategory.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (isSuccess ? categoryList : []).length) : 0;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -153,6 +133,21 @@ export default function CategoriesTable({ catalogs }: any) {
 
   const themeWithLocale = useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
 
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const id = Number(e.target.value);
+    setCatalogID(id);
+    setCatalog(id);
+  }
+
+  const [mutationCategory, {}] = useUpdateCategoryMutation();
+  const [deleteCategory, {}] = useDeleteCategoryMutation();
+
+  const updateCategory = (id: number, value: string) => {
+    mutationCategory({id: id, title: value});
+    setCategoryValue('');
+  }
+
+
   return (
     <ThemeProvider theme={themeWithLocale}>
       <TableContainer component={Paper}>
@@ -166,16 +161,18 @@ export default function CategoriesTable({ catalogs }: any) {
               Каталог
             </InputLabel>
             <NativeSelect
+                      onChange={(e) => {handleChange(e)}}
               defaultValue={10}
               inputProps={{
                 name: 'catalog',
                 id: 'uncontrolled-native',
               }}
             >
+              <option value='0'>Каталог не выбран</option>
               {catalogs.map((catalog: any) => {
                 return (
                   <option
-                    value={10}
+                    value={catalog.id}
                     key={catalog.id}
                   >
                     {catalog.title}
@@ -192,16 +189,16 @@ export default function CategoriesTable({ catalogs }: any) {
         >
           <TableBody>
             {(rowsPerPage > 0
-              ? ArrayCategory.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : ArrayCategory
-            ).map((ArrayCategory) => (
-              <TableRow key={ArrayCategory.title}>
+              ? (isSuccess ? categoryList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage): [])
+              : (isSuccess ? categoryList : [])
+            ).map((category) => (
+              <TableRow key={category.title}>
                 <TableCell
                   component="th"
                   scope="row"
                   sx={{ fontSize: '20px' }}
                 >
-                  {ArrayCategory.title}
+                  {category.title}
                 </TableCell>
                 <TableCell
                   style={{ width: 10 }}
@@ -210,7 +207,7 @@ export default function CategoriesTable({ catalogs }: any) {
                   <IconButton
                     edge="end"
                     aria-label="edit"
-                    href="#"
+                    onClick={() => {updateCategory(category.id, categoryValue)}}
                   >
                     <EditIcon />
                   </IconButton>
@@ -222,7 +219,7 @@ export default function CategoriesTable({ catalogs }: any) {
                   <IconButton
                     edge="end"
                     aria-label="edit"
-                    href="#"
+                    onClick={() => {deleteCategory(Number(category.id))}}
                   >
                     <DeleteIcon />
                   </IconButton>
@@ -240,7 +237,7 @@ export default function CategoriesTable({ catalogs }: any) {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={3}
-                count={ArrayCategory.length}
+                count={(isSuccess ? categoryList : []).length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 labelRowsPerPage={

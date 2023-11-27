@@ -1,7 +1,6 @@
 import { axiosBaseQuery } from "@/App/providers/StoreProvider/config/axiosConfigQuery";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { Category } from "../types/types";
-import { Catalog } from "@/entities/Catalog/model/types/tapes";
 
 export const queryCategory = createApi({
     reducerPath: 'query/category',
@@ -9,7 +8,7 @@ export const queryCategory = createApi({
     tagTypes: ['Catalogs', 'Categories'],
     endpoints: (build) => ({
 
-        getCategories: build.query<Catalog[], number>({
+        getCategories: build.query<Category[], number>({
             query: (id) => ({
                 url: `/categoriesForCatalog/${id}`,
                 method: 'GET',
@@ -19,7 +18,7 @@ export const queryCategory = createApi({
 
         setCategory: build.mutation<Category, Partial<Category>>({
             query: (data) => ({
-                url: '/addCategory',
+                url: '/setCategory',
                 method: 'POST',
                 data: data
             }),

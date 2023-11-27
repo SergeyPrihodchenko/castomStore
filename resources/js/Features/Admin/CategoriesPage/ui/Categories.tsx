@@ -76,7 +76,7 @@ const Categories = ({ catalogs }: any) => {
             >
               Добавить
             </Button>
-            <CategoriesTable catalogs={catalogs} />
+            <CategoriesTable catalogs={catalogs} setCatalogID={setCatalogID} categoryValue={categoryValue} setCategoryValue={setCategoryValue}/>
           </Container>
         </Box>
       </Box>

@@ -9,7 +9,8 @@ import {
 } from '@/entities/Catalog/model/query/rtkCatalog';
 import { useState } from 'react';
 import CatalogsTable from './CatalogsTable';
-import { Catalog } from '@/entities/Catalog/model/types/tapes';
+import { ICatalogs } from '../model/types/types';
+import { router } from '@inertiajs/react';
 
 const theme = createTheme({
   palette: {
@@ -20,11 +21,7 @@ const theme = createTheme({
   },
 });
 
-interface ICatalogs {
-  catalogs: Catalog[];
-}
-
-const Catalogs = ({ catalogs }) => {
+const Catalogs = ({ catalogs }: ICatalogs) => {
   const [catalogValue, setCatalogValue] = useState('');
   const [catalogsList, setCatalogsList] = useState(catalogs);
 
@@ -33,18 +30,21 @@ const Catalogs = ({ catalogs }) => {
     setCatalogValue(value);
   };
 
-  const [setCatalog, {}] = useSetCatalogMutation();
+  const [setCatalog, {isLoading}] = useSetCatalogMutation();
 
   const setCatalogC = () => {
     setCatalog({ title: catalogValue });
     setCatalogValue('');
-    const { data, isSuccess } = useGetCatalogsQuery('');
-    const catalogs = isSuccess ? data : [];
-    setCatalogsList(catalogs);
   };
+
+  const updateCatalog = (id: number, cb: Function) => {
+    cb({id:id, title:catalogValue});
+    setCatalogValue('');
+  }
 
   return (
     <ThemeProvider theme={theme}>
+    {isLoading ? router.reload({only: ['catalogs']}) : ''}
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box sx={{ width: 1200 }}>
           <Typography
@@ -83,7 +83,7 @@ const Catalogs = ({ catalogs }) => {
           >
             Добавить
           </Button>
-          <CatalogsTable catalogs={catalogs} />
+          <CatalogsTable catalogs={catalogs} updateCatalog={updateCatalog}/>
         </Box>
       </Box>
     </ThemeProvider>

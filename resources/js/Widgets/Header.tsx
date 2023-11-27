@@ -156,7 +156,6 @@ export default function Header() {
                 onClick={handleCloseSettings}
               >
                 <Button
-                  href="/"
                   sx={{ fontWeight: 700 }}
                 >
                   Shop.com
