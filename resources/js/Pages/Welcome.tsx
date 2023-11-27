@@ -1,6 +1,6 @@
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
-import Catalogs from '@/Features/Admin/CatalogsPanel/ui/Catalogs';
+import Catalogs from '@/Features/Admin/CatalogsAccordion/ui/Catalogs';
 
 export default function Welcome({
   auth,

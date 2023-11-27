@@ -17,7 +17,7 @@ class Header extends Model
 
     public function set(string $value): void
     {
-        $this->header = $value;
+        $this->title = $value;
         $this->save();
     }
 

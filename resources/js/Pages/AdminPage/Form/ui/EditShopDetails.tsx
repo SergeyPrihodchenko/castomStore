@@ -40,18 +40,18 @@ export default function EditShopDetails() {
   return (
     <form>
       <ThemeProvider theme={theme}>
-        <Box
-          component="form"
-          sx={{
-            minWidth: '390px',
-            marginLeft: '40px',
-          }}
-        >
-          <Container fixed>
+        <Container fixed>
+          <Box
+            component="form"
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
             <Box
               component="form"
               sx={{
-                marginTop: '20px',
+                margin: '20px 0 0 20px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -67,7 +67,11 @@ export default function EditShopDetails() {
                 label="Наименование магазина"
                 variant="standard"
               />
-              <TextField id="standard-basic" label="Email" variant="standard" />
+              <TextField
+                id="standard-basic"
+                label="Email"
+                variant="standard"
+              />
               <TextField
                 id="standard-basic"
                 label="Веб сайт"
@@ -89,10 +93,17 @@ export default function EditShopDetails() {
                 label="Телефон"
                 variant="standard"
               />
-              <TextField id="standard-basic" label="Адрес" variant="standard" />
+              <TextField
+                id="standard-basic"
+                label="Адрес"
+                variant="standard"
+              />
               <Box>
                 <FormControl fullWidth>
-                  <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                  <InputLabel
+                    variant="standard"
+                    htmlFor="uncontrolled-native"
+                  >
                     СоцСети
                   </InputLabel>
                   <NativeSelect
@@ -115,22 +126,28 @@ export default function EditShopDetails() {
                   />
                 </FormControl>
               </Box>
+              <Box>
+                <Button
+                  variant="contained"
+                  size="small"
+                  href="#"
+                  color="secondary"
+                  sx={{ margin: '20px' }}
+                >
+                  Сохранить
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  href="#"
+                  color="secondary"
+                >
+                  Удалить
+                </Button>
+              </Box>
             </Box>
-
-            <Button
-              variant="contained"
-              size="small"
-              href="#"
-              color="secondary"
-              sx={{ margin: '20px' }}
-            >
-              Сохранить
-            </Button>
-            <Button variant="contained" size="small" href="#" color="secondary">
-              Удалить
-            </Button>
-          </Container>
-        </Box>
+          </Box>
+        </Container>
       </ThemeProvider>
     </form>
   );

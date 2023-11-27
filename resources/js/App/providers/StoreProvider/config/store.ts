@@ -1,30 +1,37 @@
 import { type ReducersMapObject, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
 import { addMainPageSettingsReducer } from '@/Features/Admin/AddMainPageSettings';
-import CatalogsSlice from '@/Features/Admin/CatalogsPanel/model/reducers/slices/CatalogsSlice';
-import { queryCatalogs } from '@/Features/Admin/CatalogsPanel/model/reducers/query/rtkCatalogs';
+import { queryCatalogs } from '@/entities/Catalog/model/query/rtkCatalog';
+import { queryMainPageSettings } from '@/Features/Admin/AddMainPageSettings/model/services/query/rtkMainPageSettings';
 import { productApi } from '@/entities/Product/model/slice/productApi';
+import { queryCategory } from '@/entities/Category/model/query/rtkCategory';
 
 //функция создание стора с необязательным параметром, который
 // передаем в поле preloadedState (нужно для тестирования)
 export function createReduxStore(initialState?: StateSchema) {
   const rootReducers: ReducersMapObject<StateSchema> = {
-    addMainPageSettings: addMainPageSettingsReducer,
-    CatalogsPanel: CatalogsSlice,
+    // addMainPageSettings: addMainPageSettingsReducer,
+    // MainPageSettings: addMainPageSettingsReducer,
+    [queryCategory.reducerPath]: queryCategory.reducer,
     [queryCatalogs.reducerPath]: queryCatalogs.reducer,
-    [productApi.reducerPath]: productApi.reducer
+    [queryMainPageSettings.reducerPath]: queryMainPageSettings.reducer,
+    [productApi.reducerPath]: productApi.reducer,
   };
   const store = configureStore({
     reducer: rootReducers,
     preloadedState: initialState,
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([
-      queryCatalogs.middleware,
-      productApi.middleware
-    ])
+
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat([
+        queryCatalogs.middleware,
+        queryCategory.middleware,
+        productApi.middleware,
+        queryMainPageSettings.middleware,
+      ]),
   });
   return store;
 }
 
-// export type RootState = ReturnType<typeof createReduxStore>['getState'];
+export type RootState = ReturnType<typeof createReduxStore>['getState'];
 // экспортируем тип dispatch
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
