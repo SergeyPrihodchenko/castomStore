@@ -9,7 +9,7 @@ Route::get('admin/categories/json', [CategoriesController::class, 'setCategory']
 
 Route::get('admin/categories/categoriesForCatalog/{id}', [CategoriesController::class, 'categoriesForCatalog'])->name('categoriesForCatalog');
 
-Route::post('admin/categories/addCategory', [CategoriesController::class, 'addCategory'])->name('addCategory');
+Route::post('admin/categories/setCategory', [CategoriesController::class, 'setCategory'])->name('setCategory');
 
 Route::post('admin/categories/updateCategory', [CategoriesController::class, 'updateCategory'])->name('updateCategory');
 
