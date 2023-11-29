@@ -23,28 +23,26 @@ const theme = createTheme({
 
 const Catalogs = ({ catalogs }: ICatalogs) => {
   const [catalogValue, setCatalogValue] = useState('');
-  const [catalogsList, setCatalogsList] = useState(catalogs);
 
   const handleChangeCatalog = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value;
     setCatalogValue(value);
   };
 
-  const [setCatalog, {isLoading}] = useSetCatalogMutation();
+  const [setCatalog, {}] = useSetCatalogMutation();
 
-  const setCatalogC = () => {
-    setCatalog({ title: catalogValue });
-    setCatalogValue('');
+  const setCatalogC = async () => {
+    await setCatalog({ title: catalogValue });    
+    router.reload({only: ['catalogs']});
   };
 
-  const updateCatalog = (id: number, cb: Function) => {
-    cb({id:id, title:catalogValue});
-    setCatalogValue('');
+  const updateCatalog = async (id: number, cb: Function) => {
+    await cb({id:id, title:catalogValue});
+    router.reload({only: ['catalogs']});
   }
 
   return (
     <ThemeProvider theme={theme}>
-    {isLoading ? router.reload({only: ['catalogs']}) : ''}
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box sx={{ width: 1200 }}>
           <Typography
