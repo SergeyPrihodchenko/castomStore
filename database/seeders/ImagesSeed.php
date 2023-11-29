@@ -13,6 +13,6 @@ class ImagesSeed extends Seeder
      */
     public function run(): void
     {
-        DB::table('images')->insert(['img_path' => 'images/main/startImage.jpg']);
+        DB::table('images')->insert(['img_path' => 'images/main/startImage.jpg', 'title' => 'testing_img']);
     }
 }
