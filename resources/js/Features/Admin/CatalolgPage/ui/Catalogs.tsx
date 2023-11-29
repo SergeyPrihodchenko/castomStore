@@ -32,18 +32,18 @@ const Catalogs = ({ catalogs }: ICatalogs) => {
   const [setCatalog, {}] = useSetCatalogMutation();
 
   const setCatalogC = async () => {
-    await setCatalog({ title: catalogValue });    
-    router.reload({only: ['catalogs']});
+    await setCatalog({ title: catalogValue });
+    router.reload({ only: ['catalogs'] });
   };
 
   const updateCatalog = async (id: number, cb: Function) => {
-    await cb({id:id, title:catalogValue});
-    router.reload({only: ['catalogs']});
-  }
+    await cb({ id: id, title: catalogValue });
+    router.reload({ only: ['catalogs'] });
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
         <Box sx={{ width: 1200 }}>
           <Typography
             fontFamily="Integral CF"
@@ -81,7 +81,10 @@ const Catalogs = ({ catalogs }: ICatalogs) => {
           >
             Добавить
           </Button>
-          <CatalogsTable catalogs={catalogs} updateCatalog={updateCatalog}/>
+          <CatalogsTable
+            catalogs={catalogs}
+            updateCatalog={updateCatalog}
+          />
         </Box>
       </Box>
     </ThemeProvider>
