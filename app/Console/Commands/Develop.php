@@ -11,6 +11,7 @@ use App\Models\Admin\MainPage\MainPage;
 use App\Models\Admin\MainPage\Subheader;
 use App\Models\Admin\MainPage\Title;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -47,11 +48,8 @@ class Develop extends Command
         // ]);
         // $main = new AdminMainPageController;
         // $main->getAttributes();
-
-
-        $mail = new MailController();
-
-        $mail->sendMail();
+        
+        $test = User::find(1);
         
     }
 }

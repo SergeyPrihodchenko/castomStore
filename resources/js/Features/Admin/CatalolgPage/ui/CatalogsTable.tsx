@@ -130,14 +130,14 @@ export default function CatalogsTable({ catalogs, updateCatalog: updateCatalogHo
   const [deleteCatalog, {isLoading: isLoadingDelete}] = useDeleteCatalogMutation();
   const [updateCatalog, {isLoading: isLoadingUpdate}] = useUpdateCatalogMutation();
 
-  const deleteElem = (id: number) => {
-    deleteCatalog(id);    
+  const deleteElem = async (id: number) => {
+    await deleteCatalog(id);    
+    router.reload({only: ['catalogs']})
   }
+
 
   return (
     <ThemeProvider theme={themeWithLocale}>
-      {isLoadingDelete ? router.reload({only: ['catalogs']}) : null}
-      {isLoadingUpdate ? router.reload({only: ['catalogs']}) : null}
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 290 }}
