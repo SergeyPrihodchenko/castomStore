@@ -10,7 +10,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    const PATH_IMAGE_MAIN = 'storage/mainPage/images';
+    const PATH_IMAGE_MAIN_SAVE = 'public/mainPage/images';
 
     protected $fillable = [
         'img_path',
@@ -27,9 +27,11 @@ class Image extends Model
 
         $title = substr_replace($originalName, '', $point);
 
-        $name = $image->store($this::PATH_IMAGE_MAIN);
+        $name = $image->store($this::PATH_IMAGE_MAIN_SAVE);
 
-        $this->img_path = $name;
+        $saveName = str_replace('public', 'storage', $name);
+
+        $this->img_path = $saveName;
 
         $this->title = $title;
 
