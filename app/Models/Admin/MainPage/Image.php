@@ -13,18 +13,19 @@ class Image extends Model
     const PATH_IMAGE_MAIN = 'storage/mainPage/images';
 
     protected $fillable = [
-        'img_path'
+        'img_path',
+        'img_title'
     ];
 
     public $timestamps = false;
 
     public function set($image): void
     {
-        $originalName = $image->getClientPriginalName();
+        $originalName = $image->getClientOriginalName();
 
         $point = strripos($originalName, '.');
 
-        $title = mb_substr($originalName, $point);
+        $title = substr_replace($originalName, '', $point);
 
         $name = $image->store($this::PATH_IMAGE_MAIN);
 
