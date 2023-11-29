@@ -38,7 +38,7 @@ const Categories = ({ catalogs }: any) => {
         <Box sx={{ width: 1200 }}>
           <Container
             fixed
-            sx={{ margin: '50px' }}
+            sx={{ marginBottom: '50px' }}
           >
             <Typography
               fontFamily="Integral CF"
@@ -76,7 +76,12 @@ const Categories = ({ catalogs }: any) => {
             >
               Добавить
             </Button>
-            <CategoriesTable catalogs={catalogs} setCatalogID={setCatalogID} categoryValue={categoryValue} setCategoryValue={setCategoryValue}/>
+            <CategoriesTable
+              catalogs={catalogs}
+              setCatalogID={setCatalogID}
+              categoryValue={categoryValue}
+              setCategoryValue={setCategoryValue}
+            />
           </Container>
         </Box>
       </Box>
