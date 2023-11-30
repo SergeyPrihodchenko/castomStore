@@ -1,5 +1,5 @@
-import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
@@ -55,8 +55,12 @@ function AddProduct() {
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
-  const { data: catalogs, error: catalogError } = useGetCatalogsQuery();
+  const { data: catalogs, error: catalogError } = useGetCatalogsQuery('string');
   const { data: categories, error: categoriesError } = useGetCategoriesQuery(catalogId!);
+
+  console.log('calagos: ' + catalogs);
+  console.log('categories: ' + categories);
+  
 
   const [createProduct, {}] = useCreateProductMutation();
 
