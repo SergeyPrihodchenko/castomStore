@@ -26,6 +26,7 @@ import {
   useGetCategoriesQuery,
   useUpdateCategoryMutation,
 } from '@/entities/Category/model/query/rtkCategory';
+import { Catalog } from '@/entities/Catalog/model/types/tapes';
 
 interface TablePaginationActionsProps {
   count: number;
@@ -171,14 +172,13 @@ export default function CategoriesTable({
               onChange={(e) => {
                 handleChange(e);
               }}
-              defaultValue={10}
               inputProps={{
                 name: 'catalog',
                 id: 'uncontrolled-native',
               }}
             >
               <option value="0">Каталог не выбран</option>
-              {catalogs.map((catalog: any) => {
+              {catalogs.map((catalog: Catalog) => {
                 return (
                   <option
                     value={catalog.id}

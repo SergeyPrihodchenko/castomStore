@@ -33,11 +33,13 @@ const Catalogs = ({ catalogs }: ICatalogs) => {
 
   const setCatalogC = async () => {
     await setCatalog({ title: catalogValue });
+    setCatalogValue('');
     router.reload({ only: ['catalogs'] });
   };
 
   const updateCatalog = async (id: number, cb: Function) => {
     await cb({ id: id, title: catalogValue });
+    setCatalogValue('');
     router.reload({ only: ['catalogs'] });
   };
 
