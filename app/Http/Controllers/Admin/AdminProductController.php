@@ -10,19 +10,29 @@ use App\Models\Product\Option;
 use App\Models\Product\Product;
 use App\Models\Product\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use Inertia\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AdminProductController extends Controller
 {
-    public function index(): JsonResponse
+    public function index()
     {
-        $product = Product::all();
+        $products = Product::all();
 
-        return response()->json($product);
+        return Inertia::render('AdminPage/ProductList/ProductListPage', [
+            'products' => $products,
+        ]);
     }
 
-    public function create(ProductRequest $request): JsonResponse
+    public function create()
+    {
+        return Inertia::render('AdminPage/Forms/CreateProduct');
+    }
+
+    public function save(ProductRequest $request): JsonResponse
     {
         $data = $request->validated();
 
@@ -41,7 +51,7 @@ class AdminProductController extends Controller
     {
         $product = Product::find($id);
 
-        if(!$product){
+        if (!$product) {
             return response()->json([
                 "message" => "Product id: $id not found"
             ]);
@@ -55,9 +65,9 @@ class AdminProductController extends Controller
 
         $optionsData = [];
 
-        if($optionsList){
+        if ($optionsList) {
             $options = $optionsList->options()->getResults();
-            foreach($options as $option){
+            foreach ($options as $option) {
                 $optionsData[$option->title] = [$option->optionValue()->getResults()];
             }
         }
@@ -65,11 +75,15 @@ class AdminProductController extends Controller
         return response()->json([$product, $images, $video, $optionsData]);
     }
 
+    public function update(Product $product): Response
+    {
+    }
+
     public function delete(int $id): JsonResponse
     {
         $product = Product::find($id);
 
-        if(!$product){
+        if (!$product) {
             return response()->json([
                 "message" => "Product id: $id not found"
             ]);

@@ -7,6 +7,7 @@ import { Link } from '@inertiajs/react';
 import { User } from '@/types';
 import Header from '@/Widgets/Header';
 import Footer from '@/Widgets/Footer';
+import ProductList from '@/Pages/AdminPage/ProductList/ui/ProductList';
 
 export default function MainLayout({
   user,

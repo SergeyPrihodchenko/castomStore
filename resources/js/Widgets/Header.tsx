@@ -273,7 +273,7 @@ export default function Header() {
                     <MenuItem>Категории</MenuItem>
                   </Link>
                   <Link
-                    href={route('ProductPage')}
+                    href={route('products.get')}
                     underline="none"
                     onClick={handleCloseSettings}
                   >
