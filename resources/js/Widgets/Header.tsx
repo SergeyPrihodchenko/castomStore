@@ -72,63 +72,57 @@ export default function Header() {
           // sx={{ padding: '10px' }}
         >
           <Container fixed>
-            <Toolbar>
-              <IconButton
-                edge="start"
-                aria-label="menu"
-                onClick={handleClick}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
+            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <IconButton
+                  edge="start"
+                  aria-label="menu"
+                  onClick={handleClick}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
 
-              <Menu
-                id="demo-customized-menu"
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                sx={{ marginLeft: '10px' }}
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-              >
-                <Link
-                  href="#"
-                  underline="none"
-                  onClick={handleClose}
+                <Menu
+                  id="demo-customized-menu"
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  sx={{ marginLeft: '10px' }}
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
                 >
-                  <MenuItem>Категории</MenuItem>
-                </Link>
-                <Link
-                  href="#"
-                  underline="none"
-                  onClick={handleClose}
-                >
-                  <MenuItem>Акции</MenuItem>
-                </Link>
-                <Link
-                  href="#"
-                  underline="none"
-                  onClick={handleClose}
-                >
-                  <MenuItem>Новинки</MenuItem>
-                </Link>
-              </Menu>
-              <Link
+                  <Link
+                    href="#"
+                    underline="none"
+                    onClick={handleClose}
+                  >
+                    <MenuItem>Категории</MenuItem>
+                  </Link>
+                  <Link
+                    href="#"
+                    underline="none"
+                    onClick={handleClose}
+                  >
+                    <MenuItem>Акции</MenuItem>
+                  </Link>
+                  <Link
+                    href="#"
+                    underline="none"
+                    onClick={handleClose}
+                  >
+                    <MenuItem>Новинки</MenuItem>
+                  </Link>
+                </Menu>
+                {/* <Link
                 //href={route('CategoryPage')}
                 underline="none"
                 onClick={handleCloseSettings}
               >
                 <MenuItem>Настройка страниц</MenuItem>
               </Link>
-              {/* <Typography
-                variant="h6"
-                component="div"
-                sx={{ flexGrow: 1 }}
-
-                <MenuItem>Настройка страниц</MenuItem>
-                </Typography> */}
               <NavLink
                 active={route().current('catalogs.*')}
                 href={route('catalogs')}
@@ -149,19 +143,15 @@ export default function Header() {
                 onClick={handleCloseSettings}
               >
                 <MenuItem>Товары</MenuItem>
-              </Link>
-              <Link
-                href={route('logout')}
-                underline="none"
-                onClick={handleCloseSettings}
-              >
-                <Button
-                  sx={{ fontWeight: 700 }}
+              </Link> */}
+                <Link
+                  href={route('logout')}
+                  underline="none"
+                  onClick={handleCloseSettings}
                 >
-                  Shop.com
-                </Button>
-              </Link>
-
+                  <Button sx={{ fontWeight: 700, marginTop: '2px' }}>Shop.com</Button>
+                </Link>
+              </Box>
               <Box>
                 <IconButton color="inherit">
                   <SearchIcon />
