@@ -6,66 +6,50 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000000',
-      contrastText: '#FFFFFF',
-    },
-    secondary: {
-      main: '#FFFFFF',
-      contrastText: '#000000',
-    },
-  },
-});
 
 export default function Subscription() {
   return (
-    <ThemeProvider theme={theme}>
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       {/* подписка */}
-
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Container fixed>
+      <Container fixed>
+        <Box
+          sx={{
+            zIndex: '1',
+            marginBottom: '50px',
+          }}
+        >
           <Box
             sx={{
-              zIndex: '1',
-              marginBottom: '50px',
+              position: 'absolute',
+              background: '#000000',
+              borderRadius: '20px',
+              zIndex: '2',
+              padding: '32px 24px 28px 24px',
+              marginRight: '15px',
             }}
           >
-            <Box
-              sx={{
-                position: 'absolute',
-                //maxWidth: '410px',
-                //maxHeight: '290px',
-                background: '#000000',
-                borderRadius: '20px',
-                zIndex: '2',
-                padding: '32px 24px 28px 24px',
-              }}
+            <Typography
+              fontFamily="Integral CF"
+              fontWeight="700"
+              fontSize="30px"
+              color="#FFFFFF"
+              textAlign="left"
+              marginBottom={'32px'}
             >
-              <Typography
-                fontFamily="Integral CF"
-                fontWeight="700"
-                fontSize="30px"
-                color="#FFFFFF"
-                textAlign="left"
-                marginBottom={'32px'}
-              >
-                ПОДПИШИТЕСЬ НА НОВИНКИ
-              </Typography>
-
+              ПОДПИШИТЕСЬ НА НОВИНКИ
+            </Typography>
+            <Box component="form">
               <Paper
-                component="form"
                 sx={{
                   p: '12px',
                   display: 'flex',
                   alignItems: 'center',
-                  maxWidth: '310px',
-                  height: 42,
+                  maxWidth: '350px',
+                  minHeight: '42px',
+                  maxHeight: '48px',
                   borderRadius: '62px',
+                  marginBottom: '12px',
                 }}
               >
                 <IconButton
@@ -80,36 +64,40 @@ export default function Subscription() {
                   inputProps={{ 'aria-label': 'Введите свой Email' }}
                 />
               </Paper>
-              <Button
-                variant="contained"
-                size="small"
+              <Paper
                 sx={{
-                  minWidth: '245px',
-                  height: '42px',
-                  alignContent: 'center',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  maxWidth: '350px',
+                  minHeight: '42px',
+                  maxHeight: '48px',
                   borderRadius: '62px',
-                  fontWeight: 700,
-                  fontSize: '14px',
-                  margin: '12px 10px 0 0',
-                  fontFamily: 'Satoshi',
-                  paddingTop: '10px',
                 }}
-                color="secondary"
               >
-                Подписаться
-              </Button>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: '14px',
+                    fontFamily: 'Satoshi',
+                    border: 'none',
+                    color: '#000000',
+                  }}
+                >
+                  Подписаться
+                </Button>
+              </Paper>
             </Box>
           </Box>
-
-          <Box
-            sx={{
-              height: '100px',
-              backgroundColor: '#FFFF',
-              minWidth: '310px',
-            }}
-          />
-        </Container>
-      </Box>
-    </ThemeProvider>
+        </Box>
+        <Box
+          sx={{
+            height: '100px',
+            backgroundColor: '#FFFF',
+            minWidth: '310px',
+          }}
+        />
+      </Container>
+    </Box>
   );
 }
