@@ -291,7 +291,7 @@ export default function Header() {
                     <MenuItem>Категории</MenuItem>
                   </NavLink>
                   <Link
-                    href={route('ProductPage')}
+                    href={route('products.get')}
                     underline="none"
                     onClick={handleCloseSettings}
                   >
