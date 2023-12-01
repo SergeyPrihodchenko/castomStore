@@ -621,6 +621,7 @@ export default function MainPage() {
                     alignItems: 'flex-start',
                     alignContent: 'flex-start',
                     gap: '0px 200px',
+                    height: 300,
                   }}
                 >
                   <Box sx={{ ml: 1, display: 'flex', marginBottom: '20px' }}>

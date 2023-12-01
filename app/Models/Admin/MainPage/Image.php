@@ -10,20 +10,30 @@ class Image extends Model
 {
     use HasFactory;
 
-    const PATH_IMAGE_MAIN = 'public/mainPage/images';
+    const PATH_IMAGE_MAIN_SAVE = 'public/mainPage/images';
 
     protected $fillable = [
-        'img_path'
+        'img_path',
+        'img_title'
     ];
 
     public $timestamps = false;
 
     public function set($image): void
     {
-        $name = $image->store($this::PATH_IMAGE_MAIN);
-        // dd($name);
+        $originalName = $image->getClientOriginalName();
 
-        $this->img_path = $name;
+        $point = strripos($originalName, '.');
+
+        $title = substr_replace($originalName, '', $point);
+
+        $name = $image->store($this::PATH_IMAGE_MAIN_SAVE);
+
+        $saveName = str_replace('public', 'storage', $name);
+
+        $this->img_path = $saveName;
+
+        $this->title = $title;
 
         $this->save();
     }

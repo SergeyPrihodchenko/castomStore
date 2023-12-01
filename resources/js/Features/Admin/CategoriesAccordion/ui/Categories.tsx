@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,6 +17,9 @@ import {
   useDeleteCategoryMutation,
   useGetCategoriesQuery,
 } from '@/entities/Category/model/query/rtkCategory';
+import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
+import TablePagination from '@mui/material/TablePagination';
+import * as locales from '@mui/material/locale';
 
 import { useState } from 'react';
 
@@ -25,8 +29,8 @@ export default function Categories({ getCatalogID }: any) {
     getCatalogID(Number(e.target.value));
   };
 
-  const [page] = useState<number>(0);
-  const [rowsPerPage] = useState(5);
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [catalogId, setCatalogID] = useState(1);
 
@@ -35,99 +39,115 @@ export default function Categories({ getCatalogID }: any) {
   const [deleteCategory, {}] = useDeleteCategoryMutation();
   console.log(catalogs, categories);
 
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0
-      ? Math.max(0, (1 + page) * rowsPerPage - (isSuccessCategories ? categories.length : 0))
-      : 0;
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
 
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+  type SupportedLocales = keyof typeof locales;
+  const [locale] = React.useState<SupportedLocales>('ruRU');
+  const theme = useTheme();
+  const themeWithLocale = React.useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
   return (
-    <TableContainer component={Paper}>
-      <Box sx={{ margin: '5px' }}>
-        <FormControl fullWidth>
-          <InputLabel
-            variant="standard"
-            htmlFor="uncontrolled-native"
-          >
-            Каталог
-          </InputLabel>
-          <NativeSelect
-            inputProps={{
-              name: 'catalogs',
-            }}
-            onChange={changeSelectCatalog}
-          >
-            <option>Каталог не выбран</option>
-            {(isSuccessCatalogs ? catalogs : []).map((catalog) => {
-              return (
-                <option
-                  value={catalog.id}
-                  key={catalog.id}
-                >
-                  {catalog.title}
-                </option>
-              );
-            })}
-          </NativeSelect>
-        </FormControl>
-      </Box>
+    <ThemeProvider theme={themeWithLocale}>
+      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <TableContainer sx={{ minWidth: 290 }}>
+          <Box sx={{ margin: '5px' }}>
+            <FormControl fullWidth>
+              <InputLabel
+                variant="standard"
+                htmlFor="uncontrolled-native"
+              >
+                Каталог
+              </InputLabel>
+              <NativeSelect
+                inputProps={{
+                  name: 'catalogs',
+                }}
+                onChange={changeSelectCatalog}
+              >
+                <option>Каталог не выбран</option>
+                {(isSuccessCatalogs ? catalogs : []).map((catalog) => {
+                  return (
+                    <option
+                      value={catalog.id}
+                      key={catalog.id}
+                    >
+                      {catalog.title}
+                    </option>
+                  );
+                })}
+              </NativeSelect>
+            </FormControl>
+          </Box>
 
-      <Table
-        sx={{ minWidth: 290 }}
-        aria-label="custom pagination table"
-      >
-        <TableBody>
-          {(rowsPerPage > 0
-            ? isSuccessCategories
-              ? categories.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : []
-            : isSuccessCategories
-            ? categories
-            : []
-          ).map((category) => (
-            <TableRow key={category.title}>
-              <TableCell
-                component="th"
-                scope="row"
-              >
-                {category.title}
-              </TableCell>
-              <TableCell
-                style={{ width: 10 }}
-                align="right"
-              >
-                <IconButton
-                  edge="end"
-                  aria-label="edit"
-                  href="#"
-                >
-                  <EditIcon />
-                </IconButton>
-              </TableCell>
-              <TableCell
-                style={{ width: 10 }}
-                align="right"
-              >
-                <IconButton
-                  edge="end"
-                  aria-label="delete"
-                  href="#"
-                  onClick={() => {
-                    deleteCategory(category.id);
-                  }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          ))}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          <Table
+            stickyHeader
+            aria-label="sticky table"
+            sx={{ minWidth: 290 }}
+          >
+            <TableBody>
+              {(rowsPerPage > 0
+                ? isSuccessCategories
+                  ? categories.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  : []
+                : isSuccessCategories
+                ? categories
+                : []
+              ).map((category) => (
+                <TableRow key={category.title}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                  >
+                    {category.title}
+                  </TableCell>
+                  <TableCell
+                    style={{ width: 10 }}
+                    align="right"
+                  >
+                    <IconButton
+                      edge="end"
+                      aria-label="edit"
+                      href="#"
+                    >
+                      <EditIcon />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell
+                    style={{ width: 10 }}
+                    align="right"
+                  >
+                    <IconButton
+                      edge="end"
+                      aria-label="delete"
+                      href="#"
+                      onClick={() => {
+                        deleteCategory(category.id);
+                      }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 20]}
+          component="div"
+          count={categories ? categories.length : 0}
+          rowsPerPage={rowsPerPage}
+          labelRowsPerPage={''}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </ThemeProvider>
   );
 }
