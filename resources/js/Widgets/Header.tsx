@@ -2,22 +2,21 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import InputBase from '@mui/material/InputBase';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 import Menu from '@mui/material/Menu';
 import { IconButton } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
 import NavLink from '@/Shared/ui/NavLink';
 import { useState } from 'react';
+import Search from '@/Shared/ui/Search';
 
 //меняем цвет header
 const theme = createTheme({
@@ -31,7 +30,7 @@ const theme = createTheme({
 export default function Header() {
   //открыть и закрыть основное меню
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const openMenu = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -49,14 +48,14 @@ export default function Header() {
     setAnchorElProfile(null);
   };
 
-  //открыть и закрыть меню иконки настройик
-  const [anchorElSettings, setAnchorElSettings] = useState<null | HTMLElement>(null);
-  const openSettings = Boolean(anchorElSettings);
+  //открыть и закрыть меню иконки настройки
+  const [anchorSettings, setAnchorSettings] = useState<null | HTMLElement>(null);
+  const openSettings = Boolean(anchorSettings);
   const handleClickSettings = (event: MouseEvent<HTMLElement>) => {
-    setAnchorElSettings(event.currentTarget);
+    setAnchorSettings(event.currentTarget);
   };
   const handleCloseSettings = () => {
-    setAnchorElSettings(null);
+    setAnchorSettings(null);
   };
 
   return (
@@ -69,7 +68,6 @@ export default function Header() {
         <AppBar
           position="static"
           color="primary"
-          // sx={{ padding: '10px' }}
         >
           <Container fixed>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -91,7 +89,7 @@ export default function Header() {
                   }}
                   sx={{ marginLeft: '10px' }}
                   anchorEl={anchorEl}
-                  open={open}
+                  open={openMenu}
                   onClose={handleClose}
                 >
                   <Link
@@ -145,25 +143,58 @@ export default function Header() {
                 <MenuItem>Товары</MenuItem>
               </Link> */}
                 <Link
-                  href={route('logout')}
+                  href="/"
                   underline="none"
-                  onClick={handleCloseSettings}
                 >
                   <Button sx={{ fontWeight: 700, marginTop: '2px' }}>Shop.com</Button>
                 </Link>
               </Box>
-              <Box>
-                <IconButton color="inherit">
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                }}
+              >
+                <Search />
+                {/* <IconButton color="inherit">
                   <SearchIcon />
                 </IconButton>
+
+                <Box
+                  component="form"
+                  sx={{
+                    minWidth: 310,
+                    margin: '50px 135px 0 10px',
+                    border: '1px solid red',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    position: 'absolute',
+                    //transform: 'scaleY(0)',
+                  }}
+                >
+                  <InputBase
+                    sx={{ ml: 1, flex: 1 }}
+                    placeholder="Поиск"
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                  <IconButton
+                    type="button"
+                    sx={{ p: '10px' }}
+                    aria-label="search"
+                  >
+                    <SearchIcon />
+                  </IconButton>
+                </Box> */}
+
                 <IconButton color="inherit">
                   <ShoppingBasketIcon />
                 </IconButton>
+
                 <IconButton
                   id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-controls={openProfile ? 'basic-menu' : undefined}
                   aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
+                  aria-expanded={openProfile ? 'true' : undefined}
                   onClick={handleClickProfile}
                   color="inherit"
                 >
@@ -205,9 +236,9 @@ export default function Header() {
 
                 <IconButton
                   id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-controls={openSettings ? 'basic-menu' : undefined}
                   aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
+                  aria-expanded={openSettings ? 'true' : undefined}
                   onClick={handleClickSettings}
                   color="inherit"
                   sx={{ mr: -4 }}
@@ -216,7 +247,7 @@ export default function Header() {
                 </IconButton>
                 <Menu
                   id="basic-menu"
-                  anchorEl={anchorElSettings}
+                  anchorEl={anchorSettings}
                   open={openSettings}
                   onClose={handleCloseSettings}
                   transformOrigin={{
