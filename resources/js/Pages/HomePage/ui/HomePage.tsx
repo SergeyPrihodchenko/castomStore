@@ -541,7 +541,7 @@ export default function MainPage() {
                           textAlign: 'left',
                           padding: '25px 0 0 15px',
                           borderRadius: '16px',
-                          background: 'url(' + `${item.img}` + ') no-repeat',
+                          background: 'url(' + `${item.img}` + ') no-repeat right/80%	#FFFFFF',
                           fontFamily: 'Satoshi',
                           fontWeight: '700',
                           fontSize: '24px',
