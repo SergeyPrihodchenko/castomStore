@@ -59,7 +59,10 @@ export default function Subscription() {
                   <MailOutlineIcon sx={{ width: '20px', height: '20px' }} />
                 </IconButton>
                 <InputBase
-                  sx={{ ml: 1, flex: 1 }}
+                  sx={{
+                    ml: 1,
+                    flex: 1,
+                  }}
                   placeholder="Введите свой Email"
                   inputProps={{ 'aria-label': 'Введите свой Email' }}
                 />
@@ -80,8 +83,9 @@ export default function Subscription() {
                     fontWeight: 700,
                     fontSize: '14px',
                     fontFamily: 'Satoshi',
-                    border: 'none',
                     color: '#000000',
+                    borderColor: '#FFFFFF',
+                    '&:hover': { borderColor: '#FFFFFF' },
                   }}
                 >
                   Подписаться

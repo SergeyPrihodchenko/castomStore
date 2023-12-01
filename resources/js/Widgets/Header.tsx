@@ -80,7 +80,6 @@ export default function Header() {
                 >
                   <MenuIcon />
                 </IconButton>
-
                 <Menu
                   id="demo-customized-menu"
                   transformOrigin={{
@@ -114,34 +113,36 @@ export default function Header() {
                     <MenuItem>Новинки</MenuItem>
                   </Link>
                 </Menu>
+
                 {/* <Link
-                //href={route('CategoryPage')}
-                underline="none"
-                onClick={handleCloseSettings}
-              >
-                <MenuItem>Настройка страниц</MenuItem>
-              </Link>
-              <NavLink
-                active={route().current('catalogs.*')}
-                href={route('catalogs')}
-                onClick={handleCloseSettings}
-              >
-                <MenuItem>Каталоги</MenuItem>
-              </NavLink>
-              <Link
-                href={route('CategoryPage')}
-                underline="none"
-                onClick={handleCloseSettings}
-              >
-                <MenuItem>Категории</MenuItem>
-              </Link>
-              <Link
-                href="#"
-                underline="none"
-                onClick={handleCloseSettings}
-              >
-                <MenuItem>Товары</MenuItem>
-              </Link> */}
+                    //href={route('CategoryPage')}
+                    underline="none"
+                    onClick={handleCloseSettings}
+                  >
+                    <MenuItem>Настройка страниц</MenuItem>
+                  </Link>
+                  <NavLink
+                    active={route().current('catalogs.*')}
+                    href={route('catalogs')}
+                    onClick={handleCloseSettings}
+                  >
+                    <MenuItem>Каталоги</MenuItem>
+                  </NavLink>
+                  <Link
+                    href={route('CategoryPage')}
+                    underline="none"
+                    onClick={handleCloseSettings}
+                  >
+                    <MenuItem>Категории</MenuItem>
+                  </Link>
+                  <Link
+                    href="#"
+                    underline="none"
+                    onClick={handleCloseSettings}
+                  >
+                    <MenuItem>Товары</MenuItem>
+                  </Link> */}
+
                 <Link
                   href="/"
                   underline="none"
@@ -155,12 +156,12 @@ export default function Header() {
                   justifyContent: 'space-around',
                 }}
               >
-                <Search />
-                {/* <IconButton color="inherit">
+                {/* <Search /> */}
+                <IconButton color="inherit">
                   <SearchIcon />
                 </IconButton>
 
-                <Box
+                {/*<Box
                   component="form"
                   sx={{
                     minWidth: 310,
