@@ -9,6 +9,7 @@ import ProductListTable from "./ProductListTable";
 import ButtonAddProduct from "./ButtonAddProduct";
 import { IProduct } from "@/entities/Product/model/types/types";
 import { router } from "@inertiajs/react";
+import { log } from "console";
 
 const theme = createTheme({
     palette: {

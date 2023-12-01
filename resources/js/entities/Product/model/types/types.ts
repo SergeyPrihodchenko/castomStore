@@ -22,7 +22,9 @@ export interface IProduct {
     price: number,
     quantity: number,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    category_title: string,
+    catalog_id: number
 }
 
 export interface ProductImage {

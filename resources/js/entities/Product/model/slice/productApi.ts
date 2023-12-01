@@ -25,7 +25,7 @@ export const productApi = createApi({
         }),
         createProduct: build.mutation<IProduct, any>({
             query: (product: ProductSchema) => ({
-                url: '/products/create',
+                url: '/products/save',
                 method: 'POST',
                 data: product,
                 headers: {

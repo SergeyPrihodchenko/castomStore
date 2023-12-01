@@ -4,13 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductRequest;
-use App\Models\Admin\Catalog\Catalog;
-use App\Models\Admin\Catalog\Category;
-use App\Models\Product\Option;
 use App\Models\Product\Product;
-use App\Models\Product\ProductImage;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -20,11 +15,24 @@ class AdminProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = DB::table('products')
+            ->join('categories', 'categories.id', '=', 'products.category_id')
+            ->select('products.*', 'categories.title as category_title', 'categories.catalog_id')
+            ->get();
 
         return Inertia::render('AdminPage/ProductList/ProductListPage', [
             'products' => $products,
         ]);
+    }
+
+    public function indexJson(string $limit): JsonResponse
+    {
+        $products = DB::table('products')
+            ->join('categories', 'categories.id', '=', 'products.category_id')
+            ->select('products.*', 'categories.title as category_title', 'categories.catalog_id')
+            ->paginate($limit);
+
+        return response()->json($products);
     }
 
     public function create()
@@ -32,11 +40,25 @@ class AdminProductController extends Controller
         return Inertia::render('AdminPage/Forms/CreateProduct');
     }
 
-    public function save(ProductRequest $request): JsonResponse
+    public function save(ProductRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
-        $product = Product::create($data);
+        if (!isset($data['product_id'])) {
+            $product = Product::create($data);
+
+            $product->setImages($request);
+
+            $product->setVideo($request);
+
+            $product->setOptions($request);
+
+            return redirect()->route('products.get');
+        }
+
+        $product = Product::find($data['product_id']);
+
+        $product->update($data);
 
         $product->setImages($request);
 
@@ -44,7 +66,7 @@ class AdminProductController extends Controller
 
         $product->setOptions($request);
 
-        return response()->json($product);
+        return redirect(route('products.get'));
     }
 
     public function show(int $id): JsonResponse
@@ -77,6 +99,12 @@ class AdminProductController extends Controller
 
     public function update(Product $product): Response
     {
+        $video = $product->videos()->getResults();
+
+        return Inertia::render('AdminPage/Forms/UpdateProduct', [
+            'product' => $product,
+            'video_link' => $video
+        ]);
     }
 
     public function delete(int $id): JsonResponse

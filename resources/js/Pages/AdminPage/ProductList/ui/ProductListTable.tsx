@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+import { Link, router } from "@inertiajs/react";
 
 interface ProductTableProps {
     products?: IProduct[],
@@ -61,7 +62,7 @@ function ProductListTable (props: ProductTableProps) {
                       align="left"
                       sx={{ fontSize: '20px' }}
                     >
-                      {product.price}
+                      {product.price} ₽
                     </TableCell>
                     <TableCell
                       align="left"
@@ -73,7 +74,7 @@ function ProductListTable (props: ProductTableProps) {
                       align="left"
                       sx={{ fontSize: '20px' }}
                     >
-                      {product.category_id}
+                      {product.category_title}
                     </TableCell>
                     <TableCell
                       align="left"
@@ -88,7 +89,7 @@ function ProductListTable (props: ProductTableProps) {
                       <IconButton
                         edge="end"
                         aria-label="edit"
-                        href="#"
+                        href={route('product.update', {product: product.id})}
                       >
                         <EditIcon />
                       </IconButton>
