@@ -21,7 +21,12 @@ import NativeSelect from '@mui/material/NativeSelect';
 import * as locales from '@mui/material/locale';
 import Typography from '@mui/material/Typography';
 import { ChangeEvent, useMemo, useState } from 'react';
-import { useDeleteCategoryMutation, useGetCategoriesQuery, useUpdateCategoryMutation } from '@/entities/Category/model/query/rtkCategory';
+import {
+  useDeleteCategoryMutation,
+  useGetCategoriesQuery,
+  useUpdateCategoryMutation,
+} from '@/entities/Category/model/query/rtkCategory';
+import { Catalog } from '@/entities/Catalog/model/types/tapes';
 
 interface TablePaginationActionsProps {
   count: number;
@@ -102,19 +107,23 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 type SupportedLocales = keyof typeof locales;
 
-export default function CategoriesTable({ catalogs, setCatalogID: setCatalog, categoryValue, setCategoryValue }: any) {
-
+export default function CategoriesTable({
+  catalogs,
+  setCatalogID: setCatalog,
+  categoryValue,
+  setCategoryValue,
+}: any) {
   const [catalogID, setCatalogID] = useState(0);
 
-
-  const {data: categoryList, isSuccess} = useGetCategoriesQuery(catalogID);
+  const { data: categoryList, isSuccess } = useGetCategoriesQuery(catalogID);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [categories, setCategories] = useState([]);
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (isSuccess ? categoryList : []).length) : 0;
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - (isSuccess ? categoryList : []).length) : 0;
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -137,16 +146,15 @@ export default function CategoriesTable({ catalogs, setCatalogID: setCatalog, ca
     const id = Number(e.target.value);
     setCatalogID(id);
     setCatalog(id);
-  }
+  };
 
   const [mutationCategory, {}] = useUpdateCategoryMutation();
   const [deleteCategory, {}] = useDeleteCategoryMutation();
 
   const updateCategory = (id: number, value: string) => {
-    mutationCategory({id: id, title: value});
+    mutationCategory({ id: id, title: value });
     setCategoryValue('');
-  }
-
+  };
 
   return (
     <ThemeProvider theme={themeWithLocale}>
@@ -161,15 +169,16 @@ export default function CategoriesTable({ catalogs, setCatalogID: setCatalog, ca
               Каталог
             </InputLabel>
             <NativeSelect
-                      onChange={(e) => {handleChange(e)}}
-              defaultValue={10}
+              onChange={(e) => {
+                handleChange(e);
+              }}
               inputProps={{
                 name: 'catalog',
                 id: 'uncontrolled-native',
               }}
             >
-              <option value='0'>Каталог не выбран</option>
-              {catalogs.map((catalog: any) => {
+              <option value="0">Каталог не выбран</option>
+              {catalogs.map((catalog: Catalog) => {
                 return (
                   <option
                     value={catalog.id}
@@ -189,8 +198,12 @@ export default function CategoriesTable({ catalogs, setCatalogID: setCatalog, ca
         >
           <TableBody>
             {(rowsPerPage > 0
-              ? (isSuccess ? categoryList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage): [])
-              : (isSuccess ? categoryList : [])
+              ? isSuccess
+                ? categoryList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                : []
+              : isSuccess
+              ? categoryList
+              : []
             ).map((category) => (
               <TableRow key={category.title}>
                 <TableCell
@@ -207,7 +220,9 @@ export default function CategoriesTable({ catalogs, setCatalogID: setCatalog, ca
                   <IconButton
                     edge="end"
                     aria-label="edit"
-                    onClick={() => {updateCategory(category.id, categoryValue)}}
+                    onClick={() => {
+                      updateCategory(category.id, categoryValue);
+                    }}
                   >
                     <EditIcon />
                   </IconButton>
@@ -219,7 +234,9 @@ export default function CategoriesTable({ catalogs, setCatalogID: setCatalog, ca
                   <IconButton
                     edge="end"
                     aria-label="edit"
-                    onClick={() => {deleteCategory(Number(category.id))}}
+                    onClick={() => {
+                      deleteCategory(Number(category.id));
+                    }}
                   >
                     <DeleteIcon />
                   </IconButton>
@@ -245,7 +262,7 @@ export default function CategoriesTable({ catalogs, setCatalogID: setCatalog, ca
                     fontFamily="Integral CF"
                     fontSize="20px"
                   >
-                    Всего товаров на странице
+                    Всего категорий на странице
                   </Typography>
                 }
                 onPageChange={handleChangePage}

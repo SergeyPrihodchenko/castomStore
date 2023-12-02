@@ -19,7 +19,10 @@ import IconButton from '@mui/material/IconButton';
 import * as locales from '@mui/material/locale';
 import Typography from '@mui/material/Typography';
 import { ICatalogsTable } from '../model/types/types';
-import { useDeleteCatalogMutation, useUpdateCatalogMutation } from '@/entities/Catalog/model/query/rtkCatalog';
+import {
+  useDeleteCatalogMutation,
+  useUpdateCatalogMutation,
+} from '@/entities/Catalog/model/query/rtkCatalog';
 import { router } from '@inertiajs/react';
 
 interface TablePaginationActionsProps {
@@ -101,7 +104,10 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 
 type SupportedLocales = keyof typeof locales;
 
-export default function CatalogsTable({ catalogs, updateCatalog: updateCatalogHook }: ICatalogsTable) {
+export default function CatalogsTable({
+  catalogs,
+  updateCatalog: updateCatalogHook,
+}: ICatalogsTable) {
   console.log(catalogs);
 
   const [page, setPage] = React.useState(0);
@@ -127,17 +133,16 @@ export default function CatalogsTable({ catalogs, updateCatalog: updateCatalogHo
 
   const themeWithLocale = React.useMemo(() => createTheme(theme, locales[locale]), [locale, theme]);
 
-  const [deleteCatalog, {isLoading: isLoadingDelete}] = useDeleteCatalogMutation();
-  const [updateCatalog, {isLoading: isLoadingUpdate}] = useUpdateCatalogMutation();
+  const [deleteCatalog, { isLoading: isLoadingDelete }] = useDeleteCatalogMutation();
+  const [updateCatalog, { isLoading: isLoadingUpdate }] = useUpdateCatalogMutation();
 
-  const deleteElem = (id: number) => {
-    deleteCatalog(id);    
-  }
+  const deleteElem = async (id: number) => {
+    await deleteCatalog(id);
+    router.reload({ only: ['catalogs'] });
+  };
 
   return (
     <ThemeProvider theme={themeWithLocale}>
-      {isLoadingDelete ? router.reload({only: ['catalogs']}) : null}
-      {isLoadingUpdate ? router.reload({only: ['catalogs']}) : null}
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 290 }}
@@ -163,7 +168,9 @@ export default function CatalogsTable({ catalogs, updateCatalog: updateCatalogHo
                   <IconButton
                     edge="end"
                     aria-label="edit"
-                    onClick={() => {updateCatalogHook(catalog.id ,updateCatalog)}}
+                    onClick={() => {
+                      updateCatalogHook(catalog.id, updateCatalog);
+                    }}
                   >
                     <EditIcon />
                   </IconButton>
@@ -175,7 +182,9 @@ export default function CatalogsTable({ catalogs, updateCatalog: updateCatalogHo
                   <IconButton
                     edge="end"
                     aria-label="edit"
-                    onClick={() => {deleteElem(catalog.id)}}
+                    onClick={() => {
+                      deleteElem(catalog.id);
+                    }}
                   >
                     <DeleteIcon />
                   </IconButton>
@@ -201,7 +210,7 @@ export default function CatalogsTable({ catalogs, updateCatalog: updateCatalogHo
                     fontFamily="Integral CF"
                     fontSize="20px"
                   >
-                    Всего товаров на странице
+                    Всего каталогов на странице
                   </Typography>
                 }
                 onPageChange={handleChangePage}

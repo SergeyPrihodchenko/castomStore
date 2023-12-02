@@ -1,6 +1,6 @@
 import { axiosBaseQuery } from "@/App/providers/StoreProvider/config/axiosConfigQuery";
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
-import { IProduct } from "../types/types";
+import { IProduct, IProductResponse } from "../types/types";
 import { ProductSchema } from "@/Features/Admin/AddProduct/model/types/product";
 
 export const productApi = createApi({
@@ -10,9 +10,9 @@ export const productApi = createApi({
     }),
     tagTypes: ['Product'],
     endpoints: build => ({
-        getProducts: build.query<IProduct[], number>({
+        getProducts: build.query<IProductResponse, number>({
             query: (limit?: number) => ({
-                url: '/products',
+                url: `/products/${limit}`,
                 method: 'GET',
             }),
             providesTags: ['Product']
@@ -25,7 +25,7 @@ export const productApi = createApi({
         }),
         createProduct: build.mutation<IProduct, any>({
             query: (product: ProductSchema) => ({
-                url: '/products/create',
+                url: '/products/save',
                 method: 'POST',
                 data: product,
                 headers: {

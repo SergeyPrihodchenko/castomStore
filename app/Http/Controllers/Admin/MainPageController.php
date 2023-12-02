@@ -10,7 +10,7 @@ use App\Models\Admin\MainPage\MainPage;
 use App\Models\Admin\MainPage\Subheader;
 use App\Models\Admin\MainPage\Title;
 
-class AdminMainPageController extends Controller
+class MainPageController extends Controller
 {
     protected const ROW_ID = 1;
 
@@ -24,22 +24,16 @@ class AdminMainPageController extends Controller
           'title' => $mainPage->title->title, 
           'header' => $mainPage->header->title,
           'subheader' => $mainPage->subheader->title,
-          'img_path' => $mainPage->imagePath->img_path
+          'img_path' => $mainPage->imagePath->img_path,
+          'img_title' => $mainPage->imagePath->title
         ];
-        // $data['current_settings'] = ['header' => $mainPage->header->header];
-        // $data[] = ['subheader' => $mainPage->subheader->subheader];
-        // $data[] = ['img_path' => $mainPage->imagePath->img_path];
+
         $data['list_settings'] = [
           'all_title' => Title::all()->toArray(),
           'all_header' => Header::all()->toArray(),
           'all_subheader' => Subheader::all()->toArray(),
           'all_img_path' => Image::all()->toArray()
     ];
-
-        // $data[] = ['all_title' => Title::all()->toArray()];
-        // $data[] = ['all_header' => Header::all()->toArray()];
-        // $data[] = ['all_subheader' => Subheader::all()->toArray()];
-        // $data[] = ['all_img_path' => Image::all()->toArray()];
 
         return response()->json($data);
     }

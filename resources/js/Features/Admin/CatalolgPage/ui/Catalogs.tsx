@@ -23,29 +23,29 @@ const theme = createTheme({
 
 const Catalogs = ({ catalogs }: ICatalogs) => {
   const [catalogValue, setCatalogValue] = useState('');
-  const [catalogsList, setCatalogsList] = useState(catalogs);
 
   const handleChangeCatalog = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const value = e.target.value;
     setCatalogValue(value);
   };
 
-  const [setCatalog, {isLoading}] = useSetCatalogMutation();
+  const [setCatalog, {}] = useSetCatalogMutation();
 
-  const setCatalogC = () => {
-    setCatalog({ title: catalogValue });
+  const setCatalogC = async () => {
+    await setCatalog({ title: catalogValue });
     setCatalogValue('');
+    router.reload({ only: ['catalogs'] });
   };
 
-  const updateCatalog = (id: number, cb: Function) => {
-    cb({id:id, title:catalogValue});
+  const updateCatalog = async (id: number, cb: Function) => {
+    await cb({ id: id, title: catalogValue });
     setCatalogValue('');
-  }
+    router.reload({ only: ['catalogs'] });
+  };
 
   return (
     <ThemeProvider theme={theme}>
-    {isLoading ? router.reload({only: ['catalogs']}) : ''}
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
         <Box sx={{ width: 1200 }}>
           <Typography
             fontFamily="Integral CF"
@@ -83,7 +83,10 @@ const Catalogs = ({ catalogs }: ICatalogs) => {
           >
             Добавить
           </Button>
-          <CatalogsTable catalogs={catalogs} updateCatalog={updateCatalog}/>
+          <CatalogsTable
+            catalogs={catalogs}
+            updateCatalog={updateCatalog}
+          />
         </Box>
       </Box>
     </ThemeProvider>
