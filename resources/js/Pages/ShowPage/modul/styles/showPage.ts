@@ -4,29 +4,33 @@ export const style = {
         padding: '10px 0'
     },
 
-    slider: {
-        box: {
-            padding: '10px 16px',
-            alignItems: 'center'
-        },
+    box: {
+        padding: '10px 16px',
+        alignItems: 'center'
+    },
 
+    slider: {
         mainImage: {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            height: '290px',
+            height: {xs:'290px', sm:'400px', md:'530px'},
             width: '100%',
-            maxWidth: '355px',
-            maxHeight: '290px',
+            maxWidth: {xs:'355px', sm:'344px', md:'444px'},
+            maxHeight: {xs:'290px', sm:'400px', md:'530px'},
             borderRadius: '20px'
         },
 
-        subImage: {
+        listImages: {
+            flexDirection: {xs:'row', sm:'column'}
+        },
+
+        image: {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            height: '106px',
+            height: {xs:'106px', sm:'133px', md:'167px'},
             width: '100%',
-            maxWidth: '111px',
-            maxHeight: '106px',
+            maxWidth: {xs:'111px', sm:'128px', md:'152px'},
+            maxHeight: {xs:'106px', sm:'133px', md:'167px'},
             borderRadius: '20px'
         }
     },
@@ -46,7 +50,6 @@ export const style = {
             fontStyle: 'normal',
             fontWeight: '700',
             lineHeight: '28px',
-
         },
 
         rating: {
