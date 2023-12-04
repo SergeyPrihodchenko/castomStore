@@ -47,6 +47,9 @@ require __DIR__ . '/Admin/categoryPage.php';
 
 require __DIR__ . '/Admin/productsPage.php';
 
+require __DIR__ . '/Client/showPage.php';
+
+
 
 
 
