@@ -7,6 +7,7 @@ import GymMobile from '@/image/GymMobile.png';
 import PartyMobile from '@/image/PartyMobile.png';
 import CasualMobile from '@/image/CasualMobile.png';
 import ImageListItem from '@mui/material/ImageListItem';
+import { style } from './../modul/styles/HomePageStyles';
 
 const arrayCategories = [
   {
@@ -34,24 +35,11 @@ const arrayCategories = [
 export default function Categories() {
   return (
     <Container fixed>
-      <Box
-        sx={{
-          marginBottom: '50px',
-          background: '#F2F0F1',
-          borderRadius: '16px',
-          paddingBottom: '15px',
-        }}
-      >
+      <Box sx={{ ...style.Categories.mainBox }}>
         <Typography
           variant="h6"
           component="div"
-          sx={{
-            flexGrow: 1,
-            fontWeight: 700,
-            padding: '40px 0 30px 0',
-            fontFamily: 'Integral CF',
-            fontSize: '32px',
-          }}
+          sx={{ ...style.title, ...style.titlePaddind }}
         >
           КАТЕГОРИИ
         </Typography>
@@ -59,22 +47,10 @@ export default function Categories() {
           {arrayCategories.map((item) => {
             return (
               <ImageListItem
-                sx={{ minWidth: '260px', margin: '0 15px 15px 15px' }}
+                sx={{ ...style.Categories.imgList }}
                 key={item.id}
               >
-                <Box
-                  sx={{
-                    height: '160px',
-                    textAlign: 'left',
-                    padding: '25px 0 0 15px',
-                    borderRadius: '16px',
-                    background: 'url(' + `${item.img}` + ') no-repeat right	#FFFFFF',
-                    fontFamily: 'Satoshi',
-                    fontWeight: '700',
-                    fontSize: '24px',
-                    color: '#000000',
-                  }}
-                >
+                <Box sx={{ ...style.Categories.imgBox, background: 'url(' + `${item.img}` + ')' }}>
                   {item.title}
                 </Box>
               </ImageListItem>

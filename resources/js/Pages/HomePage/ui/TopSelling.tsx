@@ -10,6 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import VerticalStripedShirt from '@/image/VerticalStripedShirt.png';
 import CourageGraphicT_shirt from '@/image/CourageGraphicT_shirt.png';
+import { style } from './../modul/styles/HomePageStyles';
 
 const arrayTopSelling = [
   {
@@ -31,12 +32,7 @@ const arrayTopSelling = [
 export default function TopSelling() {
   return (
     <Container fixed>
-      <Box
-        sx={{
-          margin: '30px 0 50px 0',
-          borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-        }}
-      >
+      <Box sx={{ ...style.TopSelling.mainBox }}>
         <Typography
           variant="h6"
           component="div"
@@ -50,27 +46,13 @@ export default function TopSelling() {
         >
           ПОПУЛЯРНЫЕ ТОВАРЫ
         </Typography>
-        <Box
-          sx={{
-            marginBottom: '30px',
-            display: 'flex',
-            alignContent: 'space-between',
-            marginLeft: '-20px',
-          }}
-        >
+        <Box sx={{ ...style.itemBox }}>
           {arrayTopSelling.map((item) => {
             return (
               <Box>
                 <Card
                   key={item.id}
-                  sx={{
-                    minWidth: '140px',
-                    maxWidth: '187px',
-                    minHeight: '385px',
-                    maxHeight: '406px',
-                    borderRadius: '16px',
-                    marginLeft: '15px',
-                  }}
+                  sx={{ ...style.itemCard }}
                 >
                   <CardMedia
                     sx={{ height: 200 }}
@@ -81,10 +63,7 @@ export default function TopSelling() {
                     <Typography
                       variant="h6"
                       component="div"
-                      textAlign={'left'}
-                      fontWeight={'700'}
-                      fontSize={'16px'}
-                      fontFamily={'Satoshi'}
+                      sx={{ ...style.itemTitle }}
                     >
                       {item.title}
                     </Typography>
@@ -95,30 +74,13 @@ export default function TopSelling() {
                       size="small"
                       defaultValue={item.rating}
                     />
-                    <Box
-                      sx={{
-                        ml: 1,
-                        fontSize: '12px',
-                        fontFamily: 'Satoshi',
-                        fontWeight: '700',
-                      }}
-                    >
-                      {item.rating}
-                    </Box>
+                    <Box sx={{ ...style.itemRating }}>{item.rating}</Box>
                   </CardActions>
-                  <Box
-                    sx={{
-                      ml: 2,
-                    }}
-                  >
+                  <Box sx={{ ml: 2 }}>
                     <Typography
                       variant="h6"
                       component="div"
-                      textAlign={'left'}
-                      fontWeight={'700'}
-                      fontSize={'20px'}
-                      paddingBottom={'10px'}
-                      fontFamily={'Satoshi'}
+                      sx={{ ...style.itemPrice }}
                     >
                       ${item.price}
                     </Typography>
@@ -133,16 +95,7 @@ export default function TopSelling() {
         <Button
           variant="contained"
           size="small"
-          sx={{
-            width: '280px',
-            height: '52px',
-            alignContent: 'center',
-            borderRadius: '62px',
-            fontWeight: 500,
-            fontSize: '14px',
-            margin: '0 10px 50px 0',
-            fontFamily: 'Satoshi',
-          }}
+          sx={{ ...style.button }}
           href="#"
           color="secondary"
         >
