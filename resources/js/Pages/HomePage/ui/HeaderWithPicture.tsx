@@ -6,33 +6,18 @@ import Button from '@mui/material/Button';
 import SliderMobile from '@/image/SliderMobile.png';
 import Vector from '@/image/Vector.png';
 import Grid from '@mui/material/Grid';
+import { style } from './../modul/styles/HomePageStyles';
 
 export default function HeaderWithPicture() {
   return (
     <Box>
       {/* текст о сайте */}
       <Container fixed>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            marginTop: '63px',
-          }}
-        >
+        <Box sx={{ ...style.HeaderWithPicture.mainBox }}>
           <Typography
             variant="h6"
             component="div"
-            sx={{
-              flexGrow: 1,
-              fontWeight: 700,
-              textAlign: 'left',
-              paddingLeft: '20px',
-              fontFamily: 'Integral CF',
-              fontSize: '36px',
-              lineHeight: '1',
-              marginBottom: '20px',
-            }}
+            sx={{ ...style.title, ...style.HeaderWithPicture.title }}
           >
             СОЗДАЙТЕ САЙТ ВАШЕЙ МЕЧТЫ
           </Typography>
@@ -40,14 +25,7 @@ export default function HeaderWithPicture() {
           <Typography
             variant="h5"
             component="div"
-            sx={{
-              flexGrow: 1,
-              fontSize: '14px',
-              textAlign: 'left',
-              paddingLeft: '20px',
-              fontWeight: 400,
-              fontFamily: 'Satoshi',
-            }}
+            sx={{ ...style.HeaderWithPicture.text }}
           >
             У нас есть сайт, который вы можете настроить по своему усмотрению и начать или расширить
             свою деятельность.
@@ -57,16 +35,7 @@ export default function HeaderWithPicture() {
           <Button
             variant="contained"
             size="small"
-            sx={{
-              maxWidth: '280px',
-              height: '52px',
-              alignContent: 'center',
-              borderRadius: '62px',
-              fontWeight: 500,
-              fontSize: '16px',
-              fontFamily: 'Satoshi',
-              margin: '20px 0 20px 20px',
-            }}
+            sx={{ ...style.button }}
             href="/dashboard"
             color="primary"
           >
@@ -78,16 +47,14 @@ export default function HeaderWithPicture() {
       {/* картинка */}
       <Box
         sx={{
-          background: '#F2F0F1',
+          ...style.HeaderWithPicture.imgBoxColor,
         }}
       >
         <Container fixed>
           <Box
             sx={{
-              margin: '10px 0 50px 0px',
-              paddingTop: '60px',
-              height: '448px',
-              background: 'url(' + SliderMobile + ') no-repeat right #F2F0F1',
+              ...style.HeaderWithPicture.imgBox,
+              backgroundImage: 'url(' + SliderMobile + ')',
             }}
           >
             <Grid
