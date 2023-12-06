@@ -1,5 +1,3 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -7,12 +5,21 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import { useState } from 'react';
+import { router } from '@inertiajs/react';
 
-export default function AuthenticationTwoFactor() {
+
+export default function AuthenticationTwoFactor({id}: {id: number}) {
+
+    const [value, setValue] = useState('');
+
+    const handleChange = (e: any) => {
+        setValue(e.target.value);
+    }
+
   return (
     <>
-      {/* двухфакторная авторизация */}
-
       <Container fixed>
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box sx={{ marginTop: '20px', msxWidth: '800px', height: '500px' }}>
@@ -82,9 +89,9 @@ export default function AuthenticationTwoFactor() {
                     </Typography>
                   }
                   variant="standard"
-                  //value={}
-                  //onChange={}
-                  sx={{ margin: '20px', outline: 'none' }}
+                  value={value}
+                  onChange={handleChange}
+                  sx={{ margin: '20px', outline: 'none'}}
                 />
 
                 <Button
@@ -102,6 +109,7 @@ export default function AuthenticationTwoFactor() {
                     paddingTop: '10px',
                     bgcolor: '#4caf50',
                   }}
+                  onClick={() => {router.post(`/activation/${id}`, {code: value})}}
                 >
                   Авторизоваться
                 </Button>
