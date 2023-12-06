@@ -145,7 +145,7 @@ export const style = {
       padding: '25px 0 0 15px',
       borderRadius: '16px',
       backgroundRepeat: 'no-repeat',
-      backgroundSize: 'right',
+      backgroundSize: 'cover',
       fontFamily: 'Satoshi',
       fontWeight: '700',
       fontSize: '24px',

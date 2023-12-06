@@ -50,7 +50,12 @@ export default function Categories() {
                 sx={{ ...style.Categories.imgList }}
                 key={item.id}
               >
-                <Box sx={{ ...style.Categories.imgBox, background: 'url(' + `${item.img}` + ')' }}>
+                <Box
+                  sx={{
+                    ...style.Categories.imgBox,
+                    backgroundImage: 'url(' + `${item.img}` + ')',
+                  }}
+                >
                   {item.title}
                 </Box>
               </ImageListItem>
