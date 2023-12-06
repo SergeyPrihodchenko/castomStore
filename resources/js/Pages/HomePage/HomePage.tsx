@@ -6,7 +6,7 @@ import Categories from '@/Features/Admin/CategoriesAccordion/ui/Categories';
 import Catalogs from '@/Features/Admin/CatalogsAccordion/ui/Catalogs';
 
 //import AddProduct from '@/Features/Admin/AddProduct/ui/AddProduct';
-import AuthenticationTwoFactor from '../AdminPage/Form/AuthenticationTwoFactor';
+import AuthenticationTwoFactor from '../../Features/Admin/AthenticationForm/AuthenticationTwoFactor';
 import ProductTable from '../AdminPage/Form/ui/ProductsTable';
 import AdminProductList from '../AdminPage/ProductList/ui/AdminProductList';
 import AddProduct from '@/Features/Admin/AddProduct/ui/addProduct';
@@ -18,7 +18,7 @@ export default function Welcome() {
       {/* <Catalogs/>  подключал для тестирования */}
       {/* <AddProduct /> */}
       {/* <ProductTable /> */}
-      <AuthenticationTwoFactor />
+      {/* <AuthenticationTwoFactor /> */}
       <HomePage />
       <Subscription />
       {/* <AdminProductList /> */}
