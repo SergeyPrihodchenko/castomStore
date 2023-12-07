@@ -10,83 +10,30 @@ import Container from '@mui/material/Container';
 
 export default function Subscription() {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+    <Box sx={{ ...style.mainBox }}>
       {/* подписка */}
       <Container fixed>
-        <Box
-          sx={{
-            zIndex: '1',
-            marginBottom: '50px',
-          }}
-        >
-          <Box
-            sx={{
-              position: 'absolute',
-              background: '#000000',
-              borderRadius: '20px',
-              zIndex: '2',
-              padding: '32px 24px 28px 24px',
-              marginRight: '15px',
-            }}
-          >
-            <Typography
-              fontFamily="Integral CF"
-              fontWeight="700"
-              fontSize="30px"
-              color="#FFFFFF"
-              textAlign="left"
-              marginBottom={'32px'}
-            >
-              ПОДПИШИТЕСЬ НА НОВИНКИ
-            </Typography>
+        <Box sx={{ ...style.boxTop }}>
+          <Box sx={{ ...style.boxTitle }}>
+            <Typography sx={{ ...style.title }}>ПОДПИШИТЕСЬ НА НОВИНКИ</Typography>
             <Box component="form">
-              <Paper
-                sx={{
-                  p: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  maxWidth: '350px',
-                  minHeight: '42px',
-                  maxHeight: '48px',
-                  borderRadius: '62px',
-                  marginBottom: '12px',
-                }}
-              >
+              <Paper sx={{ ...style.paperEmail }}>
                 <IconButton
                   sx={{ p: '10px' }}
                   aria-label="menu"
                 >
-                  <MailOutlineIcon sx={{ width: '20px', height: '20px' }} />
+                  <MailOutlineIcon sx={{ ...style.mailOutlineIcon }} />
                 </IconButton>
                 <InputBase
-                  sx={{
-                    ml: 1,
-                    flex: 1,
-                  }}
+                  sx={{ ml: 1, flex: 1 }}
                   placeholder="Введите свой Email"
                   inputProps={{ 'aria-label': 'Введите свой Email' }}
                 />
               </Paper>
-              <Paper
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  maxWidth: '350px',
-                  minHeight: '42px',
-                  maxHeight: '48px',
-                  borderRadius: '62px',
-                }}
-              >
+              <Paper sx={{ ...style.paperButton }}>
                 <Button
                   variant="outlined"
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: '14px',
-                    fontFamily: 'Satoshi',
-                    color: '#000000',
-                    borderColor: '#FFFFFF',
-                    '&:hover': { borderColor: '#FFFFFF' },
-                  }}
+                  sx={{ ...style.button }}
                 >
                   Подписаться
                 </Button>
@@ -94,14 +41,78 @@ export default function Subscription() {
             </Box>
           </Box>
         </Box>
-        <Box
-          sx={{
-            height: '100px',
-            backgroundColor: '#FFFF',
-            minWidth: '310px',
-          }}
-        />
+        <Box sx={{ ...style.boxBottom }} />
       </Container>
     </Box>
   );
 }
+
+const style = {
+  mainBox: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
+  boxTop: {
+    zIndex: '1',
+    marginBottom: '50px',
+  },
+
+  boxTitle: {
+    position: 'absolute',
+    background: '#000000',
+    borderRadius: '20px',
+    zIndex: '2',
+    padding: '32px 24px 28px 24px',
+    marginRight: '15px',
+  },
+
+  title: {
+    fontFamily: 'Integral CF',
+    fontWeight: '700',
+    fontSize: '30px',
+    color: '#FFFFFF',
+    textAlign: 'left',
+    marginBottom: '32px',
+  },
+
+  paperEmail: {
+    padding: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    maxWidth: '350px',
+    minHeight: '42px',
+    maxHeight: '48px',
+    borderRadius: '62px',
+    marginBottom: '12px',
+  },
+
+  mailOutlineIcon: {
+    width: '20px',
+    height: '20px',
+  },
+
+  paperButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    maxWidth: '350px',
+    minHeight: '42px',
+    maxHeight: '48px',
+    borderRadius: '62px',
+  },
+
+  button: {
+    fontWeight: 700,
+    fontSize: '14px',
+    fontFamily: 'Satoshi',
+    color: '#000000',
+    borderColor: '#FFFFFF',
+    '&:hover': { borderColor: '#FFFFFF' },
+  },
+
+  boxBottom: {
+    height: '100px',
+    backgroundColor: '#FFFF',
+    minWidth: '310px',
+  },
+};
