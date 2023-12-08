@@ -17,7 +17,6 @@ export const style = {
   mainBox: {
     minWidth: 320,
     margin: '0 auto',
-    textAlign: { xs: 'center', md: 'left' },
     zIndex: { sm: '2' },
   },
 

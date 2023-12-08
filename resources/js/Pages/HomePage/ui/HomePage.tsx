@@ -7,6 +7,7 @@ import NewArrivals from './NewArrivals';
 import TopSelling from './TopSelling';
 import Categories from './Categories';
 import HeaderWithPicture from './HeaderWithPicture';
+import Subscription from '@/Widgets/Subscription/Subscription';
 
 export default function MainPage() {
   return (
@@ -26,6 +27,9 @@ export default function MainPage() {
 
         {/* отзывы */}
         <Reviews />
+
+        {/* подписка */}
+        <Subscription />
       </Box>
     </ThemeProvider>
   );

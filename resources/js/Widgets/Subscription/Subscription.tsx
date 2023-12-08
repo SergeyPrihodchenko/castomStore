@@ -12,8 +12,9 @@ import { style } from './module/styles/SubscriptionStyle';
 export default function Subscription() {
   return (
     <Box sx={{ ...style.mainBox }}>
-      {/* подписка */}
       <Container fixed>
+        {/* подписка */}
+
         <Box sx={{ ...style.boxTop }}>
           <Box sx={{ ...style.box }}>
             <Box sx={{ ...style.boxTitle }}>

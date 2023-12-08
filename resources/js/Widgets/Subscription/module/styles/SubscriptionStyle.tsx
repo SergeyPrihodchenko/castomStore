@@ -1,9 +1,9 @@
 export const style = {
   mainBox: {
-    minWidth: 320,
+    minWidth: 300,
     margin: '0 auto',
     display: 'flex',
-    justifyContent: 'center',
+    //justifyContent: 'center',
   },
 
   boxTop: {
@@ -19,7 +19,7 @@ export const style = {
     padding: '32px 24px 28px 24px',
     marginRight: '15px',
     display: { sm: 'flex' },
-    width: { xs: '93%', sm: '72%', md: '83%', lg: '80%', xl: '45%' },
+    minWidth: { xs: '300px', sm: '560px', md: '860px', lg: '1150px' },
   },
 
   boxTitle: {
@@ -72,6 +72,6 @@ export const style = {
   boxBottom: {
     height: '100px',
     backgroundColor: '#FFFF',
-    minWidth: '310px',
+    minWidth: '300px',
   },
 };
