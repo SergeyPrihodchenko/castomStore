@@ -6,7 +6,7 @@ import ResponsiveNavLink from '@/Shared/ui/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { User } from '@/types';
 import Header from '@/Widgets/Header';
-import Footer from '@/Widgets/Footer';
+import Footer from '@/Widgets/Footer/Footer';
 import ProductList from '@/Pages/AdminPage/ProductList/ui/ProductList';
 
 export default function MainLayout({

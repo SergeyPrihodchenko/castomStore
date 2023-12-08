@@ -1,7 +1,7 @@
 import Header from '@/Widgets/Header';
 import HomePage from './ui/HomePage';
-import Footer from '@/Widgets/Footer';
-import Subscription from '@/Widgets/Subscription';
+import Footer from '@/Widgets/Footer/Footer';
+import Subscription from '@/Widgets/Subscription/Subscription';
 import Categories from '@/Features/Admin/CategoriesAccordion/ui/Categories';
 import Catalogs from '@/Features/Admin/CatalogsAccordion/ui/Catalogs';
 

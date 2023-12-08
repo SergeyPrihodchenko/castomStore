@@ -10,7 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import VerticalStripedShirt from '@/image/VerticalStripedShirt.png';
 import CourageGraphicT_shirt from '@/image/CourageGraphicT_shirt.png';
-import { style } from './../modul/styles/HomePageStyles';
+import { style } from './../module/styles/HomePageStyles';
 
 const arrayTopSelling = [
   {
@@ -27,29 +27,44 @@ const arrayTopSelling = [
     img: `${CourageGraphicT_shirt}`,
     rating: 4,
   },
+  {
+    id: 3,
+    title: 'Vertical Striped Shirt',
+    price: '212',
+    img: `${VerticalStripedShirt}`,
+    rating: 5,
+  },
+  {
+    id: 4,
+    title: 'Courage Graphic T-shirt',
+    price: '145',
+    img: `${CourageGraphicT_shirt}`,
+    rating: 4,
+  },
+  {
+    id: 5,
+    title: 'Vertical Striped Shirt',
+    price: '212',
+    img: `${VerticalStripedShirt}`,
+    rating: 5,
+  },
 ];
 
 export default function TopSelling() {
   return (
     <Container fixed>
-      <Box sx={{ ...style.TopSelling.mainBox }}>
+      <Box sx={{ ...style.TopSelling.mainBox, ...style.mainCardBox }}>
         <Typography
           variant="h6"
           component="div"
-          sx={{
-            flexGrow: 1,
-            fontWeight: 700,
-            fontFamily: 'Integral CF',
-            fontSize: '32px',
-            margin: '40px 0 40px 0',
-          }}
+          sx={{ ...style.title, ...style.titleMargin }}
         >
           ПОПУЛЯРНЫЕ ТОВАРЫ
         </Typography>
         <Box sx={{ ...style.itemBox }}>
           {arrayTopSelling.map((item) => {
             return (
-              <Box>
+              <Box sx={{ ...style.cardBox }}>
                 <Card
                   key={item.id}
                   sx={{ ...style.itemCard }}
