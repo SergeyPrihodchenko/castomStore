@@ -21,8 +21,7 @@ export const style = {
 
     tableBox: { 
         display: 'flex', 
-        alignItems: 'flex-end',
-        
+        alignItems: 'flex-end'
     },
 
     buttonDelete: {
