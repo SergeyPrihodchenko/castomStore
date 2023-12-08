@@ -12,7 +12,7 @@ export const style = {
     slider: {
         mainImage: {
             backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
+            backgroundSize: 'contain',
             height: {xs:'290px', sm:'400px', md:'530px'},
             width: '100%',
             maxWidth: {xs:'355px', sm:'344px', md:'444px'},
@@ -26,7 +26,7 @@ export const style = {
 
         image: {
             backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
+            backgroundSize: 'contain',
             height: {xs:'106px', sm:'133px', md:'167px'},
             width: '100%',
             maxWidth: {xs:'111px', sm:'128px', md:'152px'},
