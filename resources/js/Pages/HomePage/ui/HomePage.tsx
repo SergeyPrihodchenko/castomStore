@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
-import { style, theme } from './../modul/styles/HomePageStyles';
+import { style, theme } from './../module/styles/HomePageStyles';
 import Reviews from './Reviews';
 import NewArrivals from './NewArrivals';
 import TopSelling from './TopSelling';

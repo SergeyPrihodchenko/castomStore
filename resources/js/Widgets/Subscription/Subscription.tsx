@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import Container from '@mui/material/Container';
+import { style } from './module/styles/SubscriptionStyle';
 
 export default function Subscription() {
   return (
@@ -14,8 +15,11 @@ export default function Subscription() {
       {/* подписка */}
       <Container fixed>
         <Box sx={{ ...style.boxTop }}>
-          <Box sx={{ ...style.boxTitle }}>
-            <Typography sx={{ ...style.title }}>ПОДПИШИТЕСЬ НА НОВИНКИ</Typography>
+          <Box sx={{ ...style.box }}>
+            <Box sx={{ ...style.boxTitle }}>
+              <Typography sx={{ ...style.title }}>ПОДПИШИТЕСЬ НА НОВИНКИ</Typography>
+            </Box>
+
             <Box component="form">
               <Paper sx={{ ...style.paperEmail }}>
                 <IconButton
@@ -46,73 +50,3 @@ export default function Subscription() {
     </Box>
   );
 }
-
-const style = {
-  mainBox: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-
-  boxTop: {
-    zIndex: '1',
-    marginBottom: '50px',
-  },
-
-  boxTitle: {
-    position: 'absolute',
-    background: '#000000',
-    borderRadius: '20px',
-    zIndex: '2',
-    padding: '32px 24px 28px 24px',
-    marginRight: '15px',
-  },
-
-  title: {
-    fontFamily: 'Integral CF',
-    fontWeight: '700',
-    fontSize: '30px',
-    color: '#FFFFFF',
-    textAlign: 'left',
-    marginBottom: '32px',
-  },
-
-  paperEmail: {
-    padding: '12px',
-    display: 'flex',
-    alignItems: 'center',
-    maxWidth: '350px',
-    minHeight: '42px',
-    maxHeight: '48px',
-    borderRadius: '62px',
-    marginBottom: '12px',
-  },
-
-  mailOutlineIcon: {
-    width: '20px',
-    height: '20px',
-  },
-
-  paperButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    maxWidth: '350px',
-    minHeight: '42px',
-    maxHeight: '48px',
-    borderRadius: '62px',
-  },
-
-  button: {
-    fontWeight: 700,
-    fontSize: '14px',
-    fontFamily: 'Satoshi',
-    color: '#000000',
-    borderColor: '#FFFFFF',
-    '&:hover': { borderColor: '#FFFFFF' },
-  },
-
-  boxBottom: {
-    height: '100px',
-    backgroundColor: '#FFFF',
-    minWidth: '310px',
-  },
-};
