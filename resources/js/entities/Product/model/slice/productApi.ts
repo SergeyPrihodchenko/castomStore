@@ -12,7 +12,7 @@ export const productApi = createApi({
     endpoints: build => ({
         getProducts: build.query<IProductResponse, number>({
             query: (limit?: number) => ({
-                url: `/products/${limit}`,
+                url: `/products/json/${limit}`,
                 method: 'GET',
             }),
             providesTags: ['Product']
@@ -39,13 +39,20 @@ export const productApi = createApi({
                 method: 'DELETE',
             }),
             invalidatesTags: ['Product']
+        }),
+        searchProduct: build.query<string, any>({
+            query: (search: string) => ({
+                url: `/products/${search}`,
+                method: 'GET'
+            }),
         })
     })
 })
 
 export const {
-    useGetProductsQuery,
+    useLazyGetProductsQuery,
     useGetProductByIdQuery,
     useCreateProductMutation,
-    useDeleteProductByIdMutation
+    useDeleteProductByIdMutation,
+    useLazySearchProductQuery
 } = productApi
