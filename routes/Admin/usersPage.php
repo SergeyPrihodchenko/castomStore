@@ -9,5 +9,7 @@ Route::middleware('auth')->group(function() {
 
     Route::post('admin/users/admins', [UsersController::class, 'admins'])->name('admins');
 
+    Route::post('admin/users/byElmail', [UsersController::class, 'sortUsersByEmail'])->name('byEmail');
+
     Route::post('admin/users/changeAdmin', [UsersController::class, 'changeAdmin'])->name('changeAdmin');
 });

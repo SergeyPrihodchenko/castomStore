@@ -25,6 +25,15 @@ class UsersController extends Controller
         return $user->toArray();
     }
 
+    public function sortUsersByEmail(UsersRequest $request): array
+    {
+        $value = $request->input('value');
+
+        $users = User::where('email', 'LIKE', "%$value%")->get(['id', 'name', 'email']);
+
+        return $users->toArray();
+    }
+
     public function admins(): array
     {
         $admins = User::where('isAdmin', 1)->get();

@@ -11,10 +11,18 @@ export const queryUsers = createApi({
                 url: 'admins',
                 method: 'POST',
             })
+        }),
+        SerchByEmail: build.mutation({
+            query: (value: string) => ({
+                url: 'byElmail',
+                method: 'POST',
+                data: {value: value}
+            })
         })
     })
 });
 
 export const {
-    useGetAdminsMutation
+    useGetAdminsMutation,
+    useSerchByEmailMutation
 } = queryUsers;

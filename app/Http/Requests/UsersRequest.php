@@ -22,7 +22,8 @@ class UsersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'nullable|numeric'
+            'user_id' => 'nullable|numeric',
+            'value' => 'nullable|string|max:100'
         ];
     }
 }

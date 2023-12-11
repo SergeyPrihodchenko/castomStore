@@ -1,7 +1,41 @@
 import { Box, Grid, Rating, Typography } from '@mui/material';
 import { style } from '../modul/styles/showPage';
+import { useState } from 'react';
 
 const ShowElement = () => {
+
+  const imgs: string[] = ['storage/showPage/3.jpg', 'storage/showPage/2.jpg', 'storage/showPage/4.jpg', 'storage/showPage/1.jpg'];
+
+  const [index, setIndex] = useState(0);
+
+  const [imgList, setImgList] = useState(imgs);
+
+  const [mainImg, setMainImg] = useState(imgList[index]);
+
+  const switchImg = (i: number) => {
+    setIndex(i);
+    setMainImg(imgList[i]);
+  }
+
+  const imgBlock = (img: string, i: number) => {
+    
+    if(index != i) {
+      return (
+        <Grid
+          key={i}
+          item
+          xs={4}
+          sm={12}
+        >
+          <Box
+            onClick={() => {switchImg(i)}}
+            sx={{ ...style.slider.image, backgroundImage: `url(${img})` }}
+          ></Box>
+        </Grid>
+      );
+    }
+  }
+
   return (
     <Grid
       container
@@ -18,7 +52,7 @@ const ShowElement = () => {
           sm={4}
         >
           <Box
-            sx={{ ...style.slider.mainImage, backgroundImage: 'url(storage/showPage/3.jpg)' }}
+            sx={{ ...style.slider.mainImage, backgroundImage: `url(${mainImg})` }}
           ></Box>
         </Grid>
         <Grid
@@ -31,33 +65,7 @@ const ShowElement = () => {
             spacing={1}
             sx={style.slider.listImages}
           >
-            <Grid
-              item
-              xs={4}
-              sm={12}
-            >
-              <Box
-                sx={{ ...style.slider.image, backgroundImage: 'url(storage/showPage/2.jpg)' }}
-              ></Box>
-            </Grid>
-            <Grid
-              item
-              xs={4}
-              sm={12}
-            >
-              <Box
-                sx={{ ...style.slider.image, backgroundImage: 'url(storage/showPage/4.jpg)' }}
-              ></Box>
-            </Grid>
-            <Grid
-              item
-              xs={4}
-              sm={12}
-            >
-              <Box
-                sx={{ ...style.slider.image, backgroundImage: 'url(storage/showPage/1.jpg)' }}
-              ></Box>
-            </Grid>
+            {imgList.map((img, i) => imgBlock(img, i))}
           </Grid>
         </Grid>
         <Grid

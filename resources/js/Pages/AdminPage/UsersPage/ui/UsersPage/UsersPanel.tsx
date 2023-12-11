@@ -3,15 +3,18 @@ import { IUser } from "../../model/types/type";
 import { SearchRounded, TableRows } from "@mui/icons-material";
 import { style } from "../../model/styles/style";
 import { useState } from "react";
-import { useGetAdminsMutation } from "../../model/redux/RTKQuery";
+import { useGetAdminsMutation, useSerchByEmailMutation } from "../../model/redux/RTKQuery";
 
 const UsersPanel = ({users, isSuper}: {users: IUser, isSuper: boolean}) => {
+
+    const [value, setValue] = useState('');
     
     const [userList, setUserList] = useState(users);
 
     const [checkAdmin, setCheckAdmin] = useState(false);
 
     const [adminsList, {}] = useGetAdminsMutation();
+    const [serchByEmail, {data}] = useSerchByEmailMutation();
     
     const getAdmins = async(e: any) => {
         setCheckAdmin(checkAdmin ? false : true);
@@ -27,13 +30,30 @@ const UsersPanel = ({users, isSuper}: {users: IUser, isSuper: boolean}) => {
         }
     }
 
+    const sortByEmail = async() => {
+
+        if(value.length >= 3) {
+            const {data}: any = await serchByEmail(value);
+
+            setUserList(data);
+        } else {
+            setUserList(users);
+        }
+                
+    }
+
+    const handleChange = (e: any) => {
+        setValue(e.target.value);
+        sortByEmail();
+    }
+
     return (        
         <>
             <Grid container sx={style.container}>
                 <Grid item xs={12}>
                 <Box sx={style.serchBox}>
                     <SearchRounded sx={style.serchBox.icon} />
-                    <TextField id="input-with-sx" label="serch by email" variant="standard"/>
+                    <TextField id="input-with-sx" label="serch by email" variant="standard" value={value} onChange={handleChange}/>
                     {isSuper ? <FormControlLabel sx={style.serchBox.checkBox} control={<Checkbox checked={checkAdmin} onChange={getAdmins}/>} label="Only admins" /> : ''}
                 </Box>
                     <Box sx={style.tableBox}>
