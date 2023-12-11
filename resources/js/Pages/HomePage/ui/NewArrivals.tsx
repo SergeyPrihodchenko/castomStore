@@ -10,7 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import T_shirtWithTapeDetales from '@/image/T_shirtWithTapeDetails.png';
 import SkinnyFitJeans from '@/image/SkinnyFitJeans.png';
-import { style } from './../modul/styles/HomePageStyles';
+import { style } from './../module/styles/HomePageStyles';
 
 const arrayNewArrivals = [
   {
@@ -27,12 +27,33 @@ const arrayNewArrivals = [
     img: `${SkinnyFitJeans}`,
     rating: 3,
   },
+  {
+    id: 3,
+    title: 'T-shirt with Tape Detales',
+    price: '120',
+    img: `${T_shirtWithTapeDetales}`,
+    rating: 4,
+  },
+  {
+    id: 4,
+    title: 'Skinny Fit Jeans',
+    price: '240',
+    img: `${SkinnyFitJeans}`,
+    rating: 3,
+  },
+  {
+    id: 5,
+    title: 'T-shirt with Tape Detales',
+    price: '120',
+    img: `${T_shirtWithTapeDetales}`,
+    rating: 4,
+  },
 ];
 
 export default function NewArrivals() {
   return (
     <Container fixed>
-      <Box>
+      <Box sx={{ ...style.mainCardBox }}>
         <Typography
           variant="h6"
           component="div"
@@ -44,7 +65,7 @@ export default function NewArrivals() {
         <Box sx={{ ...style.itemBox }}>
           {arrayNewArrivals.map((item) => {
             return (
-              <Box>
+              <Box sx={{ ...style.cardBox }}>
                 <Card
                   key={item.id}
                   sx={{ ...style.itemCard }}

@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import CheckCircleOutline from '@mui/icons-material/CheckCircleOutline';
 import Rating from '@mui/material/Rating';
 import { ThemeProvider } from '@mui/material/styles';
-import { style, theme } from './../modul/styles/HomePageStyles';
+import { style, theme } from './../module/styles/HomePageStyles';
 
 const arrayReviews = [
   {
@@ -49,11 +49,11 @@ export default function Reviews() {
   return (
     <ThemeProvider theme={theme}>
       <Container fixed>
-        <Box sx={{ ...style.Reviews.mainBox }}>
+        <Box sx={{ ...style.Reviews.mainBox, ...style.mainCardBox }}>
           <Typography
             variant="h6"
             component="div"
-            sx={{ ...style.title, ...style.titlePaddind }}
+            sx={{ ...style.title, ...style.titleMargin }}
           >
             ОТЗЫВЫ
           </Typography>
@@ -63,6 +63,7 @@ export default function Reviews() {
               steps={maxSteps}
               position="static"
               activeStep={activeStep}
+              sx={{ justifyContent: 'flex-end' }}
               nextButton={
                 <Button
                   size="small"

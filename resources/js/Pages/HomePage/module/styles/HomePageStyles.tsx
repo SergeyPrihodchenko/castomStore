@@ -17,8 +17,7 @@ export const style = {
   mainBox: {
     minWidth: 320,
     margin: '0 auto',
-    textAlign: 'center',
-    border: '1px solid red',
+    zIndex: { sm: '2' },
   },
 
   title: {
@@ -28,12 +27,16 @@ export const style = {
     fontSize: '32px',
   },
 
-  titlePaddind: {
+  titlePadding: {
     padding: '40px 0 30px 0',
   },
 
+  titleMargin: {
+    margin: '40px 0 30px 0',
+  },
+
   button: {
-    width: '280px',
+    width: { xs: '280px', sm: '180px', md: '210px' },
     height: '52px',
     alignContent: 'center',
     borderRadius: '62px',
@@ -43,11 +46,22 @@ export const style = {
     margin: '20px',
   },
 
+  mainCardBox: {
+    minWidth: 320,
+    margin: '0 auto',
+    textAlign: 'center',
+  },
+
   itemBox: {
-    margin: '32px',
+    margin: '30px 0',
     display: 'flex',
-    alignContent: 'space-between',
-    marginLeft: '-10px',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    height: '100%',
+  },
+
+  cardBox: {
+    width: { xs: '50%', sm: '31%', md: '22%' },
   },
 
   itemCard: {
@@ -56,7 +70,7 @@ export const style = {
     minHeight: '385px',
     maxHeight: '406px',
     borderRadius: '16px',
-    marginLeft: '15px',
+    margin: '5px',
   },
 
   itemTitle: {
@@ -83,10 +97,13 @@ export const style = {
 
   HeaderWithPicture: {
     mainBox: {
+      maxWidth: { sm: '250px', md: '580px' },
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       marginTop: '63px',
+      zIndex: { sm: '1' },
+      position: { sm: 'absolute' },
     },
 
     title: {
@@ -111,32 +128,43 @@ export const style = {
 
     imgBox: {
       backgroundRepeat: 'no-repeat',
-      backgroundSize: 'right',
-      height: '448px',
-      width: '100%',
-      margin: '10px 0 50px 0px',
+      backgroundSize: { xs: 'cover', sm: 'contain' },
+      backgroundPosition: 'right',
+      height: '450px',
+      minWidth: '310px',
+      marginBottom: '50px',
       paddingTop: '60px',
     },
   },
 
   TopSelling: {
     mainBox: {
-      margin: '30px 0 50px 0',
       borderTop: '1px solid rgba(0, 0, 0, 0.1)',
     },
   },
 
   Categories: {
     mainBox: {
-      marginBottom: '50px',
       background: '#F2F0F1',
       borderRadius: '16px',
       paddingBottom: '15px',
     },
 
+    categoryBox: {
+      display: 'flex',
+      flexDirection: { xs: 'column', sm: 'row' },
+      justifyContent: 'center',
+      flexWrap: { sm: 'wrap' },
+      height: '100%',
+    },
+
+    cardBox: {
+      width: { xs: '100%', sm: '50%', md: '45%' },
+    },
+
     imgList: {
-      minWidth: '260px',
-      margin: '0 15px 15px 15px',
+      minWidth: '240px',
+      margin: { xs: '15px', sm: '10px' },
     },
 
     imgBox: {
@@ -161,7 +189,7 @@ export const style = {
     },
 
     MobileStepperBox: {
-      maxWidth: 400,
+      maxWidth: 1200,
       flexGrow: 1,
     },
 
@@ -170,12 +198,10 @@ export const style = {
       border: '1px solid rgba(0, 0, 0, 0.1)',
       borderRadius: '20px',
       display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'flex-start',
-      alignContent: 'flex-start',
-      gap: '0px 200px',
-      height: 300,
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      //gap: '0 200px',
+      height: '100%',
     },
 
     ratingBox: {
@@ -199,7 +225,7 @@ export const style = {
     },
 
     descBox: {
-      maxWidth: 400,
+      maxWidth: 1200,
       width: '100%',
       p: 2,
       color: 'rgba(0, 0, 0, 0.6)',

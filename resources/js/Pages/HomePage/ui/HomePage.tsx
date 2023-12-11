@@ -1,12 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
-import { style, theme } from './../modul/styles/HomePageStyles';
+import { style, theme } from './../module/styles/HomePageStyles';
 import Reviews from './Reviews';
 import NewArrivals from './NewArrivals';
 import TopSelling from './TopSelling';
 import Categories from './Categories';
 import HeaderWithPicture from './HeaderWithPicture';
+import Subscription from '@/Widgets/Subscription/Subscription';
 
 export default function MainPage() {
   return (
@@ -26,6 +27,9 @@ export default function MainPage() {
 
         {/* отзывы */}
         <Reviews />
+
+        {/* подписка */}
+        <Subscription />
       </Box>
     </ThemeProvider>
   );

@@ -4,9 +4,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SliderMobile from '@/image/SliderMobile.png';
-import Vector from '@/image/Vector.png';
-import Grid from '@mui/material/Grid';
-import { style } from './../modul/styles/HomePageStyles';
+import { style } from './../module/styles/HomePageStyles';
 
 export default function HeaderWithPicture() {
   return (
@@ -56,52 +54,7 @@ export default function HeaderWithPicture() {
               ...style.HeaderWithPicture.imgBox,
               backgroundImage: 'url(' + SliderMobile + ')',
             }}
-          >
-            <Grid
-              container
-              spacing={8}
-            >
-              <Grid
-                item
-                xs={4}
-              ></Grid>
-              <Grid
-                item
-                xs={4}
-              ></Grid>
-              <Grid
-                item
-                xs={4}
-              >
-                <img
-                  src={Vector}
-                  width={'76'}
-                  height={'76'}
-                  alt="vectorBig"
-                />
-              </Grid>
-              <Grid
-                item
-                xs={4}
-              >
-                <Grid
-                  item
-                  xs={6}
-                >
-                  <img
-                    src={Vector}
-                    width={'44'}
-                    height={'44'}
-                    alt="vectorSmall"
-                  />
-                </Grid>
-                <Grid
-                  item
-                  xs={4}
-                ></Grid>
-              </Grid>
-            </Grid>
-          </Box>
+          />
         </Container>
       </Box>
     </Box>
