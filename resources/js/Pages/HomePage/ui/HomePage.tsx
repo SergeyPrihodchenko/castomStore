@@ -9,12 +9,12 @@ import Categories from './Categories';
 import HeaderWithPicture from './HeaderWithPicture';
 import Subscription from '@/Widgets/Subscription/Subscription';
 
-export default function MainPage() {
+export default function MainPage({ data }: any) {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ ...style.mainBox }}>
         {/* текст о сайте с картинкой*/}
-        <HeaderWithPicture />
+        <HeaderWithPicture data={data} />
 
         {/* новинки */}
         <NewArrivals />

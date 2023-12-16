@@ -6,7 +6,9 @@ import Button from '@mui/material/Button';
 import SliderMobile from '@/image/SliderMobile.png';
 import { style } from './../module/styles/HomePageStyles';
 
-export default function HeaderWithPicture() {
+export default function HeaderWithPicture({ data }: any) {
+  const { title, header, subheader, img_path, img_title } = data.current_settings;
+
   return (
     <Box>
       {/* текст о сайте */}
@@ -17,7 +19,7 @@ export default function HeaderWithPicture() {
             component="div"
             sx={{ ...style.title, ...style.HeaderWithPicture.title }}
           >
-            СОЗДАЙТЕ САЙТ ВАШЕЙ МЕЧТЫ
+            {header}
           </Typography>
 
           <Typography
@@ -25,8 +27,7 @@ export default function HeaderWithPicture() {
             component="div"
             sx={{ ...style.HeaderWithPicture.text }}
           >
-            У нас есть сайт, который вы можете настроить по своему усмотрению и начать или расширить
-            свою деятельность.
+            {subheader}
           </Typography>
 
           {/* кнопка перехода в настройки */}
@@ -52,7 +53,7 @@ export default function HeaderWithPicture() {
           <Box
             sx={{
               ...style.HeaderWithPicture.imgBox,
-              backgroundImage: 'url(' + SliderMobile + ')',
+              backgroundImage: 'url(' + img_path + ')',
             }}
           />
         </Container>

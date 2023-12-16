@@ -11,15 +11,15 @@ import ProductTable from '../AdminPage/Form/ui/ProductsTable';
 import AdminProductList from '../AdminPage/ProductList/ui/AdminProductList';
 import AddProduct from '@/Features/Admin/AddProduct/ui/addProduct';
 
-export default function Welcome() {
+export default function Welcome({ data }: any) {
   return (
     <>
-      <Header />
+      <Header title={data.current_settings.title} />
       {/* <Catalogs/>  подключал для тестирования */}
       {/* <AddProduct /> */}
       {/* <ProductTable /> */}
       {/* <AuthenticationTwoFactor /> */}
-      <HomePage />
+      <HomePage data={data} />
       {/* <AdminProductList /> */}
       <Footer />
     </>
