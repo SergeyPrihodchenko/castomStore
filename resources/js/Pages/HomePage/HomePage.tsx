@@ -1,26 +1,25 @@
 import Header from '@/Widgets/Header';
 import HomePage from './ui/HomePage';
-import Footer from '@/Widgets/Footer';
-import Subscription from '@/Widgets/Subscription';
+import Footer from '@/Widgets/Footer/Footer';
+
 import Categories from '@/Features/Admin/CategoriesAccordion/ui/Categories';
 import Catalogs from '@/Features/Admin/CatalogsAccordion/ui/Catalogs';
 
 //import AddProduct from '@/Features/Admin/AddProduct/ui/AddProduct';
-import AuthenticationTwoFactor from '../AdminPage/Form/AuthenticationTwoFactor';
+import AuthenticationTwoFactor from '../../Features/Admin/AthenticationForm/AuthenticationTwoFactor';
 import ProductTable from '../AdminPage/Form/ui/ProductsTable';
 import AdminProductList from '../AdminPage/ProductList/ui/AdminProductList';
 import AddProduct from '@/Features/Admin/AddProduct/ui/addProduct';
 
-export default function Welcome() {
+export default function Welcome({ data }: any) {
   return (
     <>
-      <Header />
+      <Header title={data.current_settings.title} />
       {/* <Catalogs/>  подключал для тестирования */}
       {/* <AddProduct /> */}
       {/* <ProductTable /> */}
-      <AuthenticationTwoFactor />
-      <HomePage />
-      <Subscription />
+      {/* <AuthenticationTwoFactor /> */}
+      <HomePage data={data} />
       {/* <AdminProductList /> */}
       <Footer />
     </>

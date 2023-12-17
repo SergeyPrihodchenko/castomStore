@@ -9,20 +9,8 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import IconButton from '@mui/material/IconButton';
 import CheckCircleOutline from '@mui/icons-material/CheckCircleOutline';
 import Rating from '@mui/material/Rating';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000000',
-      contrastText: '#FFFFFF',
-    },
-    secondary: {
-      main: '#FFFFFF',
-      contrastText: '#000000',
-    },
-  },
-});
+import { ThemeProvider } from '@mui/material/styles';
+import { style, theme } from './../module/styles/HomePageStyles';
 
 const arrayReviews = [
   {
@@ -61,37 +49,21 @@ export default function Reviews() {
   return (
     <ThemeProvider theme={theme}>
       <Container fixed>
-        <Box
-          sx={{
-            //marginBottom: '185px',
-            borderRadius: '16px',
-            paddingBottom: '15px',
-          }}
-        >
+        <Box sx={{ ...style.Reviews.mainBox, ...style.mainCardBox }}>
           <Typography
             variant="h6"
             component="div"
-            sx={{
-              flexGrow: 1,
-              fontWeight: 700,
-              padding: '40px 0 30px 0',
-              fontFamily: 'Integral CF',
-              fontSize: '32px',
-            }}
+            sx={{ ...style.title, ...style.titleMargin }}
           >
             ОТЗЫВЫ
           </Typography>
-          <Box
-            sx={{
-              maxWidth: 400,
-              flexGrow: 1,
-            }}
-          >
+          <Box sx={{ ...style.Reviews.MobileStepperBox }}>
             <MobileStepper
               variant="text"
               steps={maxSteps}
               position="static"
               activeStep={activeStep}
+              sx={{ justifyContent: 'flex-end' }}
               nextButton={
                 <Button
                   size="small"
@@ -111,21 +83,8 @@ export default function Reviews() {
                 </Button>
               }
             />
-            <Box
-              sx={{
-                padding: '24px 24px 12px 24px',
-                border: '1px solid rgba(0, 0, 0, 0.1)',
-                borderRadius: '20px',
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                alignItems: 'flex-start',
-                alignContent: 'flex-start',
-                gap: '0px 200px',
-                height: 300,
-              }}
-            >
-              <Box sx={{ ml: 1, display: 'flex', marginBottom: '20px' }}>
+            <Box sx={{ ...style.Reviews.reviewsBox }}>
+              <Box sx={{ ...style.Reviews.ratingBox }}>
                 <Rating
                   name="half-rating"
                   size="medium"
@@ -134,40 +93,18 @@ export default function Reviews() {
               </Box>
 
               <Box sx={{ ml: 1, display: 'flex' }}>
-                <Typography
-                  fontFamily="Satoshi"
-                  fontWeight="700"
-                  fontSize="16px"
-                >
+                <Typography sx={{ ...style.Reviews.authorReviews }}>
                   {arrayReviews[activeStep].author}
                 </Typography>
                 <IconButton
                   aria-label="CheckCircleOutline"
-                  sx={{
-                    width: '16px',
-                    height: '16px',
-                    marginLeft: '4px',
-                    background: '#01AB31 ',
-                    color: '#FFFFFF',
-                  }}
+                  sx={{ ...style.Reviews.iconButtonCheckCicle }}
                 >
                   <CheckCircleOutline />
                 </IconButton>
               </Box>
-              <Box
-                sx={{
-                  maxWidth: 400,
-                  width: '100%',
-                  p: 2,
-                  color: 'rgba(0, 0, 0, 0.6)',
-                }}
-              >
-                <Typography
-                  fontFamily="Satoshi"
-                  fontWeight="400"
-                  fontSize="14px"
-                  textAlign={'start'}
-                >
+              <Box sx={{ ...style.Reviews.descBox }}>
+                <Typography sx={{ ...style.Reviews.descText }}>
                   {arrayReviews[activeStep].description}
                 </Typography>
               </Box>

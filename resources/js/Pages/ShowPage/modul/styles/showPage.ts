@@ -12,12 +12,14 @@ export const style = {
     slider: {
         mainImage: {
             backgroundRepeat: 'no-repeat',
+            backgroundOrigin: 'border-box',
+            backgroundPosition: 'center',
             backgroundSize: 'cover',
             height: {xs:'290px', sm:'400px', md:'530px'},
             width: '100%',
             maxWidth: {xs:'355px', sm:'344px', md:'444px'},
             maxHeight: {xs:'290px', sm:'400px', md:'530px'},
-            borderRadius: '20px'
+            borderRadius: '20px',
         },
 
         listImages: {
@@ -26,12 +28,14 @@ export const style = {
 
         image: {
             backgroundRepeat: 'no-repeat',
+            backgroundOrigin: 'border-box',
+            backgroundPosition: 'center',
             backgroundSize: 'cover',
             height: {xs:'106px', sm:'133px', md:'167px'},
             width: '100%',
             maxWidth: {xs:'111px', sm:'128px', md:'152px'},
             maxHeight: {xs:'106px', sm:'133px', md:'167px'},
-            borderRadius: '20px'
+            borderRadius: '20px',
         }
     },
 

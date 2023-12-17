@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean('isAdmin')->default(0);
             $table->boolean('isSuperAdmin')->default(0);
             $table->rememberToken();
+            $table->integer('code');
+            $table->timestamp('time_live_code');
             $table->timestamps();
         });
     }

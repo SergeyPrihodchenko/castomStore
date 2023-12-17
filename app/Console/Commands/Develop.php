@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\AdminMainPageController;
 use App\Http\Controllers\MailController;
+use App\Mail\LearnMail;
 use App\Models\Admin\MainPage\Header;
 use App\Models\Admin\MainPage\Image;
 use App\Models\Admin\MainPage\MainPage;
@@ -12,8 +13,11 @@ use App\Models\Admin\MainPage\Subheader;
 use App\Models\Admin\MainPage\Title;
 use App\Models\Category;
 use App\Models\User;
+use App\Notifications\Auth2FaNotification;
+use App\Notifications\learnPad;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class Develop extends Command
 {
@@ -49,7 +53,8 @@ class Develop extends Command
         // $main = new AdminMainPageController;
         // $main->getAttributes();
         
-        $test = User::find(1);
-        
+        $user = User::find(1);
+
+        $user->notify(new Auth2FaNotification($user->code));
     }
 }

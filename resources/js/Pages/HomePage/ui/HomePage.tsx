@@ -1,31 +1,20 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { style, theme } from './../module/styles/HomePageStyles';
 import Reviews from './Reviews';
 import NewArrivals from './NewArrivals';
 import TopSelling from './TopSelling';
 import Categories from './Categories';
 import HeaderWithPicture from './HeaderWithPicture';
+import Subscription from '@/Widgets/Subscription/Subscription';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000000',
-      contrastText: '#FFFFFF',
-    },
-    secondary: {
-      main: '#FFFFFF',
-      contrastText: '#000000',
-    },
-  },
-});
-
-export default function MainPage() {
+export default function MainPage({ data }: any) {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ minWidth: 320, margin: '0 auto', textAlign: 'center', border: '1px solid red' }}>
+      <Box sx={{ ...style.mainBox }}>
         {/* текст о сайте с картинкой*/}
-        <HeaderWithPicture />
+        <HeaderWithPicture data={data} />
 
         {/* новинки */}
         <NewArrivals />
@@ -38,6 +27,9 @@ export default function MainPage() {
 
         {/* отзывы */}
         <Reviews />
+
+        {/* подписка */}
+        <Subscription />
       </Box>
     </ThemeProvider>
   );

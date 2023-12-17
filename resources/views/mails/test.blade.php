@@ -80,6 +80,11 @@
                                     style="font-size: 20px; text-align: left; font-weight: 900; font-family: Satoshi; color: #4caf50;">
                                     Ваш код для авторизации на SHOP.COM</td>
                             </tr>
+                            <tr>
+                                <td
+                                style="font-size: 30px; text-align: center; font-weight: 900; font-family: Satoshi; color: #4caf50;">
+                                {{ $code }}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>

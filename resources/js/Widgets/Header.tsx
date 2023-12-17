@@ -27,7 +27,7 @@ const theme = createTheme({
   },
 });
 
-export default function Header() {
+export default function Header({ title }: any) {
   //открыть и закрыть основное меню
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
@@ -147,7 +147,7 @@ export default function Header() {
                   href="/"
                   underline="none"
                 >
-                  <Button sx={{ fontWeight: 700, marginTop: '2px' }}>Shop.com</Button>
+                  <Button sx={{ fontWeight: 700, marginTop: '2px' }}>{title}</Button>
                 </Link>
               </Box>
               <Box
