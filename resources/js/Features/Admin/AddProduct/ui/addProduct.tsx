@@ -2,9 +2,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import NativeSelect from '@mui/material/NativeSelect';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -15,6 +12,9 @@ import { useGetCatalogsQuery } from '@/entities/Catalog/model/query/rtkCatalog';
 import { useGetCategoriesQuery } from '@/entities/Category/model/query/rtkCategory';
 import { Grid } from '@mui/material';
 import SelectCatalog from './Components/SelectCatalog';
+import SelectCategory from './Components/SelectCategory';
+import InputText from './Components/InputText';
+import TextArea from './Components/TextArea';
 
 const theme = createTheme({
   palette: {
@@ -54,7 +54,7 @@ function AddProduct() {
   const [quantity, setQuantity] = useState<any>(0);
 
   const { data: catalogs, error: catalogError } = useGetCatalogsQuery('');
-  const { data: categories, error: categoriesError } = useGetCategoriesQuery(catalogId!);
+  const { data: categories, error: categoriesError } = useGetCategoriesQuery(catalogId);
 
   const [createProduct, {}] = useCreateProductMutation();
 
@@ -88,7 +88,20 @@ function AddProduct() {
           <Grid item xs={12}>
               <Grid container>
                   <Grid item>
-                      <SelectCatalog catalogs={catalogs} />
+                      <SelectCatalog catalogs={catalogs} setCatalogId={setCatalogId}/>
+                  </Grid>
+                  <Grid item xs={12} ml={6}>
+                      <SelectCategory categories={!categoriesError ? categories : []} setCategoryId={setCategoryId} />
+                  </Grid>
+              </Grid>
+              <Grid container>
+                  <Grid item xs={12}>
+                      <InputText value={title} setValue={setTitle}/>
+                  </Grid>
+              </Grid>
+              <Grid container>
+                  <Grid item ml={12} xs={12}>
+                      <TextArea value={description} setValue={setDescription} sx={{width: '600px'}}/>
                   </Grid>
               </Grid>
           </Grid>
@@ -117,80 +130,10 @@ function AddProduct() {
                 alignContent={'center'}
               >
                 <Typography variant="h5">Добавить товар</Typography>
-                <Box>
-                  <FormControl fullWidth>
-                    <InputLabel
-                      variant="standard"
-                      htmlFor="uncontrolled-native"
-                    >
-                      Каталог
-                    </InputLabel>
-                    <NativeSelect
-                      defaultValue={0}
-                      inputProps={{
-                        name: 'catalog',
-                        id: 'uncontrolled-native',
-                      }}
-                      onChange={(e) => setCatalogId(Number(e.target.value))}
-                    >
-                      <option>Каталог не выбран</option>
-                      {catalogs &&
-                        catalogs.map((el) => {
-                          return (
-                            <option
-                              key={el.id}
-                              value={el.id}
-                            >
-                              {el.title}
-                            </option>
-                          );
-                        })}
-                    </NativeSelect>
-                  </FormControl>
-                </Box>
-                <Box>
-                  <FormControl fullWidth>
-                    <InputLabel
-                      variant="standard"
-                      htmlFor="uncontrolled-native"
-                    >
-                      Категория
-                    </InputLabel>
-                    <NativeSelect
-                      defaultValue={10}
-                      inputProps={{
-                        name: 'category',
-                        id: 'uncontrolled-native',
-                      }}
-                      onChange={(e) => setCategoryId(Number(e.target.value))}
-                    >
-                      <option>Категория не выбрана</option>
-                      {categories &&
-                        categories.map((el) => {
-                          return (
-                            <option
-                              key={el.id}
-                              value={el.id}
-                            >
-                              {el.title}
-                            </option>
-                          );
-                        })}
-                    </NativeSelect>
-                  </FormControl>
-                </Box>
-                <TextField
-                  id="standard-basic"
-                  label="Наименование"
-                  variant="standard"
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Подробное описание"
-                  variant="standard"
-                  onChange={(e) => setDescription(e.target.value)}
-                />
+
+
+
+
                 <TextField
                   id="standard-basic"
                   label="Цена"

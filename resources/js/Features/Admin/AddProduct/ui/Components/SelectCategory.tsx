@@ -3,14 +3,15 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { Catalog } from '@/entities/Catalog/model/types/tapes';
 import { Box } from '@mui/material';
 
-export default function SelectCatalog({catalogs, setCatalogId}: any) {
+export default function SelectCategory({categories, setCategoryId}: any) {
+
   return (
     <Autocomplete
       sx={{ width: 300 }}
-      options={catalogs}
+      options={categories ?? []}
       getOptionLabel={(option: Catalog) => option.title}
-      noOptionsText='Каталоги отсутствуют'
-      onChange={(e: any) => {e.target.value ? setCatalogId(Number(e.target.value)) : setCatalogId(0);
+      noOptionsText='В каталоге нет категорий'
+      onChange={(e: any) => {e.target.value ? setCategoryId(Number(e.target.value)) : null;
       }}
       renderOption={(props, option) => (
         <Box component="li" {...props} value={option.id} key={option.id}>
@@ -20,7 +21,7 @@ export default function SelectCatalog({catalogs, setCatalogId}: any) {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Выберите каталог"
+          label="Выберите категорю"
         />
       )}
     />
