@@ -6,7 +6,7 @@ function ProductListPage({auth, products}: PageProps){
     
     return(
         <MainLayout user={auth.user}>
-            <ProductList products={products}/>
+            <ProductList/>
         </MainLayout>
     )
 }

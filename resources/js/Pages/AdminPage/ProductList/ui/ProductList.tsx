@@ -23,7 +23,7 @@ function ProductList () {
     const [page, setPage] = React.useState<number>(0);
     const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
     const [search, setSearch] = React.useState('');
-    const [products, setProducts] = React.useState([]);
+    const [products, setProducts] = React.useState<any>([]);
 
     // Получаем продукты
     const [productData, {}] = useLazyGetProductsQuery();

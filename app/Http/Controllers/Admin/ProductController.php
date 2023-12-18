@@ -11,7 +11,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class AdminProductController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
@@ -37,7 +37,7 @@ class AdminProductController extends Controller
 
     public function create()
     {
-        return Inertia::render('AdminPage/Forms/CreateProduct');
+        return Inertia::render('AdminPage/ProductControlPanel/CreateProduct');
     }
 
     public function save(ProductRequest $request): RedirectResponse
