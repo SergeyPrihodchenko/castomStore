@@ -34,7 +34,7 @@ export default function ProductPage({ auth }: PageProps) {
             </Typography>
 
             <ButtonAddProduct />
-            <Search />
+            <Search handleSearch={''} setSearch={''} />
 
             <ProductTableDesc />
           </Container>

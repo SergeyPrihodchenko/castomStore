@@ -11,11 +11,10 @@ import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useCreateProductMutation } from '@/entities/Product/model/slice/productApi';
 import { useEffect, useState } from 'react';
-import { ProductSchema } from '../model/types/product';
-import { Block, Try } from '@mui/icons-material';
-import { error, log } from 'console';
 import { useGetCatalogsQuery } from '@/entities/Catalog/model/query/rtkCatalog';
 import { useGetCategoriesQuery } from '@/entities/Category/model/query/rtkCategory';
+import { Grid } from '@mui/material';
+import SelectCatalog from './Components/SelectCatalog';
 
 const theme = createTheme({
   palette: {
@@ -44,17 +43,17 @@ const VisuallyHiddenInput = styled('input')({
 
 function AddProduct() {
   const [catalogId, setCatalogId] = useState(0);
-  const [categoryId, setCategoryId] = useState(0);
-  const [files, setFiles] = useState([]);
-  const [previewImg, setPreviewImg] = useState([]);
+  const [categoryId, setCategoryId] = useState<any>(0);
+  const [files, setFiles] = useState<any>([]);
+  const [previewImg, setPreviewImg] = useState<any>([]);
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [video, setVideo] = useState('');
-  const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState<any>(0);
+  const [quantity, setQuantity] = useState<any>(0);
 
-  const { data: catalogs, error: catalogError } = useGetCatalogsQuery();
+  const { data: catalogs, error: catalogError } = useGetCatalogsQuery('');
   const { data: categories, error: categoriesError } = useGetCategoriesQuery(catalogId!);
 
   const [createProduct, {}] = useCreateProductMutation();
@@ -84,160 +83,171 @@ function AddProduct() {
   };
 
   return (
-    <form>
-      <ThemeProvider theme={theme}>
-        <Box
-          component="form"
-          sx={{
-            minWidth: '390px',
-            marginLeft: '40px',
-          }}
-        >
-          <Container>
-            <Box
-              component="form"
-              sx={{
-                marginTop: '20px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                '& > :not(style)': { m: 1, width: '25ch' },
-              }}
-              noValidate
-              autoComplete="off"
-              alignContent={'center'}
-            >
-              <Typography variant="h5">Добавить товар</Typography>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel
-                    variant="standard"
-                    htmlFor="uncontrolled-native"
-                  >
-                    Каталог
-                  </InputLabel>
-                  <NativeSelect
-                    defaultValue={0}
-                    inputProps={{
-                      name: 'catalog',
-                      id: 'uncontrolled-native',
-                    }}
-                    onChange={(e) => setCatalogId(Number(e.target.value))}
-                  >
-                    <option>Каталог не выбран</option>
-                    {catalogs &&
-                      catalogs.map((el) => {
-                        return (
-                          <option
-                            key={el.id}
-                            value={el.id}
-                          >
-                            {el.title}
-                          </option>
-                        );
-                      })}
-                  </NativeSelect>
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel
-                    variant="standard"
-                    htmlFor="uncontrolled-native"
-                  >
-                    Категория
-                  </InputLabel>
-                  <NativeSelect
-                    defaultValue={10}
-                    inputProps={{
-                      name: 'category',
-                      id: 'uncontrolled-native',
-                    }}
-                    onChange={(e) => setCategoryId(Number(e.target.value))}
-                  >
-                    <option>Категория не выбрана</option>
-                    {categories &&
-                      categories.map((el) => {
-                        return (
-                          <option
-                            key={el.id}
-                            value={el.id}
-                          >
-                            {el.title}
-                          </option>
-                        );
-                      })}
-                  </NativeSelect>
-                </FormControl>
-              </Box>
-              <TextField
-                id="standard-basic"
-                label="Наименование"
-                variant="standard"
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <TextField
-                id="standard-basic"
-                label="Подробное описание"
-                variant="standard"
-                onChange={(e) => setDescription(e.target.value)}
-              />
-              <TextField
-                id="standard-basic"
-                label="Цена"
-                variant="standard"
-                onChange={(e) => setPrice(Number(e.target.value))}
-              />
-              <TextField
-                id="standard-basic"
-                label="Количество"
-                variant="standard"
-                onChange={(e) => setQuantity(Number(e.target.value))}
-              />
-              <TextField
-                id="standard-basic"
-                label="Видео"
-                variant="standard"
-                onChange={(e) => setVideo(e.target.value)}
-              />
-              <Button
-                component="label"
-                variant="text"
-                color="primary"
-                size="small"
-                startIcon={<CloudUploadIcon />}
+    <>
+      <Grid container sx={{maxWidth: '1200px', padding: '10px', margin: '0 auto'}}>
+          <Grid item xs={12}>
+              <Grid container>
+                  <Grid item>
+                      <SelectCatalog catalogs={catalogs} />
+                  </Grid>
+              </Grid>
+          </Grid>
+      </Grid>
+      <form>
+        <ThemeProvider theme={theme}>
+          <Box
+            component="form"
+            sx={{
+              minWidth: '390px',
+              marginLeft: '40px',
+            }}
+          >
+            <Container>
+              <Box
+                component="form"
+                sx={{
+                  marginTop: '20px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  '& > :not(style)': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+                alignContent={'center'}
               >
-                Загрузить фото
-                <VisuallyHiddenInput
-                  type="file"
-                  multiple
-                  onChange={(e) => setFiles(e.target.files)}
+                <Typography variant="h5">Добавить товар</Typography>
+                <Box>
+                  <FormControl fullWidth>
+                    <InputLabel
+                      variant="standard"
+                      htmlFor="uncontrolled-native"
+                    >
+                      Каталог
+                    </InputLabel>
+                    <NativeSelect
+                      defaultValue={0}
+                      inputProps={{
+                        name: 'catalog',
+                        id: 'uncontrolled-native',
+                      }}
+                      onChange={(e) => setCatalogId(Number(e.target.value))}
+                    >
+                      <option>Каталог не выбран</option>
+                      {catalogs &&
+                        catalogs.map((el) => {
+                          return (
+                            <option
+                              key={el.id}
+                              value={el.id}
+                            >
+                              {el.title}
+                            </option>
+                          );
+                        })}
+                    </NativeSelect>
+                  </FormControl>
+                </Box>
+                <Box>
+                  <FormControl fullWidth>
+                    <InputLabel
+                      variant="standard"
+                      htmlFor="uncontrolled-native"
+                    >
+                      Категория
+                    </InputLabel>
+                    <NativeSelect
+                      defaultValue={10}
+                      inputProps={{
+                        name: 'category',
+                        id: 'uncontrolled-native',
+                      }}
+                      onChange={(e) => setCategoryId(Number(e.target.value))}
+                    >
+                      <option>Категория не выбрана</option>
+                      {categories &&
+                        categories.map((el) => {
+                          return (
+                            <option
+                              key={el.id}
+                              value={el.id}
+                            >
+                              {el.title}
+                            </option>
+                          );
+                        })}
+                    </NativeSelect>
+                  </FormControl>
+                </Box>
+                <TextField
+                  id="standard-basic"
+                  label="Наименование"
+                  variant="standard"
+                  onChange={(e) => setTitle(e.target.value)}
                 />
-                {previewImg &&
-                  previewImg.map((url, index) => (
-                    <img
-                      src={url}
-                      key={index}
-                      width={100}
-                      height={100}
-                    />
-                  ))}
+                <TextField
+                  id="standard-basic"
+                  label="Подробное описание"
+                  variant="standard"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Цена"
+                  variant="standard"
+                  onChange={(e) => setPrice(Number(e.target.value))}
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Количество"
+                  variant="standard"
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Видео"
+                  variant="standard"
+                  onChange={(e) => setVideo(e.target.value)}
+                />
+                <Button
+                  component="label"
+                  variant="text"
+                  color="primary"
+                  size="small"
+                  startIcon={<CloudUploadIcon />}
+                >
+                  Загрузить фото
+                  <VisuallyHiddenInput
+                    type="file"
+                    multiple
+                    onChange={(e) => setFiles(e.target.files)}
+                  />
+                  {previewImg &&
+                    previewImg.map((url: any, index: any) => (
+                      <img
+                        src={url}
+                        key={index}
+                        width={100}
+                        height={100}
+                      />
+                    ))}
+                </Button>
+              </Box>
+              <Button
+                variant="contained"
+                size="small"
+                href="#"
+                color="secondary"
+                sx={{ margin: '20px' }}
+                onClick={() => hadnleSave()}
+              >
+                Сохранить
               </Button>
-            </Box>
-            <Button
-              variant="contained"
-              size="small"
-              href="#"
-              color="secondary"
-              sx={{ margin: '20px' }}
-              onClick={() => hadnleSave()}
-            >
-              Сохранить
-            </Button>
-          </Container>
-        </Box>
-      </ThemeProvider>
-    </form>
+            </Container>
+          </Box>
+        </ThemeProvider>
+      </form>
+    </>
   );
 }
 

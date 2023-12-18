@@ -1,5 +1,5 @@
-import React from "react";
-import { useDeleteProductByIdMutation, useGetProductsQuery } from "@/entities/Product/model/slice/productApi";
+import React, { useEffect } from "react";
+import { useDeleteProductByIdMutation, useLazyGetProductsQuery, useLazySearchProductQuery } from "@/entities/Product/model/slice/productApi";
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -7,9 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Search from '@/Shared/ui/SearchProduct';
 import ProductListTable from "./ProductListTable";
 import ButtonAddProduct from "./ButtonAddProduct";
-import { IProduct } from "@/entities/Product/model/types/types";
 import { router } from "@inertiajs/react";
-import { log } from "console";
 
 const theme = createTheme({
     palette: {
@@ -20,20 +18,47 @@ const theme = createTheme({
     },
 });
 
-interface ProductListProps {
-  products: IProduct[]
-}
-
-function ProductList ({ products }: ProductListProps) {
+function ProductList () {
   
     const [page, setPage] = React.useState<number>(0);
     const [rowsPerPage, setRowsPerPage] = React.useState<number>(5);
+    const [search, setSearch] = React.useState('');
+    const [products, setProducts] = React.useState<any>([]);
 
+    // Получаем продукты
+    const [productData, {}] = useLazyGetProductsQuery();
+
+    // Удаляем продукт
     const [deleteProduct, {}] = useDeleteProductByIdMutation();
 
+    // Поиск по наименованию
+    const [searchProduct, {}] = useLazySearchProductQuery();
+
+    // Первичная подгрузка
+    useEffect(() => {
+        loadData()
+    }, [])
+
+    // Подгрузка данных
+    const loadData = async () => {
+      const response = await productData(rowsPerPage);
+      setProducts(response.data);
+   }
+
+    // Удаление товара
     const deleteHandle = async (product_id: number) => {
         await deleteProduct(product_id)
         router.reload({only: ['products']})
+    }
+
+    // Поиск по наименованию
+    const handleSearch = async () => {
+        if(search){
+          const response = await searchProduct(search);
+          setProducts(response)
+          return;
+        }
+        loadData();
     }
     
     return(
@@ -50,8 +75,8 @@ function ProductList ({ products }: ProductListProps) {
                   Товары
                 </Typography>
                 <ButtonAddProduct />
-                <Search />
-                <ProductListTable handleDelete={deleteHandle} products={products} page={page} rows_per_page={rowsPerPage} />
+                <Search setSearch={setSearch} handleSearch={handleSearch}/>
+                <ProductListTable handleDelete={deleteHandle} products={products?.data} page={page} rows_per_page={rowsPerPage} />
               </Container>
             </Box>
         </ThemeProvider>
