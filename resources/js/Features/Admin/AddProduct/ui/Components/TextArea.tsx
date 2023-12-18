@@ -19,8 +19,17 @@ const Input = React.forwardRef(function CustomInput(
   );
 });
 
-export default function TextArea({value, setValue}: any) {
-  return <Input value={value} onChange={(e) => {setValue(e.target.value)}} multiline placeholder="Type something…" />;
+export default function TextArea({ value, setValue }: any) {
+  return (
+    <Input
+      value={value}
+      onChange={(e) => {
+        setValue(e.target.value);
+      }}
+      multiline
+      placeholder="Добавьте описание..."
+    />
+  );
 }
 
 const blue = {
@@ -51,11 +60,12 @@ const RootDiv = styled('div')`
 `;
 
 const TextareaElement = styled('textarea', {
-  shouldForwardProp: (prop) =>
-    !['ownerState', 'minRows', 'maxRows'].includes(prop.toString()),
+  shouldForwardProp: (prop) => !['ownerState', 'minRows', 'maxRows'].includes(prop.toString()),
 })(
   ({ theme }) => `
-  width: 320px;
+  height: 150px;
+  max-width: 820px;
+  width: 100%;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;

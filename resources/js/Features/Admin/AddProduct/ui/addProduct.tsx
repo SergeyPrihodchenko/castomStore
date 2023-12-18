@@ -84,27 +84,31 @@ function AddProduct() {
 
   return (
     <>
-      <Grid container sx={{maxWidth: '1200px', padding: '10px', margin: '0 auto'}}>
-          <Grid item xs={12}>
-              <Grid container>
-                  <Grid item>
-                      <SelectCatalog catalogs={catalogs} setCatalogId={setCatalogId}/>
-                  </Grid>
-                  <Grid item xs={12} ml={6}>
-                      <SelectCategory categories={!categoriesError ? categories : []} setCategoryId={setCategoryId} />
-                  </Grid>
-              </Grid>
-              <Grid container>
-                  <Grid item xs={12}>
-                      <InputText value={title} setValue={setTitle}/>
-                  </Grid>
-              </Grid>
-              <Grid container>
-                  <Grid item ml={12} xs={12}>
-                      <TextArea value={description} setValue={setDescription} sx={{width: '600px'}}/>
-                  </Grid>
-              </Grid>
+      <Grid container spacing={1} sx={{maxWidth: '1200px', padding: '10px', margin: '0 auto'}}>
+        <Grid item xs={12}>
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={6}>
+              <SelectCatalog catalogs={catalogs} setCatalogId={setCatalogId}/>
+            </Grid>
+            <Grid item xs={12}  sm={6}>
+              <SelectCategory categories={!categoriesError ? categories : []} setCategoryId={setCategoryId} />
+            </Grid>
           </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container spacing={1}>
+            <Grid item xs={12}>
+              <InputText value={title} setValue={setTitle}/>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container spacing={1} sx={{display: 'flex'}}>
+            <Grid item ml={12} xs={12} sx={{justifyContent: 'center'}}>
+                <TextArea value={description} setValue={setDescription} sx={{width: '600px'}}/>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
       <form>
         <ThemeProvider theme={theme}>
