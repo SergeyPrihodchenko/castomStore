@@ -15,6 +15,7 @@ import SelectCatalog from './Components/SelectCatalog';
 import SelectCategory from './Components/SelectCategory';
 import InputText from './Components/InputText';
 import TextArea from './Components/TextArea';
+import { style } from '../model/style/style';
 
 const theme = createTheme({
   palette: {
@@ -50,13 +51,13 @@ function AddProduct() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [video, setVideo] = useState('');
-  const [price, setPrice] = useState<any>(0);
-  const [quantity, setQuantity] = useState<any>(0);
+  const [price, setPrice] = useState<any>('');
+  const [quantity, setQuantity] = useState<any>('');
 
   const { data: catalogs, error: catalogError } = useGetCatalogsQuery('');
   const { data: categories, error: categoriesError } = useGetCategoriesQuery(catalogId);
 
-  const [createProduct, {}] = useCreateProductMutation();
+  const [createProduct, {isSuccess}] = useCreateProductMutation();
 
   useEffect(() => {
     setPreviewImg([...files].map((file) => URL.createObjectURL(file)));
@@ -75,8 +76,9 @@ function AddProduct() {
     }
 
     try {
-      await createProduct(productData);
-      console.log('Product created successfully');
+        const response = await createProduct(productData);
+        console.log(response);
+        
     } catch (error) {
       console.log(error);
     }
@@ -84,102 +86,86 @@ function AddProduct() {
 
   return (
     <>
-      <Grid container spacing={1} sx={{maxWidth: '1200px', padding: '10px', margin: '0 auto'}}>
+      <ThemeProvider theme={theme}>
+      <Grid container sx={style.container}>
+        <Grid item xs={12} sx={style.flexItem}>
+            <Typography variant="h5" sx={style.header}>Добавить товар</Typography>
+        </Grid>
         <Grid item xs={12}>
           <Grid container spacing={1}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} sx={style.flexItem}>
               <SelectCatalog catalogs={catalogs} setCatalogId={setCatalogId}/>
             </Grid>
-            <Grid item xs={12}  sm={6}>
+            <Grid item xs={12}  sm={6} sx={style.flexItem}>
               <SelectCategory categories={!categoriesError ? categories : []} setCategoryId={setCategoryId} />
             </Grid>
           </Grid>
         </Grid>
         <Grid item xs={12}>
+          <Grid container spacing={1} sx={style.marginTop}>
+            <Grid item xs={12} sm={4} sx={style.flexItem}>
+              <InputText value={title} setValue={setTitle} label={'Название'}/>
+            </Grid>
+            <Grid item xs={12} sm={4} sx={style.flexItem}>
+              <InputText value={price} setValue={setPrice} label={'Цена'}/>
+            </Grid>
+            <Grid item xs={12} sm={4} sx={style.flexItem}>
+              <InputText value={quantity} setValue={setQuantity} label={'Количество'}/>
+            </Grid>
+          </Grid>
+        </Grid>
+          <Grid container>
+            <Grid item ml={12} xs={12} sx={style.textaria}>
+                <TextArea value={description} setValue={setDescription}/>
+            </Grid>
+          </Grid>
+        <Grid item xs={12}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <InputText value={title} setValue={setTitle}/>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Grid container spacing={1} sx={{display: 'flex'}}>
-            <Grid item ml={12} xs={12} sx={{justifyContent: 'center'}}>
-                <TextArea value={description} setValue={setDescription} sx={{width: '600px'}}/>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-      <form>
-        <ThemeProvider theme={theme}>
-          <Box
-            component="form"
-            sx={{
-              minWidth: '390px',
-              marginLeft: '40px',
-            }}
-          >
-            <Container>
               <Box
-                component="form"
-                sx={{
-                  marginTop: '20px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-                alignContent={'center'}
-              >
-                <Typography variant="h5">Добавить товар</Typography>
-
-
-
-
-                <TextField
-                  id="standard-basic"
-                  label="Цена"
-                  variant="standard"
-                  onChange={(e) => setPrice(Number(e.target.value))}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Количество"
-                  variant="standard"
-                  onChange={(e) => setQuantity(Number(e.target.value))}
-                />
-                <TextField
-                  id="standard-basic"
-                  label="Видео"
-                  variant="standard"
-                  onChange={(e) => setVideo(e.target.value)}
-                />
-                <Button
-                  component="label"
-                  variant="text"
-                  color="primary"
-                  size="small"
-                  startIcon={<CloudUploadIcon />}
+                  component="form"
+                  sx={style.videoInput}
+                  noValidate
+                  autoComplete="off"
+                  alignContent={'center'}
                 >
-                  Загрузить фото
-                  <VisuallyHiddenInput
-                    type="file"
-                    multiple
-                    onChange={(e) => setFiles(e.target.files)}
+
+                  <TextField
+                    id="standard-basic"
+                    label="Видео"
+                    variant="standard"
+                    onChange={(e) => setVideo(e.target.value)}
                   />
-                  {previewImg &&
-                    previewImg.map((url: any, index: any) => (
-                      <img
-                        src={url}
-                        key={index}
-                        width={100}
-                        height={100}
-                      />
-                    ))}
-                </Button>
-              </Box>
+                </Box>
+                <hr/>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                component="label"
+                variant="text"
+                color="primary"
+                size="small"
+                startIcon={<CloudUploadIcon />}
+              >
+                Загрузить фото
+              <VisuallyHiddenInput
+                type="file"
+                multiple
+                onChange={(e) => setFiles(e.target.files)}
+              />
+              </Button>
+            </Grid>
+            <Grid item xs={12} sx={style.imagePrew}>
+              {previewImg && previewImg.map((url: any, index: any) => (
+                <img
+                  src={url}
+                  key={index}
+                  width={100}
+                  height={100}
+                />
+              ))}
+              </Grid>
+            <Grid item xs={12}>
               <Button
                 variant="contained"
                 size="small"
@@ -190,10 +176,11 @@ function AddProduct() {
               >
                 Сохранить
               </Button>
-            </Container>
-          </Box>
-        </ThemeProvider>
-      </form>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      </ThemeProvider>
     </>
   );
 }

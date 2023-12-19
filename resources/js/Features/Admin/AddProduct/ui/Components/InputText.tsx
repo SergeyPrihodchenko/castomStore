@@ -2,15 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function InputText({setValue, value}: any) {
+export default function InputText({setValue, value, label}: any) {
   return (
-    <Box
-      sx={{
-        width: 500,
-        maxWidth: '100%',
-      }}
-    >
-      <TextField fullWidth label="fullWidth" id="fullWidth" value={value} onChange={(e) => {setValue(e.target.value)}} sx={{border: 'solid black 0'}}/>
-    </Box>
+
+      <TextField label={label} value={value} onChange={(e) => {setValue(e.target.value)}} sx={{width: '300px'}}/>
   );
 }
