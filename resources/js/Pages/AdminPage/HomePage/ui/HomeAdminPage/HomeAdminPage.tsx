@@ -1,295 +1,138 @@
-import Box from '@mui/material/Box';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import * as React from 'react';
+import { useState } from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import SliderMobile from '@/image/SliderMobile.png';
-import ProductTable from '@/Pages/AdminPage/Form/ui/ProductsTable';
-import TextField from '@mui/material/TextField';
-import AddCircle from '@mui/icons-material/AddCircle';
-import IconButton from '@mui/material/IconButton';
-import Categories from '@/Features/Admin/CategoriesAccordion/ui/Categories';
-import Catalogs from '@/Features/Admin/CatalogsAccordion/ui/Catalogs';
+import { PageProps } from '@/types';
+import ProductList from '@/Pages/AdminPage/ProductList/ui/AdminProductList';
+import EditShopDetails from '@/Pages/AdminPage/Form/ui/EditShopDetails';
+import Catalogs from '@/Features/Admin/CatalolgPage/ui/Catalogs';
+import Categories from '@/Features/Admin/CategoriesPage/ui/Categories';
+import AddSettingsForm from '@/Features/Admin/AddMainPageSettings';
 import { useSetCatalogMutation } from '@/entities/Catalog/model/query/rtkCatalog';
 import { useSetCategoryMutation } from '@/entities/Category/model/query/rtkCategory';
-import { useState } from 'react';
-
 import Search from '@/Shared/ui/SearchProduct';
 
-const arrayCompany = [
-  {
-    id: 1,
-    title: 'Shop',
-    phone: '+ 7 800 999 99 99',
-    adress: 'Иваново, ул. Белая, д.4',
-    email: 'shop@mail.ru',
-    website: 'shop.com',
-    socialNetworks: '',
-  },
-];
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
 
-const arrayHomePage = [
-  {
-    id: 1,
-    title: 'Создайте сайт вашей мечты',
-    desc: 'У нас есть сайт, который вы можете настроить по своему усмотрению и начать или расширить свою деятельность.',
-    image: '',
-  },
-];
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
 
-const theme = createTheme({
-  palette: {
-    secondary: {
-      main: '#FFFFFF',
-      contrastText: '#000000',
-    },
-  },
-});
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
 
-export default function MainAdminPage() {
-  const [catalogValue, setCatalogValue] = useState('');
-  const [categoryValue, setCategoryValue] = useState('');
-  const [catalogID, setCatalogID] = useState(0);
-
-  const textValidate = (str: string) => {
-    const newStr = str.replace(/[^A-zА-я^ ]/gm, '');
-    return newStr;
+function a11yProps(index: number) {
+  return {
+    id: `vertical-tab-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
   };
+}
+export default function HomeAdminPage() {
+  // export default function HomeAdminPage({ catalogs, products }: PageProps) {
+  //console.log(catalogs);
 
-  const handleChangeCatalog = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const value = textValidate(e.target.value);
-    setCatalogValue(value);
-  };
-
-  const handleChangeCategory = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const value = textValidate(e.target.value);
-    setCategoryValue(value);
-  };
-
-  const [setCatalog, {}] = useSetCatalogMutation();
-  const [setCategory, {}] = useSetCategoryMutation();
-
-  const setCatalogC = () => {
-    setCatalog({ title: catalogValue });
-    setCatalogValue('');
-  };
-
-  const setCategoryC = () => {
-    setCategory({ catalog_id: catalogID, title: categoryValue });
-    setCategoryValue('');
+  const [value, setValue] = useState(0);
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container fixed>
+    <Container fixed>
+      <Box sx={{ margin: '50px' }}>
         <Box
           sx={{
-            margin: '20px 0 50px 0',
+            flexGrow: 1,
+            bgcolor: 'background.paper',
             display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column',
           }}
         >
-          <Accordion
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs example"
             sx={{
-              width: '350px',
-              minHeight: '40px',
-              color: 'black',
+              borderRight: 1,
+              borderColor: 'divider',
             }}
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>О магазине</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              {arrayCompany != null ? (
-                arrayCompany.map((el) => {
-                  return (
-                    <div key={el.id}>
-                      <Box key={el.id}>
-                        <Typography variant="h5">{el.title}</Typography>
-                        <Typography variant="h6">{el.website}</Typography>
-                        <Typography variant="h6">{el.email}</Typography>
-                        <Typography variant="h6">{el.phone}</Typography>
-                        <Typography variant="h6">{el.adress}</Typography>
-                        <Typography variant="h6">{el.socialNetworks}</Typography>
-                      </Box>
-                    </div>
-                  );
-                })
-              ) : (
-                <Typography variant="h5">Вы еще не внести данные о вашем сайте</Typography>
-              )}
-
-              <Button
-                sx={{ marginTop: '20px' }}
-                variant="contained"
-                size="medium"
-                href={route('editShopDetails')}
-                color="secondary"
-              >
-                Редактировать
-              </Button>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            sx={{
-              width: '350px',
-              minHeight: '40px',
-              color: 'black',
-            }}
+            <Tab
+              label="О магазине"
+              {...a11yProps(0)}
+            />
+            <Tab
+              label="Настройка страниц"
+              {...a11yProps(1)}
+            />
+            <Tab
+              label="Каталоги"
+              {...a11yProps(2)}
+            />
+            <Tab
+              label="Категории"
+              {...a11yProps(3)}
+            />
+            <Tab
+              label="Товары"
+              {...a11yProps(4)}
+            />
+          </Tabs>
+          <TabPanel
+            value={value}
+            index={0}
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Настройка главной страницы</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              {arrayHomePage != null ? (
-                arrayHomePage.map((el) => {
-                  return (
-                    <Box key={el.id}>
-                      <Typography variant="h5">{el.title}</Typography>
-                      <Typography variant="h6">{el.desc}</Typography>
-
-                      <img
-                        src={SliderMobile}
-                        width={'200'}
-                        alt="SliderMobile"
-                      />
-                    </Box>
-                  );
-                })
-              ) : (
-                <Typography variant="h5">Вы еще не внести данные о вашем сайте</Typography>
-              )}
-
-              <Button
-                sx={{ marginTop: '20px' }}
-                variant="contained"
-                size="medium"
-                href={route('EditHomeShop')}
-                color="secondary"
-              >
-                Редактировать
-              </Button>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            sx={{
-              width: '350px',
-              minHeight: '40px',
-              color: 'black',
-            }}
+            <EditShopDetails />
+          </TabPanel>
+          <TabPanel
+            value={value}
+            index={1}
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Каталоги</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Catalogs />
-              <TextField
-                id="standard-basic"
-                label="Новый каталог"
-                variant="standard"
-                value={catalogValue}
-                onChange={(e) => {
-                  handleChangeCatalog(e);
-                }}
-                sx={{ marginLeft: '20px' }}
-              />
-
-              <IconButton
-                edge="end"
-                aria-label="edit"
-                onClick={setCatalogC}
-                sx={{ margin: '10px' }}
-              >
-                <AddCircle />
-              </IconButton>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            sx={{
-              width: '350px',
-              minHeight: '40px',
-              color: 'black',
-            }}
+            <AddSettingsForm />
+          </TabPanel>
+          <TabPanel
+            value={value}
+            index={2}
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Категории</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Categories getCatalogID={setCatalogID} />
-
-              <TextField
-                id="standard-basic"
-                label="Новая категория"
-                variant="standard"
-                value={categoryValue}
-                onChange={(e) => {
-                  handleChangeCategory(e);
-                }}
-                sx={{ marginLeft: '20px' }}
-              />
-
-              <IconButton
-                edge="end"
-                aria-label="edit"
-                sx={{ margin: '10px' }}
-                onClick={setCategoryC}
-              >
-                <AddCircle />
-              </IconButton>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            sx={{
-              width: '350px',
-              minHeight: '40px',
-              color: 'black',
-            }}
+            Каталоги
+            {/* <Catalogs catalogs={catalogs} /> */}
+          </TabPanel>
+          <TabPanel
+            value={value}
+            index={3}
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Товары</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Search />
-              <ProductTable />
-
-              <Button
-                sx={{ marginTop: '20px' }}
-                variant="contained"
-                size="medium"
-                href={route('AddShopProduct')}
-                color="secondary"
-              >
-                Добавить
-              </Button>
-            </AccordionDetails>
-          </Accordion>
+            Категории
+            {/* <Categories catalogs={catalogs} /> */}
+          </TabPanel>
+          <TabPanel
+            value={value}
+            index={4}
+          >
+            Товары
+            {/* <ProductList products={products} /> */}
+          </TabPanel>
         </Box>
-      </Container>
-    </ThemeProvider>
+      </Box>
+    </Container>
   );
 }
